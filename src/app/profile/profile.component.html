@@ -1,0 +1,13 @@
+<nav mat-tab-nav-bar class="nav">
+  <a
+    *ngFor="let navItem of navItems"
+    mat-tab-link
+    [active]="navItem.routerLink == activeLink"
+    [routerLink]="navItem.routerLink"
+    [class.active]="navItem.routerLink == activeLink"
+  >
+    <mat-icon>{{ navItem.icon }}</mat-icon>
+  </a>
+</nav>
+
+<router-outlet></router-outlet>

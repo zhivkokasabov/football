@@ -1,0 +1,7 @@
+@import '../../styles/mixins';
+
+.login {
+  &__submit-container {
+    @include align-actions-right;
+  }
+}

@@ -1,0 +1,10 @@
+<div *ngIf="userTypeId == userTypeOrganization" class="add-container">
+  <button routerLink="/tournament" mat-icon-button title="Add new tournament">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+</div>
+<app-tournament-card
+  *ngFor="let tournament of tournaments"
+  [tournament]="tournament"
+  [routerLink]="['/tournament', tournament.id, 'view']"
+></app-tournament-card>

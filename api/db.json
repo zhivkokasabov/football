@@ -1,0 +1,247 @@
+{
+  "users": [
+    {
+      "passIs": "1111",
+      "id": 1,
+      "firstName": "zhivko",
+      "lastName": "Kasabov",
+      "email": "zhivkokasabov@gmail.com",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "phone": "0876383733",
+      "userTypeId": 3,
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      },
+      "userId": 1,
+      "playerPositionId": 1,
+      "teamId": 1
+    },
+    {
+      "email": "tosho@abv.bg",
+      "password": "$2a$10$vypQtt6DFBPQSFuvOCWSDew.A.kbgQ5tZR/CbHNPJr6fD9oMXWb0i",
+      "firstName": "tosho",
+      "lastName": " toshev",
+      "nickname": "toshkata",
+      "userId": 2,
+      "playerPosition": {
+        "id": 3,
+        "name": "forward"
+      },
+      "id": 2
+    },
+    {
+      "email": "alo@abv.bg",
+      "password": "$2a$10$gnQRprWR3x4JpKV9lRSUrO5cjxt3G4eCj6GuLB7B2o8B3Gppr.ODK",
+      "firstName": "alo",
+      "lastName": "alo",
+      "nickname": "alo",
+      "userId": 3,
+      "playerPosition": {
+        "id": 1,
+        "name": "goalkeeper"
+      },
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      },
+      "id": 3
+    },
+    {
+      "email": "yoko@abv.bg",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "nickname": "team yoko",
+      "playerPosition": {},
+      "userTypeId": 1,
+      "userType": {
+        "id": 1,
+        "type": "Tournament organisator"
+      },
+      "id": 4
+    }
+  ],
+  "teamMembers": [
+    {
+      "teamId": 1,
+      "userId": 1
+    }
+  ],
+  "userTypes": [
+    {
+      "id": 1,
+      "type": "Tournament organisator"
+    },
+    {
+      "id": 3,
+      "type": "Player"
+    }
+  ],
+  "playerPositions": [
+    {
+      "id": 1,
+      "name": "goalkeeper"
+    },
+    {
+      "id": 2,
+      "name": "midfielder"
+    },
+    {
+      "id": 3,
+      "name": "forward"
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "de da znam"
+    }
+  ],
+  "tournaments": [
+    {
+      "id": 1,
+      "userId": 4,
+      "name": "Champions league 20/21",
+      "avenue": "Estadio Azteca",
+      "startDate": "28/02/2021 09:00",
+      "endDate": "28/02/2021",
+      "teamsCount": 16,
+      "playingFields": 4,
+      "matchLength": 20,
+      "halfTimeLength": 5,
+      "description": "",
+      "rules": "",
+      "latestMatchStart": "20:00"
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "name": "Champions league 20/21",
+      "avenue": "Estadio Azteca",
+      "startDate": "28/02/2021 09:00",
+      "endDate": "28/02/2021",
+      "teamsCount": 16,
+      "playingFields": 4,
+      "matchLength": 20,
+      "halfTimeLength": 5,
+      "description": "",
+      "rules": "",
+      "latestMatchStart": "20:00"
+    },
+    {
+      "avenue": "test",
+      "description": "test",
+      "halfTimeLength": 12,
+      "matchLength": 12,
+      "name": "test",
+      "playingFields": 12,
+      "rules": "12",
+      "startDate": "2021-11-30T22:00:00.000Z",
+      "teamsCount": 12,
+      "id": 3
+    },
+    {
+      "avenue": "12",
+      "description": "12",
+      "halfTimeLength": 12,
+      "matchLength": 12,
+      "name": "12",
+      "playingFields": 12,
+      "rules": "12",
+      "startDate": "2021-11-30T22:00:00.000Z",
+      "teamsCount": 12,
+      "id": 4
+    },
+    {
+      "avenue": "12",
+      "description": "12",
+      "halfTimeLength": 12,
+      "matchLength": 12,
+      "name": "12",
+      "playingFields": 12,
+      "rules": "12",
+      "startDate": "2021-11-30T22:00:00.000Z",
+      "teamsCount": 12,
+      "id": 5
+    },
+    {
+      "avenue": "12",
+      "description": "12",
+      "halfTimeLength": 12,
+      "matchLength": 12,
+      "name": "12",
+      "playingFields": 12,
+      "rules": "12",
+      "startDate": "2021-11-30T22:00:00.000Z",
+      "teamsCount": 12,
+      "id": 6
+    },
+    {
+      "avenue": "1",
+      "description": "1",
+      "halfTimeLength": 1,
+      "matchLength": 1,
+      "name": "1",
+      "playingFields": 1,
+      "rules": "1",
+      "startDate": "2020-12-31T22:00:00.000Z",
+      "teamsCount": 1,
+      "id": 7
+    },
+    {
+      "avenue": "1",
+      "description": "1",
+      "halfTimeLength": 1,
+      "matchLength": 1,
+      "name": "1",
+      "playingFields": 1,
+      "rules": "1",
+      "startDate": "2020-12-31T22:00:00.000Z",
+      "teamsCount": 1,
+      "userId": 4,
+      "id": 8
+    },
+    {
+      "avenue": "Vasil Levski",
+      "description": "",
+      "halfTimeLength": 15,
+      "matchLength": 90,
+      "name": "Champions league 20/21",
+      "playingFields": 1,
+      "rules": "Lorem ipsum dolor si anem",
+      "startDate": "2021-02-23T22:00:00.000Z",
+      "teamsCount": 2,
+      "userId": 4,
+      "id": 9
+    },
+    {
+      "avenue": "tosho",
+      "description": "pesho",
+      "halfTimeLength": 1,
+      "matchLength": 1,
+      "name": "gosho",
+      "playingFields": 1,
+      "rules": "sasho",
+      "startDate": "2021-02-16T22:00:00.000Z",
+      "teamsCount": 1,
+      "userId": 4,
+      "id": 10
+    }
+  ],
+  "tournamentParticipants": [
+    {
+      "id": 1,
+      "tournamentId": 1,
+      "teamId": 1
+    }
+  ],
+  "matches": [
+    {
+      "id": 1,
+      "tournamentId": 1,
+      "homeTeamId": "",
+      "awayTeamId": "",
+      "date": "",
+      "startTime": ""
+    }
+  ]
+}
