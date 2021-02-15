@@ -68,6 +68,10 @@ export class TournamentComponent implements OnInit, OnDestroy {
     this.formSubmitAttempt = true;
   }
 
+  public onCancel(): void {
+    this.router.navigate([`/profile/${this.currentUser.id}/tournaments`]);
+  }
+
   private getUser(): void {
     this.userService.currentUser
     .pipe(
