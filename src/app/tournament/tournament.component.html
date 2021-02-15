@@ -1,0 +1,105 @@
+<div class="tournament content-indent">
+  <app-page-header title="Create new tournament"></app-page-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tournament__form">
+    <div class="form-field">
+      <label for="tournamentName">Tournament name</label>
+      <mat-form-field>
+        <input matInput type="text" formControlName="name">
+        <mat-error *ngIf="isFieldInvalid('name', 'required')">
+          {{ validationMessages.requiredError("tournament name") }}
+        </mat-error>
+        <mat-error *ngIf="isFieldInvalid('name', 'maxlength')">
+          {{ validationMessages.maxLengthError("name", 24) }}
+        </mat-error>
+        <mat-error *ngIf="isFieldInvalid('name', 'minlength')">
+          {{ validationMessages.minLengthError("name", 4) }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="avenue">Avenue</label>
+      <mat-form-field>
+        <input matInput type="text" floatLabel="never" formControlName="avenue" name="avenue">
+        <mat-icon matSuffix matTooltip="Location where the games will be played">help</mat-icon>
+        <mat-error *ngIf="isFieldInvalid('avenue')">{{ validationMessages.requiredError("avenue") }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="description">Description</label>
+      <mat-form-field>
+        <textarea matInput type="text" formControlName="description" [mat-autosize]="true"></textarea>
+        <mat-error *ngIf="isFieldInvalid('description')">
+          {{ validationMessages.maxLengthError("description", descriptionMaxLength) }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="halfTimeLength">half time length</label>
+      <mat-form-field>
+        <input matInput type="number" floatLabel="never" formControlName="halfTimeLength" name="halfTimeLength">
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="latestMatchStart">last match start at</label>
+      <mat-form-field>
+        <input matInput type="number" formControlName="latestMatchStart">
+        <mat-error *ngIf="isFieldInvalid('latestMatchStart')">
+          {{ validationMessages.requiredError("latest match start") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="matchLength">match length</label>
+      <mat-form-field>
+        <input matInput type="number" formControlName="matchLength">
+        <mat-error *ngIf="isFieldInvalid('matchLength')">
+          {{ validationMessages.requiredError("match length") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="matchLength">Playing fields</label>
+      <mat-form-field>
+        <input matInput type="number" formControlName="playingFields">
+        <mat-icon matSuffix matTooltip="Number of fields where parallel games can be played">help</mat-icon>
+        <mat-error *ngIf="isFieldInvalid('playingFields')">
+          {{ validationMessages.requiredError("playing fields") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="matchLength">Rules</label>
+      <mat-form-field>
+        <input matInput type="text" formControlName="rules">
+        <mat-error *ngIf="isFieldInvalid('rules')">
+          {{ validationMessages.requiredError("rules") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="startDate">start date</label>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+        <mat-error *ngIf="isFieldInvalid('startDate')">
+          {{ validationMessages.requiredError("start date") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field">
+      <label for="teamsCount">Number of participating teams</label>
+      <mat-form-field>
+        <input matInput type="number" formControlName="teamsCount">
+        <mat-error *ngIf="isFieldInvalid('teamsCount')">
+          {{ validationMessages.requiredError("number of participating teams") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="tournament__submit-container">
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+  </form>
+</div>

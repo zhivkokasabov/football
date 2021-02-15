@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.register {
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    max-width: 15rem;
+  }
+
+  &__submit-container {
+    @include align-actions-right;
+  }
+
+  &--readOnly {
+    @include disableElement;
+  }
+}

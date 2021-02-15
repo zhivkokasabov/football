@@ -1,0 +1,36 @@
+<div class="sidenav" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar *ngIf="!hideToolbar" color="primary" class="sidenav__toolbar">
+    <div class="sidenav__toolbar--space-between">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button routerLink="/" mat-icon-button type="button" name="button"><mat-icon>emoji_events</mat-icon></button>
+      <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>account_box</mat-icon></button>
+    </div>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button *ngIf="!currentUser.id; else logout" mat-menu-item routerLink="/login">LogIn</button>
+      <ng-template #logout>
+        <button mat-menu-item (click)="logOut()">LogOut</button>
+      </ng-template>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav__container">
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="54"
+    >
+      <mat-nav-list class="sidenav__list">
+        <a mat-list-item
+          [routerLink]="navItem?.routerLink"
+          *ngFor="let navItem of navItems"
+          [class.sidenav--hidden]="!(navItem?.isPublic) && !(currentUser.id)"
+        >{{ navItem?.displayName }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav__content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,18 @@
+<div class="register">
+  <mat-card>
+    <mat-card-content>
+      <h2>Register</h2>
+      <mat-form-field>
+        <mat-label>I am</mat-label>
+        <mat-select (selectionChange)="selectionChange($event)">
+          <mat-option
+            *ngFor="let userType of userTypes"
+            [value]="userType"
+          >{{ userType.type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-organisator-form *ngIf="showOrganizationForm" (onFormSubmit)="onSubmit($event)"></app-organisator-form>
+      <app-player-form *ngIf="showPlayerForm" (onFormSubmit)="onSubmit($event)"></app-player-form>
+    </mat-card-content>
+  </mat-card>
+</div>

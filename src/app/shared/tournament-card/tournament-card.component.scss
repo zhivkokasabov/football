@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+.tournament-card {
+  display: flex;
+  border-radius: 0;
+  padding: .5rem;
+  border-bottom: .0625rem solid $color-accent;
+
+  &__image {
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__content-container {
+    flex-grow: 1;
+    padding-left: .5rem;
+  }
+
+  &__title {
+    margin-bottom: .5rem;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+}

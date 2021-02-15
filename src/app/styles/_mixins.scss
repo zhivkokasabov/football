@@ -1,0 +1,14 @@
+@import './variables';
+
+@mixin disableElement {
+  pointer-events: none;
+}
+
+@mixin align-actions-right {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: $action-buttons-gap;
+  }
+}

@@ -1,0 +1,5 @@
+<app-tournament-card
+  *ngFor="let tournament of tournaments"
+  [tournament]="tournament"
+  [routerLink]="['/tournament', tournament.id, 'view']"
+></app-tournament-card>
