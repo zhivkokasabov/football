@@ -1,0 +1,9 @@
+<div class="tournament content-indent">
+  <app-page-header title="Create new tournament"></app-page-header>
+  <app-tournament-form
+    #tournamentForm
+    [tournament]="tournament"
+    (onEditCancel)="onEditCancel()"
+    (onFormSubmit)="onSubmit($event)"
+  ></app-tournament-form>
+</div>

@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.register {
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field,
+  .register__image {
+    max-width: 25rem;
+  }
+
+  .register__image {
+    margin-bottom: $bot-indent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    app-drag-and-drop {
+      width: 100%;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &--border {
+    border: .125rem solid $color-primary;
+  }
+
+  &__submit-container {
+    @include align-actions-right;
+  }
+
+  &--readOnly {
+    @include disableElement;
+  }
+}

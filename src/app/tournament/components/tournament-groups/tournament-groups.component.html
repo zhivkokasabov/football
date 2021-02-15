@@ -1,0 +1,20 @@
+<div *ngIf="canProceedToEliminations" class="proceed">
+  <button (click)="proceedToEliminations()" mat-stroked-button type="button" name="button">proceed to eliminations</button>
+</div>
+<div *ngIf="canCloseTournament" class="proceed">
+  <button (click)="closeTournament()" mat-stroked-button type="button" name="button">finish tournament</button>
+</div>
+<div class="tournament-matches">
+  <div *ngFor="let tournamentMatches of groupedTournamentMatches" class="tournament-matches__grouped">
+    <p class="tournament-matches__date">Round {{ tournamentMatches[0].round }}</p>
+    <div class="tournament-matches__group">
+      <app-tournament-match
+        *ngFor="let match of tournamentMatches"
+        (enterResult)="save($event)"
+        (updateResult)="update($event)"
+        [match]="match"
+        [canEditMatches]="match.canEdit"
+      ></app-tournament-match>
+    </div>
+  </div>
+</div>

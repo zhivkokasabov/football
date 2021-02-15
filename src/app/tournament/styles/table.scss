@@ -1,0 +1,54 @@
+@import '../../styles/variables';
+
+.group-table {
+  table {
+    width: 100%;
+
+    .cdk-column-points,
+    .cdk-column-rowNumber,
+    .cdk-column-played,
+    .cdk-column-goalDifference,
+    .cdk-column-wins,
+    .cdk-column-loses,
+    .cdk-column-draws,
+    .cdk-column-goals-for,
+    .cdk-column-goals-against,
+    .cdk-column-conceivedGoals {
+      width: 2rem;
+    }
+
+    .cdk-column-rowNumber {
+      text-align: right;
+    }
+
+    .cdk-column-name {
+      text-align: left;
+    }
+
+    td,
+    th {
+      text-align: center;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      min-width: 2rem;
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    tr[data-advancing] {
+      .cdk-column-rowNumber {
+        background-color: $color-advancing;
+        color: $color-white;
+      }
+    }
+
+    tr[data-relegating] {
+      .cdk-column-rowNumber {
+        background-color: $color-relegation;
+        color: $color-white;
+      }
+    }
+  }
+}

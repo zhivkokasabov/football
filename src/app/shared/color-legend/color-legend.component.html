@@ -1,0 +1,8 @@
+<div class="color-legend">
+  <div *ngFor="let legendItem of colorLegend.instance.colorLegendItems" class="color-legend__item">
+    <div class="color-legend__color-code" [attr.variant]="legendItem.variant"></div>
+    <div class="color-legend__description">
+      {{ legendItem.description }}
+    </div>
+  </div>
+</div>

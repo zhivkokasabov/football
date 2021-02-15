@@ -1,0 +1,58 @@
+<form [formGroup]="form" class="register">
+  <div *ngIf="isReadOnly; else uploadImage" class="register__image register--border">
+    <img *ngIf="form.controls.picture" [src]="form.controls.picture.value" />
+  </div>
+  <ng-template #uploadImage>
+    <div class="register__image">
+      <app-drag-and-drop (fileDrop)="onFileDrop($event)"></app-drag-and-drop>
+    </div>
+  </ng-template>
+  <mat-form-field>
+    <input [readonly]="isReadOnly" matInput type="text" placeholder="First Name" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input [readonly]="isReadOnly" matInput type="text" placeholder="Last Name" formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input [readonly]="isReadOnly" matInput type="text" placeholder="Nickname" formControlName="nickname">
+    <mat-error *ngIf="isFieldInvalid('nickname', 'minlength')">
+      {{ validationMessages.minLengthError("Nickname", 4) }}
+    </mat-error>
+    <mat-error *ngIf="isFieldInvalid('nickname', 'maxlength')">
+      {{ validationMessages.maxLengthError("Nickname", 64) }}
+    </mat-error>
+    <mat-error *ngIf="isFieldInvalid('nickname', 'required')">
+      {{ validationMessages.requiredError("Nickname") }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="playerPositions.length" [class.register--readOnly]="isReadOnly">
+    <mat-label>Position</mat-label>
+    <mat-select formControlName="playerPositions" multiple>
+      <mat-option
+        *ngFor="let playerPosition of playerPositions"
+        [value]="playerPosition"
+      >{{ playerPosition.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input [readonly]="isReadOnly" matInput placeholder="Email" formControlName="email" required>
+    <mat-error *ngIf="isFieldInvalid('email')">
+      Please enter email!
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field *ngIf="!isReadOnly">
+    <input matInput type="password" placeholder="Password" formControlName="password" required>
+    <mat-error *ngIf="isFieldInvalid('password')">
+      Please enter password!
+    </mat-error>
+  </mat-form-field>
+  <div *ngIf="!hideRegisterButton;else updateProfile" class="register__submit-container">
+    <button mat-raised-button color="primary" (click)="onSubmit()">Register</button>
+  </div>
+  <ng-template #updateProfile>
+    <div *ngIf="!isReadOnly" class="register__submit-container">
+      <button mat-raised-button color="default" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="accent" (click)="onSubmit()">Save</button>
+    </div>
+  </ng-template>
+</form>

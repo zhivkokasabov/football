@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+
+.proceed {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $bot-indent;
+}
+
+.tournament-matches {
+  &__grouped,
+  &__date {
+    margin-bottom: $bot-indent;
+  }
+
+  app-tournament-match {
+    display: block;
+    margin-bottom: $bot-indent / 2;
+  }
+}

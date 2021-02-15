@@ -1,0 +1,7 @@
+<div class="tournament-table">
+  <app-elimination-table *ngIf="tournament.tournamentTypeId == tournamentTypes.elimination"></app-elimination-table>
+  <app-classic-table *ngIf="tournament.tournamentTypeId == tournamentTypes.classic"></app-classic-table>
+  <app-round-robin-table
+    *ngIf="tournament.tournamentTypeId == tournamentTypes.roundRobin || tournament.tournamentTypeId == tournamentTypes.doubleRoundRobin"
+  ></app-round-robin-table>
+</div>

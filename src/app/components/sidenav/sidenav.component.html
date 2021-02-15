@@ -1,0 +1,61 @@
+<div class="sidenav" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="sidenav__toolbar">
+    <div class="sidenav__toolbar--space-between">
+      <button *ngIf="!isDesktop; else placeholder" mat-icon-button><mat-icon>menu</mat-icon></button>
+      <ng-template #placeholder><span></span></ng-template>
+      <button routerLink="/" mat-icon-button type="button" name="button"><mat-icon>emoji_events</mat-icon></button>
+      <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>account_box</mat-icon></button>
+    </div>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button *ngIf="!currentUser.id; else logout" mat-menu-item routerLink="/login">LogIn</button>
+      <ng-template #logout>
+        <button mat-menu-item (click)="logOut()">LogOut</button>
+      </ng-template>
+    </mat-menu>
+  </mat-toolbar>
+  <mat-progress-bar
+    *ngIf="showProgressBar"
+    color="accent"
+    mode="indeterminate"
+  ></mat-progress-bar>
+  <mat-sidenav-container class="sidenav__container">
+    <mat-sidenav
+      *ngIf="!hideToolbar"
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="54"
+      [opened]="isDesktop"
+    >
+      <mat-nav-list class="sidenav__list">
+        <a mat-list-item
+          [routerLink]="navItem?.routerLink"
+          *ngFor="let navItem of navItems"
+          [class.sidenav--hidden]="!(navItem?.isPublic) && !(currentUser.id)"
+        >
+          {{ navItem?.displayName }}
+        </a>
+        <a mat-list-item
+          routerLink="notifications"
+          [class.sidenav--hidden]="!(currentUser.id)"
+          matTooltip="Purple indicates number of notifications you have received. Blue indicates the number of notifications you have send that are pending action."
+        >
+          Notifications
+          <span
+            [matBadge]="notificationsCount.incomingRequests"
+            matBadgeColor="accent"
+            class="sidenav__badge"
+          ></span>
+          <span
+            [matBadge]="notificationsCount.outgoingRequest"
+            class="sidenav__badge"
+          ></span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav__content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

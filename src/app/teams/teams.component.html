@@ -1,0 +1,11 @@
+<div class="content-indent">
+  <div class="team">
+    <form [formGroup]="form" class="team__join">
+      <mat-form-field>
+        <input matInput placeholder="Team Entry Key" formControlName="entryKey" autocomplete="off">
+      </mat-form-field>
+      <button (click)="tryJoinTeam()" mat-button type="button" name="button" color="primary">join team</button>
+    </form>
+    <app-add-item link="/team" title="Add new team"></app-add-item>
+  </div>
+</div>

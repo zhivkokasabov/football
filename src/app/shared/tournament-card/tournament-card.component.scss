@@ -1,0 +1,88 @@
+@import '../../styles/variables';
+
+.tournament-card {
+  display: flex;
+  padding: 0;
+  border-radius: 0;
+  background: $color-white;
+  cursor: default;
+
+  &__image {
+    min-width: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 3rem;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    display: flex;
+    flex-grow: 1;
+    border-bottom: .125rem solid $color-grey;
+
+    &-container {
+      min-width: 0;
+      display: flex;
+      flex-grow: 1;
+      padding: .5rem;
+    }
+  }
+
+  &__details {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-right: .5rem;
+
+    span {
+      height: 1.5rem;
+      line-height: 1.5rem;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__info {
+    min-width: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    span {
+      text-align: right;
+    }
+  }
+
+  &__teams {
+    display: block;
+    padding: .1rem .5rem;
+    line-height: 1.2rem;
+    border-radius: 1rem;
+    color: $color-white;
+    background-color: $color-primary;
+  }
+
+  &__visit {
+    button {
+      height: 100%;
+    }
+  }
+
+  &--grey {
+    color: $color-grey;
+  }
+}

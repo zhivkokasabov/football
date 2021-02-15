@@ -1,0 +1,7 @@
+<app-tournament-form
+  *ngIf="tournament && tournament.tournamentId"
+  [tournament]="tournament"
+  (onFormCancel)="onCancel()"
+  (onFormSubmit)="onSubmit($event)"
+  #tournamentForm
+></app-tournament-form>

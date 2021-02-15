@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="organisator-form__field">
+    <mat-form-field>
+      <input [readonly]="isReadOnly" matInput type="text" placeholder="Organization Name" formControlName="nickname">
+      <mat-error *ngIf="isFieldInvalid('nickname', 'required')">
+        {{ validationMessages.requiredError("tournament name") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('nickname', 'minlength')">
+        {{ validationMessages.minLengthError("tournament name", 4) }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('nickname', 'maxlength')">
+        {{ validationMessages.maxLengthError("tournament name", 20) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="organisator-form__field">
+    <mat-form-field>
+      <input [readonly]="isReadOnly" matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="isFieldInvalid('email')">
+        Please enter email!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="organisator-form__field">
+    <mat-form-field *ngIf="!isReadOnly">
+      <input matInput type="password" placeholder="Password" formControlName="password">
+      <mat-error *ngIf="isFieldInvalid('password')">
+        Please enter password!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div *ngIf="!hideRegisterButton;else updateProfile" class="register__submit-container">
+    <button mat-raised-button color="primary">Register</button>
+  </div>
+  <ng-template #updateProfile>
+    <div *ngIf="!isReadOnly" class="register__submit-container">
+      <button mat-raised-button color="default" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="accent" (click)="onSubmit()">Save</button>
+    </div>
+  </ng-template>
+</form>

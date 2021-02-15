@@ -1,0 +1,67 @@
+<mat-card class="tournament-match">
+  <mat-card-title>
+    <div class="tournament-match__result">
+      <span class="tournament-match__team-name tournament-match--align-right">{{ match.homeTeam.name }}</span>
+      <span class="tournament-match__result--indent tournament-match__score">
+        <span *ngIf="match.result; else noResult">{{ match.result }}</span>
+        <ng-template #noResult><span>? - ?</span></ng-template>
+      </span>
+      <span class="tournament-match__team-name">{{ match.awayTeam.name }}</span>
+    </div>
+  </mat-card-title>
+  <mat-card-content class="tournament-match__content">
+    <div class="tournament-match__progress">
+      NS
+    </div>
+    <div class="tournament-match__start-time">
+      {{ match.startTime | date: 'EEEE, MMMM d, y, h:mm' }}
+    </div>
+    <div class="tournament-match__watch">
+      <button mat-icon-button>
+        <mat-icon>grade</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+  <mat-card-footer *ngIf="canEdit" class="tournament-match__footer">
+    <div class="tournament-match__footer--divider">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="tournament-match__actions">
+      <form [formGroup]="scoreForm" class="tournament-match__enter-results">
+        <div>
+          <mat-form-field floatLabel="always">
+            <button mat-icon-button matPrefix (click)="decrementScore(scoreForm['controls'].homeTeamScore)" [attr.aria-label]="'Decrement'">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <input matInput formControlName="homeTeamScore" min="0" placeholder="Home" type="number" name="" autocomplete="off">
+            <button mat-icon-button matSuffix (click)="incrementScore(scoreForm['controls'].homeTeamScore)" [attr.aria-label]="'Increment'">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-error *ngIf="isFieldInvalid('homeTeamScore')">
+              Score is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <span class="tournament-match__result--indent">:</span>
+        <div>
+          <mat-form-field floatLabel="always">
+            <button mat-icon-button matPrefix (click)="incrementScore(scoreForm['controls'].awayTeamScore)" [attr.aria-label]="'Increment'">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input matInput formControlName="awayTeamScore" min="0" placeholder="Away" type="number" name="" autocomplete="off">
+            <button mat-icon-button matSuffix (click)="decrementScore(scoreForm['controls'].awayTeamScore)" [attr.aria-label]="'Decrement'">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <mat-error *ngIf="isFieldInvalid('awayTeamScore')">
+              Score is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <button *ngIf="hasScore; else noScore" mat-raised-button type="button" color="accent" name="button" (click)="updateResults()">Update result</button>
+      <ng-template #noScore>
+        <button mat-raised-button type="button" color="accent" name="button" (click)="enterResults()">Enter result</button>
+      </ng-template>
+    </div>
+  </mat-card-footer>
+</mat-card>

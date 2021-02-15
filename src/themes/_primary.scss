@@ -1,0 +1,103 @@
+@import './colors';
+
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
+$primary: (
+  50: lighter($color-primary, 50%),
+  100: lighter($color-primary, 40%),
+  200: lighter($color-primary, 30%),
+  300: lighter($color-primary, 20%),
+  400: lighter($color-primary, 10%),
+  500: $color-primary,
+  600: darken($color-primary, 10%),
+  700: darken($color-primary, 20%),
+  800: darken($color-primary, 30%),
+  900: darken($color-primary, 40%),
+  A100: lighter($color-primary, 40%),
+  A200: darken($color-primary, 10%),
+  A400: darken($color-primary, 20%),
+  A700: darken($color-primary, 30%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$warn: (
+  50: lighter($color-error, 50%),
+  100: lighter($color-error, 40%),
+  200: lighter($color-error, 30%),
+  300: lighter($color-error, 20%),
+  400: lighter($color-error, 10%),
+  500: $color-error,
+  600: darken($color-error, 10%),
+  700: darken($color-error, 20%),
+  800: darken($color-error, 30%),
+  900: darken($color-error, 40%),
+  A100: lighter($color-error, 40%),
+  A200: darken($color-error, 10%),
+  A400: darken($color-error, 20%),
+  A700: darken($color-error, 30%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$accent: (
+  50: lighter($color-accent, 50%),
+  100: lighter($color-accent, 40%),
+  200: lighter($color-accent, 30%),
+  300: lighter($color-accent, 20%),
+  400: lighter($color-accent, 10%),
+  500: $color-accent,
+  600: darken($color-accent, 10%),
+  700: darken($color-accent, 20%),
+  800: darken($color-accent, 30%),
+  900: darken($color-accent, 40%),
+  A100: lighter($color-accent, 40%),
+  A200: darken($color-accent, 10%),
+  A400: darken($color-accent, 20%),
+  A700: darken($color-accent, 30%),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);

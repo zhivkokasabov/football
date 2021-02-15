@@ -1,0 +1,23 @@
+<div class="profile content-indent">
+  <div class="profile__header">
+    <app-page-header title="profile"></app-page-header>
+    <button *ngIf="!isEditing;" (click)="editForm()" mat-raised-button color="accent">Edit</button>
+  </div>
+  <app-player-form
+    *ngIf="userType == userTypePlayer; else organisator"
+    (onCancelEdit)="cancelEdit()"
+    (onFormSubmit)="updateProfile($event)"
+    [isReadOnly]="!isEditing"
+    [profile]="user"
+    [hideRegisterButton]="true"
+  ></app-player-form>
+  <ng-template #organisator>
+    <app-organisator-form
+      (onCancelEdit)="cancelEdit()"
+      (onFormSubmit)="updateProfile($event)"
+      [isReadOnly]="!isEditing"
+      [profile]="user"
+      [hideRegisterButton]="true"
+    ></app-organisator-form>
+  </ng-template>
+</div>

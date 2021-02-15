@@ -1,0 +1,224 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="tournament-form form">
+  <div class="form-field">
+    <label for="tournamentName">Tournament access</label>
+    <mat-radio-group class="d-flex f-dir-col" aria-label="Select an option" formControlName="tournamentAccessId">
+      <mat-radio-button *ngFor="let access of tournamentAccesses"
+        [value]="access.id">
+          {{ access.name }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-icon class="tournament-form--align-right" matTooltip="How available the tournament is for enrollment. Public: everyone can join the tournament; Request Access: everyone can request to join the tournament; Private: teams can join only if they receive invitation">help</mat-icon>
+  </div>
+  <div class="form-field">
+    <label for="tournamentName">Tournament type</label>
+    <mat-form-field>
+      <mat-select formControlName="tournamentTypeId" [compareWith]="compareWithType" [value]="tournament.type">
+        <mat-option *ngFor="let type of tournamentTypes" [value]="type.id">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('tournamentTypeId', 'required')">
+        {{ validationMessages.requiredError("tournament type") }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="tournamentName">Tournament name</label>
+    <mat-form-field >
+      <input matInput type="text" formControlName="name">
+      <mat-error *ngIf="isFieldInvalid('name', 'required')">
+        {{ validationMessages.requiredError("tournament name") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('name', 'maxlength')">
+        {{ validationMessages.maxLengthError("name", 24) }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('name', 'minlength')">
+        {{ validationMessages.minLengthError("name", 4) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="avenue">Avenue</label>
+    <mat-form-field>
+      <input matInput type="text" floatLabel="never" formControlName="avenue" name="avenue">
+      <mat-icon matSuffix matTooltip="Location where the games will be played">help</mat-icon>
+      <mat-error *ngIf="isFieldInvalid('avenue')">{{ validationMessages.requiredError("avenue") }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="description">Description</label>
+    <mat-form-field>
+      <textarea matInput type="text" formControlName="description" [mat-autosize]="true"></textarea>
+      <mat-error *ngIf="isFieldInvalid('description')">
+        {{ validationMessages.maxLengthError("description", descriptionMaxLength) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="matchLength">Rules</label>
+    <mat-form-field>
+      <input matInput type="text" formControlName="rules">
+      <mat-error *ngIf="isFieldInvalid('rules')">
+        {{ validationMessages.requiredError("rules") }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label>Playing days</label>
+    <mat-radio-group (change)="onPlayingDaysChange($event)" class="d-flex f-dir-col" aria-label="Select an option" formControlName="playingDaysId">
+      <mat-radio-button
+        [value]="playingDays.workDays">
+          {{ playingDaysNames.workDays }}
+      </mat-radio-button>
+      <mat-radio-button
+        [value]="playingDays.weekEnd">
+          {{ playingDaysNames.weekEnd }}
+      </mat-radio-button>
+      <mat-radio-button
+        [value]="playingDays.wholeWeek">
+          {{ playingDaysNames.wholeWeek }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="form-field">
+    <label for="startDate">start date</label>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="filterDatesFactoryMethod" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>today</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+      <mat-error *ngIf="isFieldInvalid('startDate')">
+        {{ validationMessages.requiredError("start date") }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="matchLength" class="d-flex jc-center f-dir-col align-end">
+      <span>match length</span>
+      <sub>(minutes)</sub>
+    </label>
+    <mat-form-field>
+      <input matInput type="number" formControlName="matchLength">
+      <mat-error *ngIf="isFieldInvalid('matchLength')">
+        {{ validationMessages.requiredError("match length") }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="halfTimeLength" class="d-flex jc-center f-dir-col align-end">
+      <span>half time length</span>
+      <sub>(minutes)</sub>
+    </label>
+    <mat-form-field>
+      <input matInput type="number" floatLabel="never" formControlName="halfTimeLength" name="halfTimeLength">
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="latestMatchStart">first match starts at</label>
+    <div class="form-field">
+      <mat-form-field>
+        <input
+          matInput
+          [ngxTimepicker]="startsAt"
+          formControlName="firstMatchStartsAt"
+          [disableClick]="true"
+          readonly
+          [format]="24"
+          min="07:00"
+          max="23:00"
+        >
+        <mat-icon matSuffix>schedule</mat-icon>
+        <ngx-material-timepicker-toggle [for]="startsAt"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker [timepickerClass]="'time-picker'" #startsAt></ngx-material-timepicker>
+        <mat-error *ngIf="isFieldInvalid('firstMatchStartsAt')">
+          {{ validationMessages.requiredError("first match starts at") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-field">
+    <label for="latestMatchStart">last match starts at</label>
+    <div class="form-field">
+      <mat-form-field>
+        <input
+          matInput
+          [ngxTimepicker]="endsAt"
+          formControlName="lastMatchStartsAt"
+          [disableClick]="true"
+          readonly
+          [format]="24"
+          min="07:00"
+          max="23:00"
+        >
+        <mat-icon matSuffix>schedule</mat-icon>
+        <ngx-material-timepicker-toggle [for]="endsAt"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker [timepickerClass]="'time-picker'" #endsAt></ngx-material-timepicker>
+        <mat-error *ngIf="isFieldInvalid('lastMatchStartsAt')">
+          {{ validationMessages.requiredError("last match starts at") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-field">
+    <label for="matchLength">number of playing fields</label>
+    <mat-form-field>
+      <input matInput type="number" formControlName="playingFields">
+      <mat-icon matSuffix matTooltip="Number of fields where parallel games can be played">help</mat-icon>
+      <mat-error *ngIf="isFieldInvalid('playingFields', 'required')">
+        {{ validationMessages.requiredError("number of playing fields") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('playingFields', 'min')">
+        {{ validationMessages.min("number of playing fields", 1) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <label for="teamsCount">Number of participating teams</label>
+    <mat-form-field *ngIf="tournamentTypesEnum.elimination === tournamentTypeId; else input">
+      <mat-select formControlName="teamsCount">
+        <mat-option value="4">4</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="16">16</mat-option>
+        <mat-option value="32">32</mat-option>
+        <mat-option value="64">64</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-template #input>
+      <mat-form-field>
+        <input matInput type="number" formControlName="teamsCount">
+        <mat-error *ngIf="isFieldInvalid('teamsCount')">
+          {{ validationMessages.requiredError("number of participating teams") }}
+        </mat-error>
+      </mat-form-field>
+    </ng-template>
+  </div>
+  <div *ngIf="form.controls.tournamentTypeId.value == tournamentTypesEnum.classic" class="form-field">
+    <label for="groupSize">Groups size</label>
+    <mat-form-field>
+      <input matInput type="number" formControlName="groupSize">
+      <mat-error *ngIf="isFieldInvalid('groupSize', 'required')">
+        {{ validationMessages.requiredError("group size") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('groupSize', 'min')">
+        {{ validationMessages.min("group size", 2) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div *ngIf="form.controls.tournamentTypeId.value == tournamentTypesEnum.classic" class="form-field">
+    <label for="teamsAdvancingAfterGroups">Number of teams advancing from a single group</label>
+    <mat-form-field>
+      <input matInput type="number" formControlName="teamsAdvancingAfterGroups">
+      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups', 'required')">
+        {{ validationMessages.requiredError("Number of teams advancing from a single group") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups', 'min')">
+        {{ validationMessages.min("Number of teams advancing from a single group", 1) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form__submit-container">
+    <button mat-raised-button color="default" (click)="onCancel()" type="button">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid">Save</button>
+  </div>
+</form>

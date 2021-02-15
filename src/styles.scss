@@ -1,0 +1,107 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import 'themes/primary';
+@import 'themes/colors';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$football-primary: mat-palette($primary);
+$football-accent: mat-palette($accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$football-warn: mat-palette($warn);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$football-theme: mat-light-theme((
+  color: (
+    primary: $football-primary,
+    accent: $football-accent,
+    warn: $football-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($football-theme);
+/* You can add global styles to this file, and also import other style files */
+
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+    background-color: lighten($color-accent, 40%);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.content-indent {
+  padding: 1rem;
+}
+
+.snackbar {
+  &-success,
+  &-error {
+    color: $color-white;
+  }
+
+  &-success {
+    background-color: $color-success;
+  }
+
+  &-error {
+    background-color: $color-error;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.d-flex { display: flex !important; }
+.align-center { align-items: center !important; }
+.align-end { align-items: flex-end !important; }
+.jc-end { justify-content: flex-end !important; }
+.jc-center { justify-content: center !important; }
+.jc-between { justify-content: space-between !important; }
+.f-dir-row { flex-direction: row !important; }
+.f-dir-col { flex-direction: column !important; }
+
+button {
+  text-transform: capitalize;
+}
+
+mat-divider.mat-divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+mat-option {
+  text-transform: capitalize;
+}
+
+::-webkit-scrollbar {
+    width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 .25rem rgba($color-primary,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 .25rem rgba($color-primary,0.5);
+}

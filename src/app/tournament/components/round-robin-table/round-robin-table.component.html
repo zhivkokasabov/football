@@ -1,0 +1,70 @@
+<div class="group-table">
+  <table mat-table [dataSource]="teams" class="mat-elevation-z3">
+    <ng-container matColumnDef="rowNumber">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      > {{element.rowNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.teamId; else placeholder" [routerLink]="['/team', element.teamId, 'general']">
+          {{element.name}}
+          <mat-icon>link</mat-icon>
+        </div>
+        <ng-template #placeholder>{{element.name}}</ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef> PTS </th>
+      <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="played">
+      <th mat-header-cell *matHeaderCellDef> P </th>
+      <td mat-cell *matCellDef="let element"> {{element.played}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goalDifference">
+      <th mat-header-cell *matHeaderCellDef> GD </th>
+      <td mat-cell *matCellDef="let element"> {{element.goalDifference}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wins">
+      <th mat-header-cell *matHeaderCellDef> W </th>
+      <td mat-cell *matCellDef="let element"> {{element.wins}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="draws">
+      <th mat-header-cell *matHeaderCellDef> D </th>
+      <td mat-cell *matCellDef="let element"> {{element.draws}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loses">
+      <th mat-header-cell *matHeaderCellDef> L </th>
+      <td mat-cell *matCellDef="let element"> {{element.loses}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goals for">
+      <th mat-header-cell *matHeaderCellDef> F </th>
+      <td mat-cell *matCellDef="let element"> {{element.goals}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goals against">
+      <th mat-header-cell *matHeaderCellDef> A </th>
+      <td mat-cell *matCellDef="let element"> {{element.conceivedGoals}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns; let ii = index;"
+      [attr.data-advancing]="ii < advancingTeams ? '' : null"
+      [attr.data-relegating]="teams.length <= ii + advancingTeams ? '' : null"
+    ></tr>
+  </table>
+</div>

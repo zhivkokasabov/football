@@ -1,0 +1,42 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "@src/*": ["src/*"],
+      "@app/*": ["src/app/*"],
+      "@profile/*": ["src/app/profile/*"],
+      "@teams/*": ["src/app/teams/*"],
+      "@team/*": ["src/app/team/*"],
+      "@tournament/*": ["src/app/tournament/*"],
+      "@notifications/*": ["src/app/notifications/*"],
+      "@tournaments/*": ["src/app/tournaments/*"],
+      "@view-tournament/*": ["src/app/tournament/view-tournament/*"],
+      "@shared/*": ["src/app/shared/*"]
+    },
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "strictPropertyInitialization": false,
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

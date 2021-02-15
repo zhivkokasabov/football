@@ -1,0 +1,15 @@
+.tournament-form {
+  .form-field {
+    width: 100%;
+    max-width: unset;
+
+    .form-field {
+      width: auto;
+    }
+  }
+
+  &--align-right {
+    flex-grow: 1;
+    text-align: right;
+  }
+}

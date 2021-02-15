@@ -1,0 +1,992 @@
+{
+  "users": [
+    {
+      "passIs": "1111",
+      "id": 1,
+      "firstName": "zhivko",
+      "lastName": "Kasabov",
+      "email": "zhivkokasabov@gmail.com",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "phone": "0876383733",
+      "userTypeId": 3,
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      },
+      "userId": 1,
+      "playerPositionId": 1,
+      "teamId": 1
+    },
+    {
+      "email": "tosho@abv.bg",
+      "password": "$2a$10$vypQtt6DFBPQSFuvOCWSDew.A.kbgQ5tZR/CbHNPJr6fD9oMXWb0i",
+      "firstName": "tosho",
+      "lastName": " toshev",
+      "nickname": "toshkata",
+      "userId": 2,
+      "playerPosition": {
+        "id": 3,
+        "name": "forward"
+      },
+      "id": 2
+    },
+    {
+      "email": "alo@abv.bg",
+      "password": "$2a$10$gnQRprWR3x4JpKV9lRSUrO5cjxt3G4eCj6GuLB7B2o8B3Gppr.ODK",
+      "firstName": "alo",
+      "lastName": "alo",
+      "nickname": "alo",
+      "userId": 3,
+      "playerPosition": {
+        "id": 1,
+        "name": "goalkeeper"
+      },
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      },
+      "id": 3
+    },
+    {
+      "email": "yoko@abv.bg",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "nickname": "team yoko",
+      "playerPosition": {},
+      "userTypeId": 1,
+      "userType": {
+        "id": 1,
+        "type": "Tournament organisator"
+      },
+      "id": 4
+    },
+    {
+      "firstName": "martin",
+      "lastName": " hadjiev",
+      "nickname": "hadjo",
+      "userId": 12,
+      "id": 12
+    },
+    {
+      "firstName": "rumen",
+      "lastName": " dinev",
+      "nickname": "dinko",
+      "userId": 13,
+      "id": 13
+    },
+    {
+      "firstName": "bogdan",
+      "lastName": " ivankov",
+      "nickname": "boggi",
+      "userId": 14,
+      "id": 14,
+      "email": "bogdan@gmail.com",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "phone": "0876383733",
+      "userTypeId": 3,
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      }
+    },
+    {
+      "firstName": "kostadin",
+      "lastName": " adamov",
+      "nickname": "koko",
+      "userId": 15,
+      "id": 15,
+      "email": "koko@gmail.com",
+      "password": "$2a$10$8IpeZzlchGURrBum3/LGkOVR0wwAy72z7R7pS4kYooqK6Yguu.YPm",
+      "phone": "0876383733",
+      "userTypeId": 3,
+      "userType": {
+        "id": 3,
+        "type": "Player"
+      }
+    },
+    {
+      "firstName": "rumen",
+      "lastName": " vasilev",
+      "nickname": "rumi",
+      "userId": 16,
+      "id": 16
+    },
+    {
+      "firstName": "troyan",
+      "lastName": " petkov",
+      "nickname": "gryka",
+      "userId": 17,
+      "id": 17
+    },
+    {
+      "firstName": "mladen",
+      "lastName": " kynev",
+      "nickname": "miko",
+      "userId": 11,
+      "id": 11
+    }
+  ],
+  "teamMembers": [
+    {
+      "teamId": 1,
+      "userId": 1
+    },
+    {
+      "teamId": 5,
+      "userId": 4
+    }
+  ],
+  "userTypes": [
+    {
+      "id": 1,
+      "type": "Tournament organisator"
+    },
+    {
+      "id": 3,
+      "type": "Player"
+    }
+  ],
+  "playerPositions": [
+    {
+      "id": 1,
+      "name": "goalkeeper"
+    },
+    {
+      "id": 2,
+      "name": "midfielder"
+    },
+    {
+      "id": 3,
+      "name": "forward"
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "de da znam",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "test team",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "name": "test team2",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "name": "test team 3",
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "name": "test team",
+      "userId": 4
+    }
+  ],
+  "tournaments": [
+    {
+      "avenue": "classic",
+      "description": "classic",
+      "halfTimeLength": 5,
+      "id": 1,
+      "firstMatchStartsAt": "07:00",
+      "matchLength": 20,
+      "name": "classic",
+      "playingFields": 3,
+      "rules": "classic",
+      "startDate": "2021-03-05T22:00:00.000Z",
+      "teamsCount": 16,
+      "groupSize": 4,
+      "playingDays": 2,
+      "teamsAdvancingAfterGroups": 2,
+      "type": {
+        "id": 2,
+        "type": "classic tournament"
+      },
+      "access": {
+        "id": 2,
+        "access": "public"
+      },
+      "typeId": 2,
+      "accessId": 2,
+      "userId": 4
+    },
+    {
+      "avenue": "asdasd",
+      "description": "asdasd",
+      "halfTimeLength": 4,
+      "id": 2,
+      "firstMatchStartsAt": "07:00",
+      "matchLength": 20,
+      "name": "zhivkokasabov@gmail.com",
+      "playingFields": 4,
+      "rules": "asdasd",
+      "startDate": "2021-03-08T22:00:00.000Z",
+      "teamsCount": 16,
+      "groupSize": null,
+      "playingDays": 1,
+      "teamsAdvancingAfterGroups": null,
+      "type": {
+        "id": 1,
+        "type": "elimination tournament"
+      },
+      "access": {
+        "id": 1,
+        "access": "public"
+      },
+      "typeId": 1,
+      "accessId": 1,
+      "userId": 4
+    }
+  ],
+  "tournamentParticipants": [
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 1,
+      "group": "A",
+      "id": 1
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 2,
+      "group": "A",
+      "id": 2
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 3,
+      "group": "A",
+      "id": 3
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 4,
+      "group": "A",
+      "id": 4
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 5,
+      "group": "B",
+      "id": 5
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 6,
+      "group": "B",
+      "id": 6
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 7,
+      "group": "B",
+      "id": 7
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 8,
+      "group": "B",
+      "id": 8
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 9,
+      "group": "C",
+      "id": 9
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 10,
+      "group": "C",
+      "id": 10
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 11,
+      "group": "C",
+      "id": 11
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 12,
+      "group": "C",
+      "id": 12
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 13,
+      "group": "D",
+      "id": 13
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 14,
+      "group": "D",
+      "id": 14
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 15,
+      "group": "D",
+      "id": 15
+    },
+    {
+      "tournamentId": 1,
+      "teamId": null,
+      "teamSequenceId": 16,
+      "group": "D",
+      "id": 16
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 1,
+      "id": 17
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 2,
+      "id": 18
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 3,
+      "id": 19
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 4,
+      "id": 20
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 5,
+      "id": 21
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 6,
+      "id": 22
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 7,
+      "id": 23
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 8,
+      "id": 24
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 9,
+      "id": 25
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 10,
+      "id": 26
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 11,
+      "id": 27
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 12,
+      "id": 28
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 13,
+      "id": 29
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 14,
+      "id": 30
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 15,
+      "id": 31
+    },
+    {
+      "tournamentId": 2,
+      "teamId": null,
+      "teamSequenceId": 16,
+      "id": 32
+    }
+  ],
+  "tournamentMatches": [
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 2,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-05T22:00:00.000Z",
+      "sequenceId": 1
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-05T22:00:00.000Z",
+      "sequenceId": 2
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-05T22:00:00.000Z",
+      "sequenceId": 3
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 4
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 5
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 3,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 6
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 6,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 7
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 8
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-06T22:00:00.000Z",
+      "sequenceId": 9
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 10
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 11
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 7,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 12
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 10,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 13
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 14
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 15
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 16
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 17
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 11,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "07:00",
+      "date": "2021-03-07T22:00:00.000Z",
+      "sequenceId": 18
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 14,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 19
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 20
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 21
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 22
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 23
+    },
+    {
+      "tournamentId": 1,
+      "homeTeamSequenceId": 15,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "sequenceId": 24
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 2,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 1
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 3,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 2
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 6,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 3
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 7,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 4
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 10,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 5
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 11,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 6
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 14,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 7
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 15,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 1,
+      "sequenceId": 8
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 2,
+      "sequenceId": 9
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 2,
+      "sequenceId": 10
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 2,
+      "sequenceId": 11
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 2,
+      "sequenceId": 12
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 3,
+      "sequenceId": 13
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 3,
+      "sequenceId": 14
+    },
+    {
+      "tournamentId": 2,
+      "homeTeamSequenceId": 0,
+      "awayTeamSequenceId": 0,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "startTime": "07:00",
+      "date": "2021-03-08T22:00:00.000Z",
+      "round": 4,
+      "sequenceId": 15
+    }
+  ],
+  "tournament-types": [
+    {
+      "id": 1,
+      "type": "elimination tournament"
+    },
+    {
+      "id": 2,
+      "type": "classic tournament"
+    },
+    {
+      "id": 3,
+      "type": "round-robin tournament"
+    },
+    {
+      "id": 4,
+      "type": "double round-robin tournament"
+    }
+  ],
+  "tournament-accesses": [
+    {
+      "id": 1,
+      "access": "public"
+    },
+    {
+      "id": 2,
+      "access": "request access"
+    },
+    {
+      "id": 3,
+      "access": "private"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 15,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 2,
+      "userId": 13,
+      "name": "rumen  dinev (dinko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 3,
+      "userId": 15,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 4,
+      "userId": 13,
+      "name": "rumen  dinev (dinko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 5,
+      "requesterId": 1,
+      "approverId": 15,
+      "requester": {},
+      "approver": {},
+      "requestTypeId": 1,
+      "entityId": 1,
+      "entityType": "team",
+      "entityName": "De da znam"
+    },
+    {
+      "id": 6,
+      "userId": 4,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)",
+        "requestType": {
+          "id": 1,
+          "userId": 15,
+          "name": "kostadin  adamov (koko)"
+        }
+      }
+    }
+  ],
+  "requestTypes": [
+    {
+      "id": 1,
+      "type": "invite to join team"
+    }
+  ]
+}

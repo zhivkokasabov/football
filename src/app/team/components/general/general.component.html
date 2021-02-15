@@ -1,0 +1,25 @@
+<div class="team">
+  <div class="team__header d-flex jc-between">
+    <app-page-header [title]="team.name"></app-page-header>
+    <div *ngIf="canEdit">
+      <button (click)="copyKeyToClipboard()" mat-raised-button color="accent">Copy entry key to clipboard</button>
+      <button
+        class="team__edit-button"
+        [routerLink]="['/team', team.id, 'edit']"
+        mat-raised-button
+        color="accent"
+      >Edit</button>
+    </div>
+  </div>
+
+  <div *ngIf="team" class="team__members-list">
+    <app-player-card *ngFor="let member of team.members" [player]="member"></app-player-card>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="team__history">
+    <app-sub-header text="history of participation"></app-sub-header>
+    <app-placements-table [placements]="placements"></app-placements-table>
+  </div>
+</div>

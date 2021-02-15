@@ -1,0 +1,13 @@
+@import 'variables';
+
+.home {
+  &__tournaments-list {
+    margin-bottom: $bot-indent;
+  }
+
+  &__load-more {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem 1rem;
+  }
+}

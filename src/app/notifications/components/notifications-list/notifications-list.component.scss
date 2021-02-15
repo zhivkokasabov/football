@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.notifications-group {
+  &__title {
+    text-transform: capitalize;
+    color: $color-grey;
+  }
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $bot-indent;
+  font-size: 1.25rem;
+
+  &__actions {
+    button {
+      margin-left: 1rem;
+    }
+  }
+}

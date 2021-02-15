@@ -1,0 +1,17 @@
+<div class="player">
+  <mat-card class="player__card">
+    <mat-card-header>
+      <mat-card-title>{{ player.nickname }}</mat-card-title>
+    </mat-card-header>
+    <div class="player__image-container">
+      <div class="player__image">
+        <img mat-card-image [src]="player.picture" alt="Photo of {{player.nickname}}">
+      </div>
+    </div>
+    <mat-card-content>
+      <ul class="player__positions-list">
+        <li *ngFor="let position of player.positions">{{ position.name }}</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>

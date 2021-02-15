@@ -1,0 +1,14 @@
+<div class="dropzone" [class.dropzone__file-over]="fileOver">
+  <input type="file" #fileDrop class="dropzone__button" id="file-drop" (change)="onFileUpload($event)">
+  <mat-icon class="dropzone__icon" aria-hidden="false" aria-label="Upload image icon">backup</mat-icon>
+  <h3 class="dropzone__text">Drag and drop file here</h3>
+  <h3 class="dropzone__text">or</h3>
+  <label mat-raised-button class="dropzone__label" for="file-drop" aria-label="pick file from file system">Browse for file</label>
+</div>
+<div class="file" *ngIf="file && file.name">
+  <span>{{ file.name }}</span>
+  <div>
+    <span>{{ file.size }}</span>
+    <button (click)="removeFile()" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+  </div>
+</div>
