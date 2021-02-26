@@ -1,0 +1,50 @@
+<div class="group-table">
+  <table mat-table [dataSource]="rows" class="mat-elevation-z3">
+    <ng-container matColumnDef="rowNumber">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      > {{element.rowNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef> PTS </th>
+      <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="played">
+      <th mat-header-cell *matHeaderCellDef> P </th>
+      <td mat-cell *matCellDef="let element"> {{element.played}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goalDifference">
+      <th mat-header-cell *matHeaderCellDef> GD </th>
+      <td mat-cell *matCellDef="let element"> {{element.goalDifference}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="groupName">
+      <th mat-header-cell *matHeaderCellDef colspan="5"> Group {{ groupName }} </th>
+    </ng-container>
+
+    <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="5">
+        <app-color-legend [colorLegend]="colorLegend"></app-color-legend>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['groupName']"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns; let ii = index;"
+      [attr.data-advancing]="ii < advancingTeams ? '' : null"
+    ></tr>
+    <tr mat-footer-row *matFooterRowDef="['disclaimer']"></tr>
+  </table>
+</div>

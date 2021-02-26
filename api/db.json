@@ -225,23 +225,749 @@
       "teamsCount": 1,
       "userId": 4,
       "id": 10
+    },
+    {
+      "avenue": "sportna sofia",
+      "description": "lorem ipsum dolor sit anem",
+      "halfTimeLength": 0,
+      "firstMatchStartsAt": "09:00",
+      "matchLength": 20,
+      "name": "blagotvoritelen turnir",
+      "playingFields": 4,
+      "rules": "lorem ipsum dolor sit anem",
+      "startDate": "2021-04-23T21:00:00.000Z",
+      "teamsCount": 16,
+      "groupSize": 4,
+      "playingDays": 2,
+      "teamAdvancingAfterGroups": 2,
+      "userId": 4,
+      "id": 11
+    },
+    {
+      "avenue": "sportna sofia",
+      "description": "lorem ipsum dolor sit anem",
+      "halfTimeLength": 0,
+      "firstMatchStartsAt": "09:00",
+      "matchLength": 20,
+      "name": "blagotvoritelen turnir",
+      "playingFields": 4,
+      "rules": "lorem ipsum dolor sit anem",
+      "startDate": "2021-04-23T21:00:00.000Z",
+      "teamsCount": 16,
+      "groupSize": 4,
+      "playingDays": 2,
+      "teamsAdvancingAfterGroups": 2,
+      "type": "standart",
+      "userId": 4,
+      "id": 12
     }
   ],
   "tournamentParticipants": [
     {
-      "id": 1,
-      "tournamentId": 1,
-      "teamId": 1
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 1,
+      "group": "A",
+      "id": 1
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 2,
+      "group": "A",
+      "id": 2
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 3,
+      "group": "A",
+      "id": 3
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 4,
+      "group": "A",
+      "id": 4
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 5,
+      "group": "B",
+      "id": 5
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 6,
+      "group": "B",
+      "id": 6
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 7,
+      "group": "B",
+      "id": 7
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 8,
+      "group": "B",
+      "id": 8
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 9,
+      "group": "C",
+      "id": 9
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 10,
+      "group": "C",
+      "id": 10
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 11,
+      "group": "C",
+      "id": 11
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 12,
+      "group": "C",
+      "id": 12
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 13,
+      "group": "D",
+      "id": 13
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 14,
+      "group": "D",
+      "id": 14
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 15,
+      "group": "D",
+      "id": 15
+    },
+    {
+      "tournamentId": 11,
+      "teamId": null,
+      "teamSequenceId": 16,
+      "group": "D",
+      "id": 16
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 1,
+      "group": "A",
+      "id": 17
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 2,
+      "group": "A",
+      "id": 18
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 3,
+      "group": "A",
+      "id": 19
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 4,
+      "group": "A",
+      "id": 20
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 5,
+      "group": "B",
+      "id": 21
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 6,
+      "group": "B",
+      "id": 22
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 7,
+      "group": "B",
+      "id": 23
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 8,
+      "group": "B",
+      "id": 24
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 9,
+      "group": "C",
+      "id": 25
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 10,
+      "group": "C",
+      "id": 26
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 11,
+      "group": "C",
+      "id": 27
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 12,
+      "group": "C",
+      "id": 28
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 13,
+      "group": "D",
+      "id": 29
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 14,
+      "group": "D",
+      "id": 30
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 15,
+      "group": "D",
+      "id": 31
+    },
+    {
+      "tournamentId": 12,
+      "teamId": null,
+      "teamSequenceId": 16,
+      "group": "D",
+      "id": 32
     }
   ],
-  "matches": [
+  "tournamentMatches": [
     {
-      "id": 1,
-      "tournamentId": 1,
-      "homeTeamId": "",
-      "awayTeamId": "",
-      "date": "",
-      "startTime": ""
+      "tournamentId": 11,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 2,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 3,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 6,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 7,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 10,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 11,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 14,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 11,
+      "homeTeamSequenceId": 15,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 2,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 1,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 3,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 2,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 3,
+      "awayTeamSequenceId": 4,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "A",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 6,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 5,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 7,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 6,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 7,
+      "awayTeamSequenceId": 8,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "B",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 10,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 9,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 11,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 10,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 11,
+      "awayTeamSequenceId": 12,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "C",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 14,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 13,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 15,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 14,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
+    },
+    {
+      "tournamentId": 12,
+      "homeTeamSequenceId": 15,
+      "awayTeamSequenceId": 16,
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "group": "D",
+      "startTime": "09:00",
+      "date": "2021-04-23T21:00:00.000Z"
     }
   ]
 }

@@ -7,6 +7,7 @@
       "@profile/*": ["src/app/profile/*"],
       "@tournament/*": ["src/app/tournament/*"],
       "@tournaments/*": ["src/app/profile/tournaments/*"],
+      "@view-tournament/*": ["src/app/tournament/view-tournament/*"],
       "@shared/*": ["src/app/shared/*"]
     },
     "baseUrl": "./",

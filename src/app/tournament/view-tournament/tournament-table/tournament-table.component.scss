@@ -1,0 +1,8 @@
+@import '../../../styles/variables';
+
+.tournament-table {
+  &__group {
+    display: block;
+    margin-bottom: $bot-indent;
+  }
+}

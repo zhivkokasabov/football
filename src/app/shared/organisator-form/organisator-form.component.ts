@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationMessages } from '@app/utils/validation-messages.utils';
 import User from '../../models/user.model';
 
 @Component({
@@ -14,6 +15,7 @@ export class OrganisatorFormComponent {
   @Input() public isReadOnly: boolean;
   @Input() public hideRegisterButton: boolean;
 
+  public validationMessages = new ValidationMessages();
   public form: FormGroup;
   private formSubmitAttempt: boolean;
 
@@ -22,7 +24,7 @@ export class OrganisatorFormComponent {
   ) {
     this.form = this.fb.group({
       email: ['', Validators.required],
-      nickname: ['', Validators.required],
+      nickname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       password: ['', Validators.required],
     });
     this.formSubmitAttempt = false;
@@ -32,16 +34,24 @@ export class OrganisatorFormComponent {
     if (changes.profile) {
       this.form = this.fb.group({
         email: [this.profile.email, Validators.required],
-        nickname: [this.profile.nickname, Validators.required],
+        nickname: [this.profile.nickname, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
         password: [this.profile.password, Validators.required],
       });
       this.formSubmitAttempt = false;
     }
   }
 
-  public isFieldInvalid(field: string): boolean | undefined {
-    return (!this.form.get(field)?.valid && this.form.get(field)?.touched) ||
-    (this.form.get(field)?.untouched && this.formSubmitAttempt);
+  public isFieldInvalid(field: string, validation?: string): any {
+    const formField = this.form.get(field);
+
+    if ((!formField?.valid && formField?.touched) ||
+    (formField?.untouched && this.formSubmitAttempt)) {
+      if (validation) {
+        return formField.errors ? formField.errors[validation] : null;
+      }
+
+      return formField.errors;
+    }
   }
 
   public onSubmit(): void {

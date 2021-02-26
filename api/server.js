@@ -76,6 +76,81 @@ server.get('/profile', auth, (req, res, next) => {
   });
 });
 
+server.get('/tournaments/:id', auth, (req, res, next) => {
+  const { db } = req.app;
+
+  res.json(
+    db.get('tournaments').value().find(t => t.id == req.params.id)
+  );
+});
+
+server.get('/tournaments/:id/participants', auth, (req, res, next) => {
+  const { db } = req.app;
+  const teams = db.get('teams').value();
+  const result = db.get('tournamentParticipants')
+    .value()
+    .filter(tp => tp.tournamentId == req.params.id)
+    .map(tp => ({
+      ...tp,
+      team: tp.teamId ? teams.find(t => t.id == tp.teamId) : null
+    }));
+
+  res.json(
+    result
+  );
+})
+
+server.post('/tournaments', auth, (req, res, next) => {
+  const user = getUser(req);
+  const { db } = req.app;
+  const { body } = req;
+
+  const nextId = db.get('tournaments').value().length + 1;
+  insert(db, 'tournaments', {
+    ...body,
+    id: nextId
+  });
+
+  const groupsChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  const groups = Math.ceil(body.teamsCount / body.groupSize);
+
+  for (let ii = 0; ii < groups; ii++) {
+    const groupName = groupsChars[ii];
+    for (let jj = 1; jj <= body.groupSize; jj++) {
+      const nextParticipantId = db.get('tournamentParticipants').value().length + 1;
+      const teamSequenceId = ii * body.groupSize + jj;
+      insert(db, 'tournamentParticipants', {
+        tournamentId: nextId,
+        teamId: null,
+        teamSequenceId: teamSequenceId,
+        group: groupName,
+        id: nextParticipantId
+      });
+
+      for (let kk = jj, c = 1; kk < body.groupSize; kk++, c++) {
+        insert(db, 'tournamentMatches', {
+          tournamentId: nextId,
+          homeTeamSequenceId: teamSequenceId,
+          awayTeamSequenceId: teamSequenceId + c,
+          homeTeamId: null,
+          awayTeamId: null,
+          group: groupName,
+          startTime: body.firstMatchStartsAt,
+          date: body.startDate
+        });
+      }
+    }
+  }
+
+  res.json(db.get('tournaments').find(t => t.id = nextId));
+});
+
+function insert(db, collection, data) {
+  const table = db.get(collection);
+
+  table.push(data).write();
+}
+
 function getUser(req) {
   const token = req.header('Authorization') ? req.header('Authorization').replace('Bearer ', '') : null;
   const data = jwt.verify(token, JWT_SECRET_KEY);

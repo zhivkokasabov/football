@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import NavItem from '@app/models/nav-item.model';
+import { getLastUrlSegment } from '@app/utils/get-last-url-segment.util';
 import Tournament from '@tournament/models/tournament.model';
 import { TournamentService } from '@tournament/services/tournament.service';
 import { Subject } from 'rxjs';
@@ -12,11 +14,18 @@ import { take, takeUntil } from 'rxjs/operators';
 })
 export class ViewTournamentComponent implements OnInit, OnDestroy {
   public tournament: Tournament;
+  public navItems: NavItem[] = [
+    new NavItem({ routerLink: 'general', icon: 'settings_suggest' }),
+    new NavItem({ routerLink: 'table', icon: 'table_chart' }),
+    new NavItem({ routerLink: 'groups', icon: 'groups' }),
+  ];
+  public activeLink: string | undefined;
   private unsubscribe = new Subject<void>();
 
   constructor(
     private tournamentService: TournamentService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -24,6 +33,14 @@ export class ViewTournamentComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe),
     ).subscribe((params) => {
       this.getTournament(params.id);
+    });
+
+    this.router.events.pipe(
+      takeUntil(this.unsubscribe),
+    ).subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.activeLink = getLastUrlSegment(event.url);
+      }
     });
   }
 

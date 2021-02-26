@@ -1,0 +1,75 @@
+@import '../../styles/variables';
+
+.tournament-form {
+  > div:nth-last-of-type(2) {
+    margin-bottom: 1rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-grow: 1;
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 7rem;
+      padding-right: 1rem;
+      line-height: 1;
+      font-size: .75rem;
+      text-align: right;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      color: $color-primary;
+    }
+
+    mat-form-field {
+      flex-grow: 1;
+    }
+
+    mat-icon {
+      color: $color-primary;
+    }
+  }
+
+  mat-radio-button {
+    margin-bottom: .25rem;
+  }
+
+  &__submit-container {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: $action-buttons-gap;
+    }
+  }
+}
+
+::ng-deep {
+  .ngx-material-timepicker-toggle {
+    position: absolute;
+    right: -1.25rem;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  ngx-material-timepicker-content{
+    --body-background-color: #fff;
+    --primary-font-family: 'Roboto',sans-serif;
+    --button-color: #304C89 !important;
+    --dial-active-color: #fff;
+    --dial-inactive-color: rgba(255, 255, 255, .9);
+    --dial-background-color: #304C89 !important;
+    --dial-editable-active-color: #c6ff00 !important;
+    --dial-editable-background-color: #fff;
+    --clock-face-time-active-color: #fff;
+    --clock-face-time-inactive-color: #fff;
+    --clock-face-inner-time-inactive-color: #fff;
+    --clock-face-time-disabled-color: #c5c5c5;
+    --clock-face-background-color: #304C89;
+    --clock-hand-color: #8E579B !important;
+  }
+}

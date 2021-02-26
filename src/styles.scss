@@ -68,3 +68,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.d-flex { display: flex !important; }
+.align-center { align-items: center !important; }
+.align-end { align-items: flex-end !important; }
+.jc-end { justify-content: flex-end !important; }
+.jc-center { justify-content: center !important; }
+.jc-between { justify-content: space-between !important; }
+.f-dir-row { flex-direction: row !important; }
+.f-dir-col { flex-direction: column !important; }

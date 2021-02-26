@@ -10,4 +10,8 @@ export class ValidationMessages {
   public requiredError(label: string): string {
     return `${label} is a required field`;
   }
+
+  public min(label: string, min: number): string {
+    return `${label} cannot be less than ${min}`;
+  }
 }

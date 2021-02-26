@@ -6,7 +6,7 @@ export default class Tournament extends Base {
   public endDate: Date | string;
   public halfTimeLength: number;
   public id: number;
-  public latestMatchStart: string;
+  public firstMatchStartsAt: string;
   public matchLength: number;
   public name: string;
   public playingFields: number;
@@ -14,6 +14,10 @@ export default class Tournament extends Base {
   public startDate: Date | string;
   public teamsCount: number;
   public userId: number;
+  public groupSize: number;
+  public playingDays: number;
+  public teamsAdvancingAfterGroups: number;
+  public type: string;
 
   constructor(init: any = {}) {
     super();
@@ -23,7 +27,7 @@ export default class Tournament extends Base {
     this.endDate = init.endDate;
     this.halfTimeLength = init.halfTimeLength;
     this.id = init.id;
-    this.latestMatchStart = init.id;
+    this.firstMatchStartsAt = init.firstMatchStartsAt;
     this.matchLength = init.matchLength;
     this.name = init.name;
     this.playingFields = init.playingFields;
@@ -31,5 +35,9 @@ export default class Tournament extends Base {
     this.startDate = init.startDate;
     this.teamsCount = init.teamsCount;
     this.userId = init.userId;
+    this.groupSize = init.groupSize;
+    this.playingDays = init.playingDays;
+    this.teamsAdvancingAfterGroups = init.teamsAdvancingAfterGroups;
+    this.type = init.type;
   }
 }

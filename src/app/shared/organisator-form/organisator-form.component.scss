@@ -5,3 +5,9 @@
     @include align-actions-right;
   }
 }
+
+.organisator-form {
+  &__field {
+    margin-bottom: 1rem;
+  }
+}
