@@ -1,1 +1,5 @@
-<p>tournament-groups works!</p>
+<div class="tournament-matches content-indent">
+  <div *ngIf="!tournamentType" class="no-matches">
+    <app-no-content [message]="noContentMsg"></app-no-content>
+  </div>
+</div>

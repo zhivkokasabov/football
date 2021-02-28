@@ -1,4 +1,6 @@
 import Base from '@app/models/Base.model';
+import TournamentAccess from '@tournament/models/tournament-access.model';
+import TournamentType from '@tournament/models/tournament-type.model';
 
 export default class Tournament extends Base {
   public avenue: string;
@@ -17,7 +19,10 @@ export default class Tournament extends Base {
   public groupSize: number;
   public playingDays: number;
   public teamsAdvancingAfterGroups: number;
-  public type: string;
+  public type: TournamentType;
+  public access: TournamentAccess;
+  public typeId: number;
+  public accessId: number;
 
   constructor(init: any = {}) {
     super();
@@ -38,6 +43,9 @@ export default class Tournament extends Base {
     this.groupSize = init.groupSize;
     this.playingDays = init.playingDays;
     this.teamsAdvancingAfterGroups = init.teamsAdvancingAfterGroups;
-    this.type = init.type;
+    this.type = new TournamentType(init.type);
+    this.access = new TournamentAccess(init.access);
+    this.typeId = init.type?.id;
+    this.access.id = init.access?.id;
   }
 }

@@ -13,8 +13,8 @@
     border: .0625 solid black;
     border-radius: .125rem;
 
-    &[variant="primary"] {
-      background-color: $color-advancing;
+    &[variant="warning"] {
+      background-color: $color-relegation;
     }
 
     &[variant="accent"] {

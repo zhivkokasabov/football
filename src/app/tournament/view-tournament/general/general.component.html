@@ -1,9 +1,69 @@
 <div class="content-indent general">
   <div class="general__header d-flex jc-between">
     <app-page-header [title]="tournament.name"></app-page-header>
-    <button *ngIf="canEdit" mat-raised-button color="accent">Edit</button>
+    <button *ngIf="canEdit && !isEditing" (click)="editTournament()" mat-raised-button color="accent">Edit</button>
   </div>
   <div class="general__content">
-    <app-tournament-form></app-tournament-form>
+    <app-tournament-form *ngIf="isEditing" [tournament]="tournament" (onEditCancel)="onEditCancel()"></app-tournament-form>
+
+    <div class="general__section" *ngIf="!isEditing">
+      <p>General</p>
+      <div>
+        <p>tournament type:</p>
+        <p>{{ tournament.type.type }}</p>
+      </div>
+      <div>
+        <p>avenue:</p>
+        <p>{{ tournament.avenue }}</p>
+      </div>
+      <div>
+        <p>description:</p>
+        <p>{{ tournament.description }}</p>
+      </div>
+      <div>
+        <p>rules:</p>
+        <p>{{ tournament.rules }}</p>
+      </div>
+      <mat-divider></mat-divider>
+
+      <p>Additional Information</p>
+      <div>
+        <p>playing days:</p>
+        <p>{{ playingDaysNames[tournament.playingDays] }}</p>
+      </div>
+      <div>
+        <p>start date:</p>
+        <p>{{ tournament.startDate }}</p>
+      </div>
+      <div>
+        <p>first match starts at:</p>
+        <p>{{ tournament.firstMatchStartsAt }}</p>
+      </div>
+      <div *ngIf="tournament.type.id == tournamentTypesEnum.classic">
+        <p>groups size:</p>
+        <p>{{ tournament.groupSize }}</p>
+      </div>
+      <div>
+        <p>match length:</p>
+        <p>{{ tournament.matchLength }}</p>
+      </div>
+      <div>
+        <p>half time length:</p>
+        <p>{{ tournament.halfTimeLength }}</p>
+      </div>
+      <div>
+        <p>number of playing fields:</p>
+        <p>{{ tournament.playingFields }}</p>
+      </div>
+      <div>
+        <p>number of participating teams:</p>
+        <p>{{ tournament.teamsCount }}</p>
+      </div>
+      <div *ngIf="tournament.type.id == tournamentTypesEnum.classic">
+        <p>number of teams advancing from a single group:</p>
+        <p>{{ tournament.teamsAdvancingAfterGroups }}</p>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ $color-accent: #8E579B;
 $color-warn: #00A6A6;
 $color-success: #053225;
 $color-error: #E34A6F;
-$color-grey: #80727B;
+$color-grey: rgba(0, 0, 0, .5);
 $color-notify: #658E9C;
 $color-black: #000;
 $color-white: #fff;
@@ -17,6 +17,7 @@ $page-element-bottom-margin: 1rem;
 
 /* Color legend */
 $color-advancing: $color-accent;
+$color-relegation: $color-error;
 
 @media screen and (min-width: 600px) {
   $page-indent: 2rem;

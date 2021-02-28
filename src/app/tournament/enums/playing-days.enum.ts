@@ -9,3 +9,9 @@ export class PlayingDaysNames {
   public static weekEnd = 'Week end';
   public static wholeWeek = 'Whole week';
 }
+
+export const PlayingDaysNamesFromNumber = {
+  [PlayingDays.workDays]: PlayingDaysNames.workDays,
+  [PlayingDays.weekEnd]: PlayingDaysNames.weekEnd,
+  [PlayingDays.wholeWeek]: PlayingDaysNames.wholeWeek,
+};

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
+import TournamentAccess from '@tournament/models/tournament-access.model';
 import TournamentParticipant from '@tournament/models/tournament-participant.model';
+import TournamentType from '@tournament/models/tournament-type.model';
 import Tournament from '@tournament/models/tournament.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -44,6 +46,25 @@ export class TournamentService {
     });
   }
 
+  public getTournamentTypes(): Observable<TournamentType[]> {
+    return new Observable<TournamentType[]>((observer) => {
+      const url = `${environment.baseUrl}/tournament-types`;
+      const model = new GetRequestModel({ url });
+
+      return this.http.get(model).subscribe((result) => {
+        const tournamentTypes = result.map((entity: any) => {
+          return new TournamentType(entity);
+        });
+
+        observer.next(tournamentTypes);
+        observer.complete();
+      }, (error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
+
   public getTournamentParticipants(tournamentId: number): Observable<TournamentParticipant[]> {
     return new Observable<TournamentParticipant[]>((observer) => {
       const url = `${environment.baseUrl}/tournaments/${tournamentId}/participants`;
@@ -52,6 +73,25 @@ export class TournamentService {
       return this.http.get(model).subscribe((result) => {
         const tournament = result.map((entity: any) => {
           return new TournamentParticipant(entity);
+        });
+
+        observer.next(tournament);
+        observer.complete();
+      }, (error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
+
+  public getTournamentAccesses(): Observable<TournamentAccess[]> {
+    return new Observable<TournamentAccess[]>((observer) => {
+      const url = `${environment.baseUrl}/tournament-accesses`;
+      const model = new GetRequestModel({ url });
+
+      return this.http.get(model).subscribe((result) => {
+        const tournament = result.map((entity: any) => {
+          return new TournamentAccess(entity);
         });
 
         observer.next(tournament);

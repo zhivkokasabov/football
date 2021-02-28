@@ -29,6 +29,15 @@ export class ViewTournamentComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    const lastUrlSegment = getLastUrlSegment(this.router.url);
+
+    if (this.navItems.find((navItem) => navItem.routerLink === lastUrlSegment)) {
+      this.activeLink = lastUrlSegment;
+    } else {
+      const url = this.navItems[0].routerLink;
+      this.router.navigate([`${url}`], { relativeTo: this.activatedRoute.parent });
+    }
+
     this.activatedRoute.params.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((params) => {

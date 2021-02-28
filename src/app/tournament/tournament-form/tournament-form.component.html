@@ -1,5 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tournament-form">
   <div class="form-field">
+    <label for="tournamentName">Tournament access</label>
+    <mat-radio-group class="d-flex f-dir-col" aria-label="Select an option" formControlName="accessId">
+      <mat-radio-button *ngFor="let access of tournamentAccesses"
+        [value]="access.id">
+          {{ access.access }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="form-field">
+    <label for="tournamentName">Tournament type</label>
+    <mat-form-field>
+      <mat-select formControlName="typeId" [compareWith]="compareWithType">
+        <mat-option *ngFor="let type of tournamentTypes" [value]="type">
+          {{type.type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('typeId', 'required')">
+        {{ validationMessages.requiredError("tournament type") }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
     <label for="tournamentName">Tournament name</label>
     <mat-form-field >
       <input matInput type="text" formControlName="name">
@@ -136,7 +158,7 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="form-field">
+  <div *ngIf="tournament.type.id == tournamentTypesEnum.classic" class="form-field">
     <label for="groupSize">Groups size</label>
     <mat-form-field>
       <input matInput type="number" formControlName="groupSize">
@@ -145,17 +167,17 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="form-field">
-    <label for="teamAdvancingAfterGroups">Number of teams advancing from a single group</label>
+  <div *ngIf="tournament.type.id == tournamentTypesEnum.classic" class="form-field">
+    <label for="teamsAdvancingAfterGroups">Number of teams advancing from a single group</label>
     <mat-form-field>
-      <input matInput type="number" formControlName="teamAdvancingAfterGroups">
-      <mat-error *ngIf="isFieldInvalid('teamAdvancingAfterGroups')">
+      <input matInput type="number" formControlName="teamsAdvancingAfterGroups">
+      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups')">
         {{ validationMessages.min("Number of teams advancing from a single group", 1) }}
       </mat-error>
     </mat-form-field>
   </div>
   <div class="tournament-form__submit-container">
-    <button mat-raised-button color="default" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="default" (click)="onCancel()" type="button">Cancel</button>
     <button mat-raised-button color="primary">Save</button>
   </div>
 </form>

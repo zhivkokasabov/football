@@ -36,5 +36,12 @@
         color: $color-white;
       }
     }
+
+    tr[data-relegating] {
+      .cdk-column-rowNumber {
+        background-color: $color-relegation;
+        color: $color-white;
+      }
+    }
   }
 }

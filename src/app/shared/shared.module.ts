@@ -5,10 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { ColorLegendComponent } from './color-legend/color-legend.component';
+import { NoContentComponent } from './no-content/no-content.component';
 import { OrganisatorFormComponent } from './organisator-form/organisator-form.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
@@ -21,6 +23,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     PageHeaderComponent,
     TournamentCardComponent,
     ColorLegendComponent,
+    NoContentComponent,
   ],
   exports: [
     OrganisatorFormComponent,
@@ -28,6 +31,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     PageHeaderComponent,
     TournamentCardComponent,
     ColorLegendComponent,
+    NoContentComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +43,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     ReactiveFormsModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatIconModule,
   ],
 })
 export class SharedModule { }

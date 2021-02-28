@@ -1,4 +1,4 @@
 <div class="tournament content-indent">
   <app-page-header title="Create new tournament"></app-page-header>
-  <app-tournament-form></app-tournament-form>
+  <app-tournament-form [tournament]="tournament" (onEditCancel)="onEditCancel()"></app-tournament-form>
 </div>
