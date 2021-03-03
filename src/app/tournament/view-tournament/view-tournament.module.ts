@@ -15,6 +15,7 @@ import { TournamentTableComponent } from './tournament-table/tournament-table.co
 import { ViewTournamentRoutingModule } from './view-tournament-routing.module';
 import { ViewTournamentComponent } from './view-tournament.component';
 import { RoundRobinTableComponent } from './round-robin-table/round-robin-table.component';
+import { EliminationTableComponent } from './elimination-table/elimination-table.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RoundRobinTableComponent } from './round-robin-table/round-robin-table.
     TournamentGroupsComponent,
     ClassicTableComponent,
     RoundRobinTableComponent,
+    EliminationTableComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 <div class="tournament-matches content-indent">
-  <div *ngIf="!tournamentType" class="no-matches">
+  <div *ngIf="!tournamentType.id" class="no-matches">
     <app-no-content [message]="noContentMsg"></app-no-content>
   </div>
 </div>

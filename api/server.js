@@ -100,6 +100,23 @@ server.get('/tournaments/:id/participants', auth, (req, res, next) => {
   );
 })
 
+server.get('/tournaments/:id/matches', auth, (req, res, next) => {
+  const { db } = req.app;
+  const teams = db.get('teams').value();
+  const result = db.get('tournamentMatches')
+    .value()
+    .filter(tm => tm.tournamentId == req.params.id)
+    .map(tm => ({
+      ...tm,
+      homeTeam: tm.homeTeamId ? teams.find(t => t.id == tm.teamId) : null,
+      awayTeam: tm.awayTeamId ? teams.find(t => t.id == tm.teamId) : null,
+    }));
+
+  res.json(
+    result
+  );
+})
+
 server.post('/tournaments', auth, (req, res, next) => {
   const user = getUser(req);
   const { db } = req.app;
@@ -111,6 +128,58 @@ server.post('/tournaments', auth, (req, res, next) => {
     id: nextId
   });
 
+  switch (body.typeId) {
+    case 1:
+      createEliminationTournament(db, body, nextId);
+      break;
+    default:
+      createClassicTournament(db, body, nextId);
+  }
+
+  res.json(db.get('tournaments').find(t => t.id = nextId));
+});
+
+function createEliminationTournament(db, body, nextId) {
+  const nextParticipantId = db.get('tournamentParticipants').value().length;
+  let { teamsCount } = body;
+
+  for (var ii = 1; ii <= teamsCount; ii++) {
+    insert(db, 'tournamentParticipants', {
+      tournamentId: nextId,
+      teamId: null,
+      teamSequenceId: ii,
+      id: nextParticipantId + ii
+    });
+  }
+
+  let round = 1;
+  teamsCount = teamsCount / 2;
+  while (teamsCount >= 1) {
+    for (var ii = 0; ii < teamsCount; ii++) {
+      insert(db, 'tournamentMatches', {
+        tournamentId: nextId,
+        homeTeamSequenceId: round === 1 ? ii * 2 + 1 : 0,
+        awayTeamSequenceId: round === 1 ? ii * 2 + 2 : 0,
+        homeTeamId: null,
+        awayTeamId: null,
+        startTime: body.firstMatchStartsAt,
+        date: body.startDate,
+        round
+      });
+    }
+
+    teamsCount = teamsCount / 2;
+    round++;
+  }
+}
+
+function insert(db, collection, data) {
+  const table = db.get(collection);
+
+  table.push(data).write();
+}
+
+function createClassicTournament(db, body, nextId) {
   const groupsChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   const groups = Math.ceil(body.teamsCount / body.groupSize);
 
@@ -141,14 +210,6 @@ server.post('/tournaments', auth, (req, res, next) => {
       }
     }
   }
-
-  res.json(db.get('tournaments').find(t => t.id = nextId));
-});
-
-function insert(db, collection, data) {
-  const table = db.get(collection);
-
-  table.push(data).write();
 }
 
 function getUser(req) {

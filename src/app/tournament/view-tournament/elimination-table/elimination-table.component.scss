@@ -1,0 +1,77 @@
+@import '../../../styles/variables';
+
+.elimination-table {
+  display: flex;
+
+  &__round {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+
+    &:nth-child(n + 2) {
+      span {
+        padding-left: .5rem;
+      }
+    }
+  }
+
+  &__match {
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    position: relative;
+
+    div:last-of-type,
+    div:first-of-type {
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      span {
+        width: 100%;
+        height: 1.5rem;
+        border-bottom: .125rem solid $color-primary;
+        color: $color-black;
+        font-weight: 500;
+      }
+    }
+
+    // div:first-of-type {
+    //   span {
+    //     border-top: .125rem solid $color-primary;
+    //     border-bottom: 0;
+    //   }
+    // }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: calc(25% + .75rem);
+      height: 50%;
+      border-right: .125rem solid $color-primary;
+    }
+
+    &--number {
+      height: 1.5rem;
+      width: 1.5rem;
+      padding-top: .175rem;
+      padding-left: 0 !important;
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      background-color: $color-primary;
+      color: $color-white;
+      border-radius: 50%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  }
+
+  &--champion {
+    justify-content: center;
+  }
+}

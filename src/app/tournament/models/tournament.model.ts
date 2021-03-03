@@ -45,7 +45,7 @@ export default class Tournament extends Base {
     this.teamsAdvancingAfterGroups = init.teamsAdvancingAfterGroups;
     this.type = new TournamentType(init.type);
     this.access = new TournamentAccess(init.access);
-    this.typeId = init.type?.id;
-    this.access.id = init.access?.id;
+    this.typeId = init.typeId;
+    this.accessId = init.accessId;
   }
 }

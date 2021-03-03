@@ -13,7 +13,6 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute, Router } from '@angular/router';
 import User from '@app/models/user.model';
-import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import { ValidationMessages } from '@app/utils/validation-messages.utils';
 import { PlayingDays, PlayingDaysNames } from '@tournament/enums/playing-days.enum';
@@ -31,9 +30,9 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './tournament-form.component.html',
 })
 export class TournamentFormComponent implements OnInit, OnDestroy {
-  @Input() public readOnly: boolean;
   @Input() public tournament: Tournament;
   @Output() public onEditCancel = new EventEmitter<void>();
+  @Output() public onFormSubmit = new EventEmitter<Tournament>();
   @ViewChild(MatDatepicker) private picker: MatDatepicker<any>;
 
   public form: FormGroup;
@@ -54,7 +53,6 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private tournamentService: TournamentService,
     private router: Router,
-    private snackbarService: SnackbarService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
@@ -91,13 +89,9 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
 
   public onSubmit(): void {
     if (this.form.valid) {
-      this.tournamentService.newTournament(
-        new Tournament(this.form.value),
-      ).subscribe((res) => {
-        this.snackbarService.success(`Tournament ${res.name} created successfully!`);
+      const tournament = this.form.value;
 
-        this.router.navigate([`profile/${this.currentUser.id}/tournaments`]);
-      });
+      this.onFormSubmit.emit(new Tournament(tournament));
     }
 
     this.formSubmitAttempt = true;
@@ -151,12 +145,13 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.form = this.fb.group({
-      accessId: [this.tournament.access.id || this.tournamentAccesses[0]?.id],
+      accessId: [this.tournament.accessId || this.tournamentAccesses[0]?.id],
       avenue: [this.tournament.avenue, Validators.required],
       description: [this.tournament.description, Validators.maxLength(this.descriptionMaxLength)],
       firstMatchStartsAt: [this.tournament.firstMatchStartsAt, Validators.required],
       groupSize: [this.tournament.groupSize, Validators.min(2)],
       halfTimeLength: [this.tournament.halfTimeLength],
+      id: [this.tournament.id],
       matchLength: [this.tournament.matchLength, Validators.required],
       name: [this.tournament.name, [Validators.required, Validators.maxLength(24), Validators.minLength(4)]],
       playingDays: [this.tournament.playingDays || this.playingDays.workDays],
@@ -165,7 +160,7 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
       startDate: [this.tournament.startDate, Validators.required],
       teamsAdvancingAfterGroups: [this.tournament.teamsAdvancingAfterGroups, Validators.min(1)],
       teamsCount: [this.tournament.teamsCount, Validators.required],
-      typeId: [this.tournament.type.id, Validators.required],
+      typeId: [this.tournament.typeId, Validators.required],
     });
     this.formSubmitAttempt = false;
   }

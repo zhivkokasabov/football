@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import User from '@app/models/user.model';
+import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import { PlayingDaysNamesFromNumber } from '@tournament/enums/playing-days.enum';
 import { TournamentTypesEnum } from '@tournament/enums/tournament-types.enum';
@@ -25,6 +26,7 @@ export class GeneralComponent implements OnDestroy, OnInit {
   constructor(
     private tournamentService: TournamentService,
     private userService: UserService,
+    private snackbarService: SnackbarService,
   ) { }
 
   public ngOnInit(): void {
@@ -46,12 +48,20 @@ export class GeneralComponent implements OnDestroy, OnInit {
     this.unsubscribe.complete();
   }
 
-  public editTournament(): void {
-    this.isEditing = true;
+  public onSubmit(tournament: Tournament): void {
+    this.tournamentService.updateTournament(tournament).subscribe((res) => {
+      this.snackbarService.success(`Tournament ${res.name} updated successfully!`);
+
+      this.isEditing = false;
+    });
   }
 
   public onEditCancel(): void {
     this.isEditing = false;
+  }
+
+  public editTournament(): void {
+    this.isEditing = true;
   }
 
   private getTournament(): Observable<Tournament> {

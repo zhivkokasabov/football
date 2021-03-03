@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import User from '@app/models/user.model';
+import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import Tournament from '@tournament/models/tournament.model';
+import { TournamentService } from '@tournament/services/tournament.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -18,6 +20,8 @@ export class TournamentComponent {
   constructor(
     private router: Router,
     private userService: UserService,
+    private tournamentService: TournamentService,
+    private snackbarService: SnackbarService,
   ) { }
 
   public ngOnInit(): void {
@@ -33,6 +37,14 @@ export class TournamentComponent {
   public ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  public onSubmit(tournament: Tournament): void {
+    this.tournamentService.newTournament(tournament).subscribe((res) => {
+      this.snackbarService.success(`Tournament ${res.name} created successfully!`);
+
+      // this.router.navigate([`profile/${this.currentUser.id}/tournaments`]);
+    });
   }
 
   public onEditCancel(): void {
