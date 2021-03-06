@@ -98,11 +98,11 @@ export class TournamentService {
       const model = new GetRequestModel({ url });
 
       return this.http.get(model).subscribe((result) => {
-        const tournament = result.map((entity: any) => {
+        const matches = result.map((entity: any) => {
           return new TournamentMatch(entity);
         });
 
-        observer.next(tournament);
+        observer.next(matches);
         observer.complete();
       }, (error) => {
         observer.error(error);

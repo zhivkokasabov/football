@@ -1,58 +1,87 @@
 @import '../../../styles/variables';
 
+$team-border: .125rem solid $color-primary;
+
 .elimination-table {
   display: flex;
+  overflow-x: auto;
 
   &__round {
     display: flex;
     flex-direction: column;
-    width: 10rem;
+    min-width: 10rem;
 
     &:nth-child(n + 2) {
       span {
         padding-left: .5rem;
       }
     }
+
+    &:nth-child(1) {
+      .elimination-table__match {
+        height: 100%;
+      }
+
+      .elimination-table__match-group {
+        margin: .5rem 0;
+      }
+    }
   }
 
-  &__match {
+  &__match-group {
     height: 6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
     position: relative;
+  }
+
+  &__match {
+    position: relative;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
 
     div:last-of-type,
     div:first-of-type {
       height: 3rem;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       flex-grow: 1;
 
       span {
         width: 100%;
+        max-width: 15rem;
         height: 1.5rem;
-        border-bottom: .125rem solid $color-primary;
+        line-height: 1.5rem;
+        padding-right: .5rem;
+        border-bottom: $team-border;
         color: $color-black;
         font-weight: 500;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
-    // div:first-of-type {
-    //   span {
-    //     border-top: .125rem solid $color-primary;
-    //     border-bottom: 0;
-    //   }
-    // }
+    div:first-of-type {
+      align-items: flex-start;
+
+      span {
+        border-top: $team-border;
+        border-bottom: 0;
+      }
+    }
 
     &:after {
       content: '';
       position: absolute;
       right: 0;
-      top: calc(25% + .75rem);
-      height: 50%;
-      border-right: .125rem solid $color-primary;
+      top: 0;
+      height: 100%;
+      border-right: $team-border;
     }
 
     &--number {
@@ -62,7 +91,7 @@
       padding-left: 0 !important;
       position: absolute;
       right: 0.5rem;
-      top: 50%;
+      top: calc(50% - .75rem);
       background-color: $color-primary;
       color: $color-white;
       border-radius: 50%;
@@ -73,5 +102,15 @@
 
   &--champion {
     justify-content: center;
+
+    span {
+      height: 2rem;
+      line-height: 2rem;
+      font-weight: 500;
+
+      &:first-of-type {
+        border-bottom: $team-border;
+      }
+    }
   }
 }

@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+.tournament-matches {
+  &__grouped,
+  &__date {
+    margin-bottom: $bot-indent;
+  }
+
+  app-tournament-match {
+    display: block;
+    margin-bottom: $bot-indent / 2;
+  }
+}

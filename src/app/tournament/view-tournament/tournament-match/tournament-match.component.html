@@ -1,0 +1,13 @@
+<mat-card class="tournament-match">
+  <div class="tournament-match__start-time">
+    {{ match.startTime }}
+  </div>
+  <div class="tournament-match__result">
+    {{ match.homeTeam.name }} ? - ? {{ match.awayTeam.name }}
+  </div>
+  <div class="tournament-match__watch">
+    <button mat-icon-button>
+      <mat-icon>grade</mat-icon>
+    </button>
+  </div>
+</mat-card>

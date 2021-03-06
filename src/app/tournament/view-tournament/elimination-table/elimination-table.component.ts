@@ -13,7 +13,8 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class EliminationTableComponent implements OnInit, OnDestroy {
   public teams: any[];
-  public rounds: TournamentMatch[][];
+  public rounds: any[][];
+  public tournamentWinner: string;
   private unsubscribe = new Subject<void>();
   private emptyTeamName = 'Team';
 
@@ -41,7 +42,8 @@ export class EliminationTableComponent implements OnInit, OnDestroy {
       .subscribe((tournamentMatches: TournamentMatch[]) => {
         const rounds = tournamentMatches.map((tm) => tm.round);
         const roundSet = new Set(rounds);
-        let counter = 0;
+
+        this.setTournamentWinner(tournamentMatches);
 
         this.rounds = Array.from(roundSet).map((round) => {
           const roundMatches = tournamentMatches.filter((tm) => tm.round === round );
@@ -49,22 +51,26 @@ export class EliminationTableComponent implements OnInit, OnDestroy {
           let coef = numberOfMatchesThisRound * 2;
 
           return roundMatches.map((tm) => {
-              counter++;
               if (round > 1) {
-                const firstMatch = tournamentMatches[counter - coef];
-                const secondMatch = tournamentMatches[counter - coef + 1];
-                const match = { ...tm, counter };
+                const { sequenceId } = tm;
+                const firstMatch = tournamentMatches[sequenceId - coef];
+                const secondMatch = tournamentMatches[sequenceId - coef + 1];
 
-                match.homeTeam.name = firstMatch.winner ? firstMatch.winner.name : `Winner match ${counter - coef}`;
-                match.awayTeam.name = secondMatch.winner ? secondMatch.winner.name : `Winner match ${counter - coef + 1}`;
+                tm.homeTeam.name = firstMatch.winner ? firstMatch.winner.name : `Winner match ${sequenceId - coef}`;
+                tm.awayTeam.name = secondMatch.winner ? secondMatch.winner.name : `Winner match ${sequenceId - coef + 1}`;
 
                 coef--;
-                return match;
               }
 
-              return { ...tm, counter };
+              return tm;
             });
         });
       });
+  }
+
+  private setTournamentWinner(tournamentMatches: TournamentMatch[]): void {
+    const finalMatchWinnner = tournamentMatches.slice(-1).pop()?.winner;
+
+    this.tournamentWinner = finalMatchWinnner ? finalMatchWinnner.name : `Winner match ${tournamentMatches.length}`;
   }
 }

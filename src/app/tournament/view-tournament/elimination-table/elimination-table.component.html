@@ -1,16 +1,19 @@
 <div class="elimination-table">
   <div *ngFor="let round of rounds" class="elimination-table__round">
-    <div *ngFor="let match of round" class="elimination-table__match">
-      <span class="elimination-table__match--number">{{ match.counter }}</span>
-      <div>
-        <span>{{ match.homeTeam.name }}</span>
-      </div>
-      <div>
-        <span>{{ match.awayTeam.name }}</span>
+    <div *ngFor="let match of round" class="elimination-table__match-group">
+      <span class="elimination-table__match--number">{{ match.sequenceId }}</span>
+      <div class="elimination-table__match">
+        <div>
+          <span>{{ match.homeTeam.name }}</span>
+        </div>
+        <div>
+          <span>{{ match.awayTeam.name }}</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="elimination-table__round elimination-table--champion">
+    <span>{{ tournamentWinner }}</span>
     <span>Tournament Champion</span>
   </div>
 </div>

@@ -149,7 +149,7 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
       avenue: [this.tournament.avenue, Validators.required],
       description: [this.tournament.description, Validators.maxLength(this.descriptionMaxLength)],
       firstMatchStartsAt: [this.tournament.firstMatchStartsAt, Validators.required],
-      groupSize: [this.tournament.groupSize, Validators.min(2)],
+      groupSize: [this.tournament.groupSize, [Validators.required, Validators.min(2)]],
       halfTimeLength: [this.tournament.halfTimeLength],
       id: [this.tournament.id],
       matchLength: [this.tournament.matchLength, Validators.required],
@@ -158,11 +158,12 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
       playingFields: [this.tournament.playingFields, [Validators.min(1), Validators.required]],
       rules: [this.tournament.rules],
       startDate: [this.tournament.startDate, Validators.required],
-      teamsAdvancingAfterGroups: [this.tournament.teamsAdvancingAfterGroups, Validators.min(1)],
+      teamsAdvancingAfterGroups: [this.tournament.teamsAdvancingAfterGroups, [Validators.required, Validators.min(1)]],
       teamsCount: [this.tournament.teamsCount, Validators.required],
       typeId: [this.tournament.typeId, Validators.required],
     });
-    this.formSubmitAttempt = false;
+
+    this.subscribeToFormChanges();
   }
 
   private getUser(): void {
@@ -172,6 +173,22 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
     )
     .subscribe((user: User) => {
       this.currentUser = user;
+    });
+  }
+
+  private subscribeToFormChanges(): void {
+    this.form.valueChanges.pipe(
+      takeUntil(this.unsubscribe),
+    ).subscribe((formValues: any) => {
+      if (formValues.typeId === this.tournamentTypesEnum.classic) {
+        this.form.controls.groupSize.setValidators(
+          [Validators.required, Validators.min(2)]);
+        this.form.controls.teamsAdvancingAfterGroups.setValidators(
+          [Validators.required, Validators.min(1)]);
+      } else {
+        this.form.controls.groupSize.setValidators(null);
+        this.form.controls.teamsAdvancingAfterGroups.setValidators(null);
+      }
     });
   }
 }

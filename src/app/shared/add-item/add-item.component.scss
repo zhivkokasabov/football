@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+.add-container {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    color: $color-accent;
+  }
+}

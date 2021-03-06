@@ -17,7 +17,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
     new NavItemModel({ displayName: 'home', routerLink: '/', isPublic: true }),
     new NavItemModel({ displayName: 'profile', routerLink: '' }),
     new NavItemModel({ displayName: 'my tournamets', routerLink: '/' }),
-    new NavItemModel({ displayName: 'my teams', routerLink: '/' }),
+    new NavItemModel({ displayName: 'my teams', routerLink: '/teams' }),
   ];
   public hideToolbar: boolean;
 

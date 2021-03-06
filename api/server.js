@@ -33,6 +33,15 @@ server.use((req, res, next) => {
   }
 })
 
+server.get('/user-teams/:id', auth, (req, res, next) => {
+  const { db } = req.app;
+  const userId = getUser(req).id;
+  const teamMembers = db.get('teamMembers').value().filter(x => x.userId === userId) || [];
+  const teams = db.get('teams').value().filter(x => teamMembers.indexOf(x.id) > -1);
+
+  res.json(teams);
+});
+
 server.get('/user-tournaments/:id', auth, (req, res, next) => {
   const { db } = req.app;
   const userId = getUser(req).id;
@@ -117,6 +126,12 @@ server.get('/tournaments/:id/matches', auth, (req, res, next) => {
   );
 })
 
+server.get('/tournaments', auth, (req, res, next) => {
+  const { db } = req.app;
+
+  res.json(db.get('tournaments'));
+});
+
 server.post('/tournaments', auth, (req, res, next) => {
   const user = getUser(req);
   const { db } = req.app;
@@ -125,6 +140,8 @@ server.post('/tournaments', auth, (req, res, next) => {
   const nextId = db.get('tournaments').value().length + 1;
   insert(db, 'tournaments', {
     ...body,
+    type: db.get('tournament-types').find(t => t.id = body.typeId),
+    access: db.get('tournament-accesses').find(t => t.id = body.accessId),
     id: nextId
   });
 
@@ -142,6 +159,7 @@ server.post('/tournaments', auth, (req, res, next) => {
 function createEliminationTournament(db, body, nextId) {
   const nextParticipantId = db.get('tournamentParticipants').value().length;
   let { teamsCount } = body;
+  let matchSequenceId = 1;
 
   for (var ii = 1; ii <= teamsCount; ii++) {
     insert(db, 'tournamentParticipants', {
@@ -164,8 +182,11 @@ function createEliminationTournament(db, body, nextId) {
         awayTeamId: null,
         startTime: body.firstMatchStartsAt,
         date: body.startDate,
-        round
+        round,
+        sequenceId: matchSequenceId
       });
+
+      matchSequenceId++;
     }
 
     teamsCount = teamsCount / 2;
@@ -182,6 +203,7 @@ function insert(db, collection, data) {
 function createClassicTournament(db, body, nextId) {
   const groupsChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   const groups = Math.ceil(body.teamsCount / body.groupSize);
+  let matchSequenceId = 1;
 
   for (let ii = 0; ii < groups; ii++) {
     const groupName = groupsChars[ii];
@@ -205,8 +227,11 @@ function createClassicTournament(db, body, nextId) {
           awayTeamId: null,
           group: groupName,
           startTime: body.firstMatchStartsAt,
-          date: body.startDate
+          date: body.startDate,
+          sequenceId: matchSequenceId
         });
+
+        matchSequenceId++;
       }
     }
   }

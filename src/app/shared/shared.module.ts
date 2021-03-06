@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterModule } from '@angular/router';
+import { AddItemComponent } from './add-item/add-item.component';
 import { ColorLegendComponent } from './color-legend/color-legend.component';
 import { NoContentComponent } from './no-content/no-content.component';
 import { OrganisatorFormComponent } from './organisator-form/organisator-form.component';
@@ -24,6 +26,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     TournamentCardComponent,
     ColorLegendComponent,
     NoContentComponent,
+    AddItemComponent,
   ],
   exports: [
     OrganisatorFormComponent,
@@ -32,6 +35,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     TournamentCardComponent,
     ColorLegendComponent,
     NoContentComponent,
+    AddItemComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +48,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
+    RouterModule,
   ],
 })
 export class SharedModule { }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import TournamentType from '@tournament/models/tournament-type.model';
+import { groupBy } from '@app/utils/group-by.util';
+import TournamentMatch from '@tournament/models/tournament-match.model';
 import Tournament from '@tournament/models/tournament.model';
 import { TournamentService } from '@tournament/services/tournament.service';
 import { Subject } from 'rxjs';
@@ -12,8 +13,8 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class TournamentGroupsComponent implements OnInit, OnDestroy {
   public numberOfRounds: number;
-  public tournamentType: TournamentType;
-  public noContentMsg = 'Tournament ogranisator has not picked a tournament type yet!';
+  public groupedTournamentMatches: TournamentMatch[][] = [];
+  private tournament: Tournament;
   private unsubscribe = new Subject<void>();
 
   constructor(
@@ -24,7 +25,13 @@ export class TournamentGroupsComponent implements OnInit, OnDestroy {
     this.tournamentService.tournament.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
-      this.tournamentType = tournament.type;
+      this.tournament = tournament;
+
+      this.tournamentService.getTournamentMatches(tournament.id).pipe(
+        takeUntil(this.unsubscribe),
+      ).subscribe((tournamentMatches: TournamentMatch[]) => {
+        this.groupedTournamentMatches = groupBy(tournamentMatches, 'date');
+      });
     });
   }
 

@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () => import('./tournament/tournament.module').then((m) => m.TournamentModule),
     path: 'tournament',
   },
+  {
+    canActivate: [CanActivateGuard],
+    loadChildren: () => import('./teams/teams.module').then((m) => m.TeamsModule),
+    path: 'teams',
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

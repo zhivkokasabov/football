@@ -11,7 +11,7 @@
   <div class="form-field">
     <label for="tournamentName">Tournament type</label>
     <mat-form-field>
-      <mat-select formControlName="typeId" [compareWith]="compareWithType">
+      <mat-select formControlName="typeId" [compareWith]="compareWithType" [value]="tournament.type">
         <mat-option *ngFor="let type of tournamentTypes" [value]="type.id">
           {{type.type}}
         </mat-option>
@@ -158,20 +158,26 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div *ngIf="tournament.type.id == tournamentTypesEnum.classic" class="form-field">
+  <div *ngIf="form.controls.typeId.value == tournamentTypesEnum.classic" class="form-field">
     <label for="groupSize">Groups size</label>
     <mat-form-field>
       <input matInput type="number" formControlName="groupSize">
-      <mat-error *ngIf="isFieldInvalid('groupSize')">
+      <mat-error *ngIf="isFieldInvalid('groupSize', 'required')">
+        {{ validationMessages.requiredError("group size") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('groupSize', 'min')">
         {{ validationMessages.min("group size", 2) }}
       </mat-error>
     </mat-form-field>
   </div>
-  <div *ngIf="tournament.type.id == tournamentTypesEnum.classic" class="form-field">
+  <div *ngIf="form.controls.typeId.value == tournamentTypesEnum.classic" class="form-field">
     <label for="teamsAdvancingAfterGroups">Number of teams advancing from a single group</label>
     <mat-form-field>
       <input matInput type="number" formControlName="teamsAdvancingAfterGroups">
-      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups')">
+      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups', 'required')">
+        {{ validationMessages.requiredError("Number of teams advancing from a single group") }}
+      </mat-error>
+      <mat-error *ngIf="isFieldInvalid('teamsAdvancingAfterGroups', 'min')">
         {{ validationMessages.min("Number of teams advancing from a single group", 1) }}
       </mat-error>
     </mat-form-field>
