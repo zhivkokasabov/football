@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserTypes } from '@app/enums/user-types.enum';
+import { IConfirmBeforeLeave } from '@app/interfaces/confirm-before-leave.interface';
+import User from '@app/models/user.model';
+import { UserService } from '@app/services/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserTypes } from '../../enums/user-types.enum';
-import { IConfirmBeforeLeave } from '../../interfaces/confirm-before-leave.interface';
-import User from '../../models/user.model';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-view-edit-profile',
   styleUrls: ['./view-edit-profile.component.scss'],
   templateUrl: './view-edit-profile.component.html',
 })
-export class ViewEditProfileComponent implements OnInit {
+export class ViewEditProfileComponent implements OnInit, IConfirmBeforeLeave {
   public user: User;
   public isEditing: boolean;
   public userTypePlayer = UserTypes.PLAYER;

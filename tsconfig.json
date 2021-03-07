@@ -6,6 +6,7 @@
       "@app/*": ["src/app/*"],
       "@profile/*": ["src/app/profile/*"],
       "@teams/*": ["src/app/teams/*"],
+      "@team/*": ["src/app/team/*"],
       "@tournament/*": ["src/app/tournament/*"],
       "@tournaments/*": ["src/app/profile/tournaments/*"],
       "@view-tournament/*": ["src/app/tournament/view-tournament/*"],

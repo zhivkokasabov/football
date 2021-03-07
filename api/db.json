@@ -58,6 +58,55 @@
         "type": "Tournament organisator"
       },
       "id": 4
+    },
+    {
+      "firstName": "martin",
+      "lastName": " hadjiev",
+      "nickname": "hadjo",
+      "userId": 12,
+      "id": 12
+    },
+    {
+      "firstName": "rumen",
+      "lastName": " dinev",
+      "nickname": "dinko",
+      "userId": 13,
+      "id": 13
+    },
+    {
+      "firstName": "bogdan",
+      "lastName": " ivankov",
+      "nickname": "boggi",
+      "userId": 14,
+      "id": 14
+    },
+    {
+      "firstName": "kostadin",
+      "lastName": " adamov",
+      "nickname": "koko",
+      "userId": 15,
+      "id": 15
+    },
+    {
+      "firstName": "rumen",
+      "lastName": " vasilev",
+      "nickname": "rumi",
+      "userId": 16,
+      "id": 16
+    },
+    {
+      "firstName": "troyan",
+      "lastName": " petkov",
+      "nickname": "gryka",
+      "userId": 17,
+      "id": 17
+    },
+    {
+      "firstName": "mladen",
+      "lastName": " kynev",
+      "nickname": "miko",
+      "userId": 11,
+      "id": 11
     }
   ],
   "teamMembers": [
@@ -93,7 +142,23 @@
   "teams": [
     {
       "id": 1,
-      "name": "de da znam"
+      "name": "de da znam",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "test team",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "name": "test team2",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "name": "test team 3",
+      "userId": 1
     }
   ],
   "tournaments": [
@@ -535,6 +600,64 @@
     {
       "id": 3,
       "access": "private"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 15,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 2,
+      "userId": 13,
+      "name": "rumen  dinev (dinko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 3,
+      "userId": 15,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 4,
+      "userId": 13,
+      "name": "rumen  dinev (dinko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "name": "kostadin  adamov (koko)",
+      "requestType": {
+        "id": 1,
+        "userId": 15,
+        "name": "kostadin  adamov (koko)"
+      }
+    }
+  ],
+  "requestTypes": [
+    {
+      "id": 1,
+      "type": "invite to join team"
     }
   ]
 }

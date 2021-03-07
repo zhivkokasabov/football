@@ -26,7 +26,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tournament-form',
-  styleUrls: ['./tournament-form.component.scss'],
+  styleUrls: ['../../styles/_form.scss'],
   templateUrl: './tournament-form.component.html',
 })
 export class TournamentFormComponent implements OnInit, OnDestroy {

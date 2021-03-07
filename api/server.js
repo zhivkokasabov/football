@@ -36,10 +36,54 @@ server.use((req, res, next) => {
 server.get('/user-teams/:id', auth, (req, res, next) => {
   const { db } = req.app;
   const userId = getUser(req).id;
-  const teamMembers = db.get('teamMembers').value().filter(x => x.userId === userId) || [];
+  const teamMembers = db.get('teamMembers').value().filter(x => x.userId === userId).map(x => x.userId) || [];
   const teams = db.get('teams').value().filter(x => teamMembers.indexOf(x.id) > -1);
 
   res.json(teams);
+});
+
+server.post('/teams', auth, (req, res, next) => {
+  const { db } = req.app;
+  const userId = getUser(req).id;
+  const { body } = req;
+
+  const nextId = db.get('teams').value().length + 1;
+  insert(db, 'teams', {
+    id: nextId,
+    name: body.name,
+    userId
+  });
+
+  const nextTeamMemberId = db.get('teamMembers').value().length + 1;
+  insert(db, 'teamMembers', {
+    teamId: nextId,
+    userId
+  });
+
+  const nextNotificationId = db.get('notifications').value().length + 1;
+  const requestTypes = db.get('notifications').value();
+
+  body.users.forEach((item, i) => {
+    insert(db, 'notifications', {
+      id: nextNotificationId + i,
+      userId: userId,
+      name: [item.firstName, item.lastName, `${item.nickname ? `(${item.nickname})` : ''}`].join(' '),
+      requestType: requestTypes[0]
+    });
+  });
+
+  res.json(db.get('teams').find(t => t.id == nextId));
+});
+
+server.get('/users', auth, (req, res, next) => {
+  const { db } = req.app;
+  const { name } = req.query;
+
+  const result = db.get('users').value().filter((user) => {
+    return `${user.firstName} ${user.lastName} ${user.nickname}`.match(name);
+  });
+
+  res.json(result);
 });
 
 server.get('/user-tournaments/:id', auth, (req, res, next) => {

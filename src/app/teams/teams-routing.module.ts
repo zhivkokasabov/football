@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateGuard } from '@app/services/can-activate.service';
-import { CanDeactivateGuard } from '@app/services/can-deactivate.service';
 import { TeamsComponent } from './teams.component';
 
 const routes: Routes = [

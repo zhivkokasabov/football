@@ -1,1 +1,9 @@
-<app-add-item link="" title="Add new team"></app-add-item>
+<app-add-item link="/team" title="Add new team"></app-add-item>
+<div class="content-indent">
+  <app-no-content *ngIf="!teams.length" message="Currently you don't have any teams"></app-no-content>
+  <app-team-card
+    *ngFor="let team of teams"
+    [team]="team"
+    [routerLink]="['/team', team.id]"
+  ></app-team-card>
+</div>

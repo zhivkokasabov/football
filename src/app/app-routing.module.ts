@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./teams/teams.module').then((m) => m.TeamsModule),
     path: 'teams',
   },
+  {
+    canActivate: [CanActivateGuard],
+    loadChildren: () => import('./team/team.module').then((m) => m.TeamModule),
+    path: 'team',
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

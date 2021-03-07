@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -62,6 +63,28 @@ export class UserService {
 
     this.http.get(model).subscribe((user) => {
       this.currentUserSubject.next(new User(user));
+    });
+  }
+
+  public filterUsers(nickname: string): Observable<User[]> {
+    const url = `${environment.baseUrl}/users`;
+    const model = new GetRequestModel({
+      httpOptions: {
+        params: new HttpParams().append('name', nickname),
+      },
+      url,
+    });
+
+    return new Observable((observer) => {
+      return this.http.get(model).subscribe(
+        (response: any) => {
+          const users = response.map((entity: any) => new User(entity));
+
+          observer.next(users);
+        },
+        (error) => observer.error(error),
+        () => observer.complete(),
+      );
     });
   }
 

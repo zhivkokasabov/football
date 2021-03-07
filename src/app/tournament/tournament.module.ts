@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '@shared/shared.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -37,9 +36,8 @@ import { TournamentComponent } from './tournament.component';
     MatTooltipModule,
     MatMomentDateModule,
     ReactiveFormsModule,
-    MatStepperModule,
     MatRadioModule,
     NgxMaterialTimepickerModule,
-  ]
+  ],
 })
 export class TournamentModule { }

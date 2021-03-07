@@ -54,7 +54,7 @@ export class HttpService {
     assert(!!model.url);
 
     return new Observable((obs) => {
-      this.http.get(model.url, { headers: this.httpOptions }).subscribe(
+      this.http.get(model.url, model.httpOptions || this.httpOptions).subscribe(
         (res) => obs.next(res),
         (error) => {
           this.snackbarService.error(error.error);

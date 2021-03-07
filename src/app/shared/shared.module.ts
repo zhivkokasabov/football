@@ -16,6 +16,7 @@ import { NoContentComponent } from './no-content/no-content.component';
 import { OrganisatorFormComponent } from './organisator-form/organisator-form.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
+import { TeamCardComponent } from './team-card/team-card.component';
 import { TournamentCardComponent } from './tournament-card/tournament-card.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     ColorLegendComponent,
     NoContentComponent,
     AddItemComponent,
+    TeamCardComponent,
   ],
   exports: [
     OrganisatorFormComponent,
@@ -36,6 +38,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     ColorLegendComponent,
     NoContentComponent,
     AddItemComponent,
+    TeamCardComponent,
   ],
   imports: [
     CommonModule,

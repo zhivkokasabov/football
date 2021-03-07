@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import Tournament from '@tournament/models/tournament.model';
 
 @Component({
@@ -6,12 +6,8 @@ import Tournament from '@tournament/models/tournament.model';
   styleUrls: ['./tournament-card.component.scss'],
   templateUrl: './tournament-card.component.html',
 })
-export class TournamentCardComponent implements OnInit {
+export class TournamentCardComponent {
   @Input() public tournament: Tournament;
 
   constructor() { }
-
-  public ngOnInit(): void {
-  }
-
 }
