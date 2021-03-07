@@ -10,13 +10,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '@shared/shared.module';
-import { TeamFormComponent } from './team-form/team-form.component';
+import { EditTeamComponent } from './components/edit-team/edit-team.component';
+import { GeneralComponent } from './components/general/general.component';
+import { TeamFormComponent } from './components/team-form/team-form.component';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { TeamComponent } from './team.component';
-import { ViewTeamComponent } from './view-team/view-team.component';
 
 @NgModule({
-  declarations: [TeamComponent, TeamFormComponent, ViewTeamComponent],
+  declarations: [
+    TeamComponent,
+    TeamFormComponent,
+    ViewTeamComponent,
+    GeneralComponent,
+    EditTeamComponent,
+  ],
   imports: [
     CommonModule,
     TeamRoutingModule,

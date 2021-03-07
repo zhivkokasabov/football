@@ -3,17 +3,22 @@ import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
 import Team from '@teams/models/team.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeamService {
+  private teamSubject: BehaviorSubject<Team>;
+  public team: Observable<Team>;
 
   constructor(
     private http: HttpService,
-  ) { }
+  ) {
+    this.teamSubject = new BehaviorSubject<Team>(new Team());
+    this.team = this.teamSubject.asObservable();
+  }
 
   public createTeam(body: Team): Observable<Team> {
     const url = `${environment.baseUrl}/teams`;
@@ -24,6 +29,24 @@ export class TeamService {
         observer.next(new Team(response));
         observer.complete();
       }, (error: any) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
+
+  public getTeam(teamId: number): Observable<Team> {
+    return new Observable<Team>((observer) => {
+      const url = `${environment.baseUrl}/teams/${teamId}`;
+      const model = new GetRequestModel({ url });
+
+      return this.http.get(model).subscribe((result) => {
+        const team = new Team(result);
+
+        this.teamSubject.next(team);
+        observer.next(team);
+        observer.complete();
+      }, (error) => {
         observer.error(error);
         observer.complete();
       });

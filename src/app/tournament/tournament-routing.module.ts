@@ -9,6 +9,7 @@ import { TournamentTableComponent } from '@tournament/components/tournament-tabl
 import { ViewTournamentComponent } from '@tournament/components/view-tournament/view-tournament.component';
 import { TournamentAccessesResolver } from '@tournament/resolvers/tournament-accesses.resolver';
 import { TournamentTypesResolver } from '@tournament/resolvers/tournament-types.resolver';
+import { TournamentResolver } from '@tournament/resolvers/tournament.resolver';
 import { TournamentComponent } from '@tournament/tournament.component';
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     ],
     component: ViewTournamentComponent,
     path: ':id',
+    resolve: { tournament: TournamentResolver },
   },
 ];
 

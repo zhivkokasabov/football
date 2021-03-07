@@ -18,6 +18,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
 import { TeamCardComponent } from './team-card/team-card.component';
 import { TournamentCardComponent } from './tournament-card/tournament-card.component';
+import { SubNavBaseComponent } from './sub-nav-base/sub-nav-base.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TournamentCardComponent } from './tournament-card/tournament-card.compo
     NoContentComponent,
     AddItemComponent,
     TeamCardComponent,
+    SubNavBaseComponent,
   ],
   exports: [
     OrganisatorFormComponent,

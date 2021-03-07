@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Base } from '@app/components/base.component';
 import { IConfirmBeforeLeave } from '@app/interfaces/confirm-before-leave.interface';
-import { TeamFormComponent } from '@team/team-form/team-form.component';
+import { TeamFormComponent } from '@team/components/team-form/team-form.component';
 
 @Component({
   selector: 'app-team',

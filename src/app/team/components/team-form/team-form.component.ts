@@ -12,10 +12,7 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-form',
-  styleUrls: [
-    '../../styles/_form.scss',
-    './team-form.component.scss',
-  ],
+  styleUrls: ['../../../styles/_form.scss'],
   templateUrl: './team-form.component.html',
 })
 export class TeamFormComponent extends Base implements OnInit {

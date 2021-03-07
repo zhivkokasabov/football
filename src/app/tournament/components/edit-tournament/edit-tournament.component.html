@@ -1,9 +1,7 @@
-<div class="content-indent">
-  <app-tournament-form
-    *ngIf="tournament && tournament.id"
-    [tournament]="tournament"
-    (onFormCancel)="onCancel()"
-    (onFormSubmit)="onSubmit($event)"
-    #tournamentForm
-  ></app-tournament-form>
-</div>
+<app-tournament-form
+  *ngIf="tournament && tournament.id"
+  [tournament]="tournament"
+  (onFormCancel)="onCancel()"
+  (onFormSubmit)="onSubmit($event)"
+  #tournamentForm
+></app-tournament-form>

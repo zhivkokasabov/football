@@ -1,0 +1,11 @@
+<div class="team">
+  <div class="team__header d-flex jc-between">
+    <app-page-header [title]="team.name"></app-page-header>
+    <button
+      *ngIf="canEdit"
+      [routerLink]="['/team', team.id, 'edit']"
+      mat-raised-button
+      color="accent"
+    >Edit</button>
+  </div>
+</div>

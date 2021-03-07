@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  Resolve, Router,
+  Resolve,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import TournamentType from '@tournament/models/tournament-type.model';
+import Tournament from '@tournament/models/tournament.model';
 import { TournamentService } from '@tournament/services/tournament.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TournamentTypesResolver implements Resolve<TournamentType[]> {
+export class TournamentResolver implements Resolve<Tournament> {
   constructor(
     private tournamentService: TournamentService,
   ) {}
 
-  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<TournamentType[]> {
-    return this.tournamentService.getTournamentTypes();
+  public resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<Tournament> {
+    return this.tournamentService.getTournament(route.params.id);
   }
 }
