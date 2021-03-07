@@ -14,6 +14,11 @@ const routes: Routes = [
   },
   {
     canActivate: [CanActivateGuard],
+    loadChildren: () => import('./tournaments/tournaments.module').then((m) => m.TournamentsModule),
+    path: 'tournaments',
+  },
+  {
+    canActivate: [CanActivateGuard],
     loadChildren: () => import('./tournament/tournament.module').then((m) => m.TournamentModule),
     path: 'tournament',
   },

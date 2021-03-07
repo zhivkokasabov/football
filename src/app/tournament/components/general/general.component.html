@@ -1,17 +1,15 @@
 <div class="content-indent general">
   <div class="general__header d-flex jc-between">
     <app-page-header [title]="tournament.name"></app-page-header>
-    <button *ngIf="canEdit && !isEditing" (click)="editTournament()" mat-raised-button color="accent">Edit</button>
+    <button
+      *ngIf="canEdit"
+      [routerLink]="['/tournament', tournament.id, 'edit']"
+      mat-raised-button
+      color="accent"
+    >Edit</button>
   </div>
   <div class="general__content">
-    <app-tournament-form
-      *ngIf="isEditing"
-      [tournament]="tournament"
-      (onEditCancel)="onEditCancel()"
-      (onFormSubmit)="onSubmit($event)"
-    ></app-tournament-form>
-
-    <div class="general__section" *ngIf="!isEditing">
+    <div class="general__section">
       <p>General</p>
       <div>
         <p>tournament type:</p>

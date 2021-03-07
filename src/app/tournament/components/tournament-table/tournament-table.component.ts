@@ -7,7 +7,6 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tournament-table',
-  styleUrls: ['./tournament-table.component.scss'],
   templateUrl: './tournament-table.component.html',
 })
 export class TournamentTableComponent implements OnInit, OnDestroy {

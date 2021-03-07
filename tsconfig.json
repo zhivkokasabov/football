@@ -3,12 +3,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@src/*": ["src/*"],
       "@app/*": ["src/app/*"],
       "@profile/*": ["src/app/profile/*"],
       "@teams/*": ["src/app/teams/*"],
       "@team/*": ["src/app/team/*"],
       "@tournament/*": ["src/app/tournament/*"],
-      "@tournaments/*": ["src/app/profile/tournaments/*"],
+      "@tournaments/*": ["src/app/tournaments/*"],
       "@view-tournament/*": ["src/app/tournament/view-tournament/*"],
       "@shared/*": ["src/app/shared/*"]
     },

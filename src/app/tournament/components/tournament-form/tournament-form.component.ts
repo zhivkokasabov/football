@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -12,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Base } from '@app/components/base.component';
 import User from '@app/models/user.model';
 import { UserService } from '@app/services/user.service';
 import { ValidationMessages } from '@app/utils/validation-messages.utils';
@@ -26,12 +26,12 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tournament-form',
-  styleUrls: ['../../styles/_form.scss'],
+  styleUrls: ['../../../styles/_form.scss'],
   templateUrl: './tournament-form.component.html',
 })
-export class TournamentFormComponent implements OnInit, OnDestroy {
+export class TournamentFormComponent extends Base implements OnInit {
   @Input() public tournament: Tournament;
-  @Output() public onEditCancel = new EventEmitter<void>();
+  @Output() public onFormCancel = new EventEmitter<void>();
   @Output() public onFormSubmit = new EventEmitter<Tournament>();
   @ViewChild(MatDatepicker) private picker: MatDatepicker<any>;
 
@@ -46,7 +46,6 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
   public tournamentAccesses: TournamentAccess[] = [];
   private formSubmitAttempt: boolean;
   private currentUser: User;
-  private unsubscribe = new Subject<void>();
 
   constructor(
     private userService: UserService,
@@ -54,7 +53,9 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
     private tournamentService: TournamentService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.activatedRoute.data.pipe(
@@ -67,11 +68,6 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
     });
 
     this.getUser();
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
   public isFieldInvalid(field: string, validation?: string): any {
@@ -98,7 +94,7 @@ export class TournamentFormComponent implements OnInit, OnDestroy {
   }
 
   public onCancel(): void {
-    this.onEditCancel.emit();
+    this.onFormCancel.emit();
   }
 
   public onPlayingDaysChange(changeEvent: MatRadioChange): void {

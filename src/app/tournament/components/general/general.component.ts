@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Base } from '@app/components/base.component';
 import User from '@app/models/user.model';
-import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import { PlayingDaysNamesFromNumber } from '@tournament/enums/playing-days.enum';
 import { TournamentTypesEnum } from '@tournament/enums/tournament-types.enum';
 import Tournament from '@tournament/models/tournament.model';
 import { TournamentService } from '@tournament/services/tournament.service';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -14,20 +14,18 @@ import { map, takeUntil } from 'rxjs/operators';
   styleUrls: ['./general.component.scss'],
   templateUrl: './general.component.html',
 })
-export class GeneralComponent implements OnDestroy, OnInit {
+export class GeneralComponent extends Base implements OnDestroy, OnInit {
   public tournament = new Tournament();
   public canEdit: boolean;
-  public isEditing = false;
   public playingDaysNames = PlayingDaysNamesFromNumber;
   public tournamentTypesEnum = TournamentTypesEnum;
-  private currentUser: User;
-  private unsubscribe = new Subject<void>();
 
   constructor(
     private tournamentService: TournamentService,
     private userService: UserService,
-    private snackbarService: SnackbarService,
-  ) { }
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     combineLatest(
@@ -37,31 +35,9 @@ export class GeneralComponent implements OnDestroy, OnInit {
       takeUntil(this.unsubscribe),
       map(([user, tournament]) => ({ user, tournament })),
     ).subscribe(({ user, tournament }) => {
-      this.currentUser = user;
       this.tournament = tournament;
       this.canEdit = user.id === tournament.userId;
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
-
-  public onSubmit(tournament: Tournament): void {
-    this.tournamentService.updateTournament(tournament).subscribe((res) => {
-      this.snackbarService.success(`Tournament ${res.name} updated successfully!`);
-
-      this.isEditing = false;
-    });
-  }
-
-  public onEditCancel(): void {
-    this.isEditing = false;
-  }
-
-  public editTournament(): void {
-    this.isEditing = true;
   }
 
   private getTournament(): Observable<Tournament> {

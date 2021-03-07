@@ -12,7 +12,6 @@ import NavItem from '../models/nav-item.model';
 export class ProfileComponent implements OnInit, OnDestroy {
   public navItems: NavItem[] = [
     new NavItem({ routerLink: 'user-settings', icon: 'perm_identity' }),
-    new NavItem({ routerLink: 'tournaments', icon: 'sports_soccer' }),
     new NavItem({ routerLink: 'notifications', icon: 'feedback' }),
     new NavItem({ routerLink: 'messages', icon: 'message' }),
   ];

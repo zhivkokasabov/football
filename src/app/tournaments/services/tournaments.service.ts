@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import GetRequestModel from '@app/models/get-request.model';
+import { HttpService } from '@app/services/http.service';
+import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import GetRequestModel from '../../../models/get-request.model';
-import { HttpService } from '../../../services/http.service';
 
 @Injectable({
   providedIn: 'root',

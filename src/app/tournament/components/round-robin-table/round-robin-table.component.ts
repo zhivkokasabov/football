@@ -8,7 +8,6 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-round-robin-table',
-  styleUrls: ['../styles/table.scss'],
   templateUrl: './round-robin-table.component.html',
 })
 export class RoundRobinTableComponent implements OnInit, OnDestroy {

@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-classic-table',
   styleUrls: [
-    '../styles/table.scss',
+    '../../styles/table.scss',
     './classic-table.component.scss',
   ],
   templateUrl: './classic-table.component.html',

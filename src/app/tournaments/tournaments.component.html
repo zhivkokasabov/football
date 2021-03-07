@@ -8,6 +8,6 @@
   <app-tournament-card
     *ngFor="let tournament of tournaments"
     [tournament]="tournament"
-    [routerLink]="['/tournament', tournament.id, 'view', 'general']"
+    [routerLink]="['/tournament', tournament.id]"
   ></app-tournament-card>
 </div>
