@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnackbarService } from '../../services/snackbar.service';
-import { UserService } from '../../services/user.service';
+import { SnackbarService } from '@app/services/snackbar.service';
+import { UserService } from '@app/services/user.service';
+import { sha512 } from 'js-sha512';
 
 @Component({
   selector: 'app-login',
@@ -32,9 +33,12 @@ export class LoginComponent {
   }
 
   public onSubmit(): void {
+    const user = this.form.value;
+    user.password = user.password;
+
     if (this.form.valid) {
-      this.userService.login(this.form.value).subscribe(
-        () => {
+      this.userService.login(user).subscribe(
+        (response) => {
           this.snackbarService.success('Login successfull!');
 
           this.router.navigate(['/']);

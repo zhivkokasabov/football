@@ -5,7 +5,7 @@
     margin-bottom: 1rem;
   }
 
-  .form-field {
+  &-field {
     display: flex;
     flex-grow: 1;
 
@@ -72,5 +72,25 @@
     --clock-face-time-disabled-color: #c5c5c5;
     --clock-face-background-color: #304C89;
     --clock-hand-color: #8E579B !important;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-field {
+      width: 50%;
+      max-width: 50%;
+
+      label {
+        width: 13rem;
+      }
+    }
+
+    &__submit-container {
+      width: 100%;
+    }
   }
 }

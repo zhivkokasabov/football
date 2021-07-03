@@ -1,13 +1,13 @@
-<app-add-item
-  *ngIf="userTypeId == userTypeOrganization"
-  link="/tournament"
-  title="Add new Tournament"
-></app-add-item>
 <div class="content-indent">
+  <app-add-item
+    *ngIf="userType == userTypeOrganization"
+    link="/tournament"
+    title="Add new Tournament"
+  ></app-add-item>
   <app-no-content *ngIf="!tournaments.length" message="Currently you don't have any tournaments"></app-no-content>
   <app-tournament-card
     *ngFor="let tournament of tournaments"
     [tournament]="tournament"
-    [routerLink]="['/tournament', tournament.id]"
+    [routerLink]="['/tournament', tournament.tournamentId]"
   ></app-tournament-card>
 </div>

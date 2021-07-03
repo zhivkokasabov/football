@@ -7,7 +7,7 @@ export default class Tournament extends Base {
   public description: string;
   public endDate: Date | string;
   public halfTimeLength: number;
-  public id: number;
+  public tournamentId: number;
   public firstMatchStartsAt: string;
   public matchLength: number;
   public name: string;
@@ -17,12 +17,13 @@ export default class Tournament extends Base {
   public teamsCount: number;
   public userId: number;
   public groupSize: number;
-  public playingDays: number;
+  public playingDaysId: number;
   public teamsAdvancingAfterGroups: number;
   public type: TournamentType;
   public access: TournamentAccess;
-  public typeId: number;
-  public accessId: number;
+  public tournamentTypeId: number;
+  public tournamentAccessId: number;
+  public enrolledTeams: number;
 
   constructor(init: any = {}) {
     super();
@@ -31,7 +32,7 @@ export default class Tournament extends Base {
     this.description = init.description;
     this.endDate = init.endDate;
     this.halfTimeLength = init.halfTimeLength;
-    this.id = init.id;
+    this.tournamentId = init.tournamentId;
     this.firstMatchStartsAt = init.firstMatchStartsAt;
     this.matchLength = init.matchLength;
     this.name = init.name;
@@ -41,11 +42,12 @@ export default class Tournament extends Base {
     this.teamsCount = init.teamsCount;
     this.userId = init.userId;
     this.groupSize = init.groupSize;
-    this.playingDays = init.playingDays;
+    this.playingDaysId = init.playingDaysId;
     this.teamsAdvancingAfterGroups = init.teamsAdvancingAfterGroups;
     this.type = new TournamentType(init.type);
     this.access = new TournamentAccess(init.access);
-    this.typeId = init.typeId;
-    this.accessId = init.accessId;
+    this.tournamentTypeId = init.tournamentTypeId;
+    this.tournamentAccessId = init.tournamentAccessId;
+    this.enrolledTeams = init.enrolledTeams || 0;
   }
 }

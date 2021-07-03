@@ -12,7 +12,11 @@
       </ng-template>
     </mat-menu>
   </mat-toolbar>
-
+  <mat-progress-bar
+    *ngIf="showProgressBar"
+    color="accent"
+    mode="indeterminate"
+  ></mat-progress-bar>
   <mat-sidenav-container class="sidenav__container">
     <mat-sidenav
       #snav

@@ -3,6 +3,7 @@
 .add-container {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: $bot-indent;
 
   button {
     color: $color-accent;

@@ -10,7 +10,7 @@
   </mat-form-field>
   <mat-form-field *ngIf="playerPositions.length" [class.register--readOnly]="isReadOnly">
     <mat-label>Position</mat-label>
-    <mat-select [compareWith]="compareWithPlayerPosition" formControlName="playerPosition">
+    <mat-select formControlName="playerPositions" multiple>
       <mat-option
         *ngFor="let playerPosition of playerPositions"
         [value]="playerPosition"

@@ -44,6 +44,7 @@ export class TournamentFormComponent extends Base implements OnInit {
   public tournamentTypes: TournamentType[] = [];
   public tournamentTypesEnum = TournamentTypesEnum;
   public tournamentAccesses: TournamentAccess[] = [];
+  public tournamentTypeId: number;
   private formSubmitAttempt: boolean;
   private currentUser: User;
 
@@ -84,11 +85,9 @@ export class TournamentFormComponent extends Base implements OnInit {
   }
 
   public onSubmit(): void {
-    if (this.form.valid) {
-      const tournament = this.form.value;
+    const tournament = this.form.value;
 
-      this.onFormSubmit.emit(new Tournament(tournament));
-    }
+    this.onFormSubmit.emit(new Tournament(tournament));
 
     this.formSubmitAttempt = true;
   }
@@ -104,7 +103,7 @@ export class TournamentFormComponent extends Base implements OnInit {
   }
 
   public filterDatesFactoryMethodWithoutBinding(d: Date | null): boolean {
-    const playingDays = this.form.get('playingDays')?.value;
+    const playingDays = this.form.get('playingDaysId')?.value;
     const day = this.dateFactoryMethod(d);
 
     switch (playingDays) {
@@ -141,22 +140,22 @@ export class TournamentFormComponent extends Base implements OnInit {
 
   private setupForm(): void {
     this.form = this.fb.group({
-      accessId: [this.tournament.accessId || this.tournamentAccesses[0]?.id],
       avenue: [this.tournament.avenue, Validators.required],
       description: [this.tournament.description, Validators.maxLength(this.descriptionMaxLength)],
       firstMatchStartsAt: [this.tournament.firstMatchStartsAt, Validators.required],
       groupSize: [this.tournament.groupSize, [Validators.required, Validators.min(2)]],
       halfTimeLength: [this.tournament.halfTimeLength],
-      id: [this.tournament.id],
       matchLength: [this.tournament.matchLength, Validators.required],
       name: [this.tournament.name, [Validators.required, Validators.maxLength(24), Validators.minLength(4)]],
-      playingDays: [this.tournament.playingDays || this.playingDays.workDays],
+      playingDaysId: [this.tournament.playingDaysId || this.playingDays.workDays],
       playingFields: [this.tournament.playingFields, [Validators.min(1), Validators.required]],
       rules: [this.tournament.rules],
       startDate: [this.tournament.startDate, Validators.required],
       teamsAdvancingAfterGroups: [this.tournament.teamsAdvancingAfterGroups, [Validators.required, Validators.min(1)]],
       teamsCount: [this.tournament.teamsCount, Validators.required],
-      typeId: [this.tournament.typeId, Validators.required],
+      tournamentAccessId: [this.tournament.tournamentAccessId || this.tournamentAccesses[0]?.id],
+      tournamentId: [this.tournament.tournamentId],
+      tournamentTypeId: [this.tournament.tournamentTypeId, Validators.required],
     });
 
     this.subscribeToFormChanges();
@@ -173,10 +172,10 @@ export class TournamentFormComponent extends Base implements OnInit {
   }
 
   private subscribeToFormChanges(): void {
-    this.form.valueChanges.pipe(
+    this.form.get('tournamentTypeId')?.valueChanges.pipe(
       takeUntil(this.unsubscribe),
-    ).subscribe((formValues: any) => {
-      if (formValues.typeId === this.tournamentTypesEnum.classic) {
+    ).subscribe((tournamentTypeId: number) => {
+      if (tournamentTypeId === this.tournamentTypesEnum.classic) {
         this.form.controls.groupSize.setValidators(
           [Validators.required, Validators.min(2)]);
         this.form.controls.teamsAdvancingAfterGroups.setValidators(
@@ -185,6 +184,9 @@ export class TournamentFormComponent extends Base implements OnInit {
         this.form.controls.groupSize.setValidators(null);
         this.form.controls.teamsAdvancingAfterGroups.setValidators(null);
       }
+
+      this.form.get('teamsCount')?.reset();
+      this.tournamentTypeId = tournamentTypeId;
     });
   }
 }

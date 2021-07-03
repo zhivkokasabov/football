@@ -15,6 +15,7 @@ export class ViewEditProfileComponent implements OnInit, IConfirmBeforeLeave {
   public user: User;
   public isEditing: boolean;
   public userTypePlayer = UserTypes.PLAYER;
+  public userType: string;
   private $unsubscribe = new Subject<void>();
 
   constructor(
@@ -26,6 +27,10 @@ export class ViewEditProfileComponent implements OnInit, IConfirmBeforeLeave {
       takeUntil(this.$unsubscribe),
     ).subscribe((currentUser) => {
       this.user = currentUser;
+
+      if (currentUser && currentUser.roles && currentUser.roles.length) {
+        this.userType = currentUser.roles[0].name;
+      }
     });
   }
 

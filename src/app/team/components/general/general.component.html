@@ -8,4 +8,8 @@
       color="accent"
     >Edit</button>
   </div>
+
+  <div *ngIf="team" class="team__members-list">
+    <app-player-card *ngFor="let member of team.members" [player]="member"></app-player-card>
+  </div>
 </div>

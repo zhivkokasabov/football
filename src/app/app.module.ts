@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -21,14 +22,16 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { RequestsInProgressInterceptor } from './interceptors/requests-in-progress.interceptor';
 import { CanActivateGuard } from './services/can-activate.service';
 import { CanDeactivateGuard } from './services/can-deactivate.service';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -58,6 +61,7 @@ import { HomeComponent } from './components/home/home.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
     MatSnackBarModule,
     MatSelectModule,
     SharedModule,
@@ -66,6 +70,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestsInProgressInterceptor, multi: true },
     CanDeactivateGuard,
     CanActivateGuard,
   ],

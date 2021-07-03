@@ -3,17 +3,19 @@
     <app-page-header [title]="tournament.name"></app-page-header>
     <button
       *ngIf="canEdit"
-      [routerLink]="['/tournament', tournament.id, 'edit']"
+      [routerLink]="['/tournament', tournament.tournamentId, 'edit']"
       mat-raised-button
       color="accent"
     >Edit</button>
+    <button *ngIf="canJoinTournament" (click)="joinTournament()" mat-raised-button>join tournament</button>
+    <button *ngIf="canRequestAccess" mat-raised-button>request to join</button>
   </div>
   <div class="general__content">
     <div class="general__section">
       <p>General</p>
       <div>
         <p>tournament type:</p>
-        <p>{{ tournament.type.type }}</p>
+        <p>{{ tournamentTypesNames[tournament.tournamentTypeId] }}</p>
       </div>
       <div>
         <p>avenue:</p>
@@ -32,11 +34,11 @@
       <p>Additional Information</p>
       <div>
         <p>playing days:</p>
-        <p>{{ playingDaysNames[tournament.playingDays] }}</p>
+        <p>{{ playingDaysNames[tournament.playingDaysId] }}</p>
       </div>
       <div>
         <p>start date:</p>
-        <p>{{ tournament.startDate }}</p>
+        <p>{{ tournament.startDate | date: 'MMMM d, y' }}</p>
       </div>
       <div>
         <p>first match starts at:</p>

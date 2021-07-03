@@ -1,12 +1,27 @@
-<mat-card class="tournament-card mat-elevation-z">
+<div class="tournament-card">
   <div class="tournament-card__image">
-    <img src="/assets/example-logo.png" />
+    <img src="/assets/example-logo.svg" />
   </div>
-  <div class="tournament-card__content-container">
-    <mat-card-subtitle class="tournament-card__title">{{ tournament.name }}</mat-card-subtitle>
-    <mat-card-content class="tournament-card__content">
-      <span>{{ tournament.avenue }}</span>
-      <span>{{ tournament.startDate }}</span>
-    </mat-card-content>
+  <div class="tournament-card__content">
+    <div class="tournament-card__content-container">
+      <div class="tournament-card__details">
+        <span>{{ tournament.name }}</span>
+        <span>{{ tournament.description }}</span>
+        <span class="tournament-card--grey">{{ tournament.rules }}</span>
+      </div>
+      <div class="tournament-card__info">
+        <span class="tournament-card--grey">{{ tournament.startDate | date: 'MMMM d, y' }}</span>
+        <span class="tournament-card__teams">{{ tournament.enrolledTeams }} / {{ tournament.teamsCount }}</span>
+      </div>
+    </div>
+    <div class="tournament-card__visit">
+      <button
+        class="tournament-card--grey"
+        [routerLink]="['tournament', tournament.tournamentId]"
+        mat-icon-button
+        title="Go to tournament">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </div>
-</mat-card>
+</div>

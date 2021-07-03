@@ -12,13 +12,15 @@ import { takeUntil } from 'rxjs/operators';
 export class HomeComponent implements OnInit, OnDestroy {
   public tournaments: Tournament[] = [];
   private unsubscribe = new Subject<void>();
+  private page = 1;
+  private pageSize = 20;
 
   constructor(
     private tournamentsService: TournamentsService,
   ) { }
 
   public ngOnInit(): void {
-    this.tournamentsService.getAllTournaments()
+    this.tournamentsService.getAllTournaments(this.page, this.pageSize)
     .pipe(
       takeUntil(this.unsubscribe),
     )

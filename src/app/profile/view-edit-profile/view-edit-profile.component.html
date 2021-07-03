@@ -4,7 +4,7 @@
     <button *ngIf="!isEditing;" (click)="editForm()" mat-raised-button color="accent">Edit</button>
   </div>
   <app-player-form
-    *ngIf="user.userTypeId == userTypePlayer; else organisator"
+    *ngIf="userType == userTypePlayer; else organisator"
     (onCancelEdit)="cancelEdit()"
     (onFormSubmit)="updateProfile($event)"
     [isReadOnly]="!isEditing"

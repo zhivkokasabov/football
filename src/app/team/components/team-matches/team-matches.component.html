@@ -1,0 +1,8 @@
+<div class="team-matches">
+  <div *ngFor="let group of teamMatches">
+    <span>{{ group[0].startTime }}</span>
+    <div *ngFor="let match of group" class="team-matches__match">
+      <app-tournament-match [match]="match"></app-tournament-match>
+    </div>
+  </div>
+</div>

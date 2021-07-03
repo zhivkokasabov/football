@@ -18,12 +18,12 @@ export default class TournamentMatch {
 
     this.date = new Date(init.date).toLocaleDateString('en-gb', {  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-    if (!init.homeTeam) {
-      this.homeTeam = { name: `Team ${init.homeTeamSequenceId}` };
-    }
+    if (init.tournamentMatchTeams.length) {
+      const homeTeam = init.tournamentMatchTeams.find((x: any) => x.isHomeTeam);
+      const awayTeam = init.tournamentMatchTeams.find((x: any) => !x.isHomeTeam);
 
-    if (!init.awayTeam) {
-      this.awayTeam = { name: `Team ${init.awayTeamSequenceId}` };
+      this.homeTeam = homeTeam || { name: `Team ${init.homeTeamSequenceId}` };
+      this.awayTeam = awayTeam || { name: `Team ${init.awayTeamSequenceId}` };
     }
   }
 }

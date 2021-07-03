@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-round-robin-table',
+  styleUrls: ['../../styles/table.scss'],
   templateUrl: './round-robin-table.component.html',
 })
 export class RoundRobinTableComponent implements OnInit, OnDestroy {
@@ -32,10 +33,10 @@ export class RoundRobinTableComponent implements OnInit, OnDestroy {
     this.tournamentService.tournament.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
-      if (tournament.id) {
+      if (tournament.tournamentId) {
         this.advancingTeams = tournament.teamsAdvancingAfterGroups;
 
-        this.setColorLegend(tournament.typeId);
+        this.setColorLegend(tournament.tournamentTypeId);
         this.getTournamentParticipants(tournament);
       }
     });
@@ -51,14 +52,14 @@ export class RoundRobinTableComponent implements OnInit, OnDestroy {
   }
 
   private getTournamentParticipants(tournament: Tournament): void {
-    this.tournamentService.getTournamentParticipants(tournament.id)
+    this.tournamentService.getTournamentParticipants(tournament.tournamentId)
       .subscribe((tournamentParticipants: TournamentParticipant[]) => {
         this.teams = tournamentParticipants.map((participant: TournamentParticipant, index: number) => {
           const { team } = participant;
 
           return {
             goalDifference: 0,
-            name: team ? team.name : `${this.emptyTeamName} ${participant.teamSequenceId}`,
+            name: team ? team.name : `${this.emptyTeamName} ${participant.sequenceId}`,
             played: 0,
             points: 0,
             rowNumber: index + 1,

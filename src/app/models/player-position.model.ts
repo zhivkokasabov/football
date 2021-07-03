@@ -4,6 +4,6 @@ export default class PlayerPosition {
 
   constructor(init: any = {}) {
     this.id = init.id;
-    this.name = init.name;
+    this.name = init.position;
   }
 }

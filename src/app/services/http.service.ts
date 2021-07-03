@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import GetRequestModel from '../models/get-request.model';
 import PostRequestModel from '../models/post-request.model';
-import { SnackbarService } from './snackbar.service';
 
 const { assert } = console;
 
@@ -13,10 +12,7 @@ const { assert } = console;
 export class HttpService {
   private httpOptions: any = {};
 
-  constructor(
-    private http: HttpClient,
-    private snackbarService: SnackbarService,
-  ) { }
+  constructor(private http: HttpClient) { }
 
   public post(model: PostRequestModel): Observable<any> {
     assert(!!model.url);
@@ -25,10 +21,7 @@ export class HttpService {
     return new Observable((obs) => {
       this.http.post(model.url, model.body, { headers: this.httpOptions }).subscribe(
         (res) => obs.next(res),
-        (error) => {
-          this.snackbarService.error(error.error);
-          obs.error(error);
-        },
+        (error) => obs.error(error),
         () => obs.complete(),
       );
     });
@@ -41,10 +34,7 @@ export class HttpService {
     return new Observable((obs) => {
       this.http.put(model.url, model.body, { headers: this.httpOptions }).subscribe(
         (res) => obs.next(res),
-        (error) => {
-          this.snackbarService.error(error.error);
-          obs.error(error);
-        },
+        (error) => obs.error(error),
         () => obs.complete(),
       );
     });
@@ -56,10 +46,7 @@ export class HttpService {
     return new Observable((obs) => {
       this.http.get(model.url, model.httpOptions || this.httpOptions).subscribe(
         (res) => obs.next(res),
-        (error) => {
-          this.snackbarService.error(error.error);
-          obs.error(error);
-        },
+        (error) => obs.error(error),
         () => obs.complete(),
       );
     });

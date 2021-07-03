@@ -35,8 +35,8 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
     this.tournamentService.tournament.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
-      if (tournament.id) {
-        this.setColorLegend(tournament.typeId);
+      if (tournament.tournamentId) {
+        this.setColorLegend(tournament.tournamentTypeId);
         this.getTournamentParticipants(tournament);
       }
     });
@@ -52,7 +52,7 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
   }
 
   private getTournamentParticipants(tournament: Tournament): void {
-    this.tournamentService.getTournamentParticipants(tournament.id)
+    this.tournamentService.getTournamentParticipants(tournament.tournamentId)
       .subscribe((tournamentParticipants: TournamentParticipant[]) => {
         const groups = this.getGroups(tournamentParticipants);
 
@@ -67,7 +67,7 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
 
                 return {
                   goalDifference: 0,
-                  name: team ? team.name : `${this.emptyTeamName} ${participant.teamSequenceId}`,
+                  name: team ? team.name : `${this.emptyTeamName} ${participant.sequenceId}`,
                   played: 0,
                   points: 0,
                   rowNumber: index + 1,

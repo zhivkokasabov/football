@@ -1,6 +1,6 @@
 <div class="tournament-matches">
   <div *ngFor="let tournamentMatches of groupedTournamentMatches" class="tournament-matches__grouped">
-    <p class="tournament-matches__date">{{ tournamentMatches[0].date }}</p>
+    <p class="tournament-matches__date">Round {{ tournamentMatches[0].round }}</p>
     <div class="tournament-matches__group">
       <app-tournament-match *ngFor="let match of tournamentMatches" [match]="match"></app-tournament-match>
     </div>

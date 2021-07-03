@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Base } from '@app/components/base.component';
-import User from '@app/models/user.model';
-import { UserService } from '@app/services/user.service';
 import Team from '@teams/models/team.model';
 import { TeamsService } from '@teams/services/teams.service';
 import { takeUntil } from 'rxjs/operators';
@@ -12,25 +12,36 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './teams.component.html',
 })
 export class TeamsComponent extends Base implements OnInit {
-  private currentUser: User;
-  public teams: Team[] = [];
+  public team: Team;
+  public form: FormGroup;
 
   constructor(
-    private userService: UserService,
     private teamsService: TeamsService,
+    private router: Router,
+    private fb: FormBuilder,
   ) {
     super();
   }
 
   public ngOnInit(): void {
-    this.userService.currentUser.pipe(
-      takeUntil(this.unsubscribe),
-    ).subscribe((user: User) => {
-      this.currentUser = user;
+    this.form = this.fb.group({
+      entryKey: [''],
+    });
 
-      this.teamsService.getUserTeams(this.currentUser.id).subscribe((teams) => {
-        this.teams = teams;
-      });
+    this.teamsService.getUserTeam().subscribe((team) => {
+      if (team) {
+        this.router.navigate([`team/${team.id}`]);
+      }
+    });
+  }
+
+  public tryJoinTeam(): void {
+    const entryKey = this.form.get('entryKey')?.value;
+
+    this.teamsService.addUserToTeam(entryKey).subscribe((team) => {
+      if (team) {
+        this.router.navigate([`team/${team.id}`]);
+      }
     });
   }
 }

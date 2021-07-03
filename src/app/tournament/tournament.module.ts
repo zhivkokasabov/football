@@ -25,7 +25,6 @@ import { GeneralComponent } from '@tournament/components/general/general.compone
 import { RoundRobinTableComponent } from '@tournament/components/round-robin-table/round-robin-table.component';
 import { TournamentFormComponent } from '@tournament/components/tournament-form/tournament-form.component';
 import { TournamentGroupsComponent } from '@tournament/components/tournament-groups/tournament-groups.component';
-import { TournamentMatchComponent } from '@tournament/components/tournament-match/tournament-match.component';
 import { TournamentTableComponent } from '@tournament/components/tournament-table/tournament-table.component';
 import { ViewTournamentComponent } from '@tournament/components/view-tournament/view-tournament.component';
 import { TournamentRoutingModule } from '@tournament/tournament-routing.module';
@@ -44,7 +43,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     TournamentTableComponent,
     GeneralComponent,
     TournamentGroupsComponent,
-    TournamentMatchComponent,
     TournamentTableComponent,
     EditTournamentComponent,
   ],

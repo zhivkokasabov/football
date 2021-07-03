@@ -11,6 +11,7 @@ import { SubNavBaseComponent } from '@shared/sub-nav-base/sub-nav-base.component
 export class ViewTeamComponent extends SubNavBaseComponent {
   public navItems: NavItem[] = [
     new NavItem({ routerLink: 'general', icon: 'settings_suggest' }),
+    new NavItem({ routerLink: 'matches', icon: 'groups' }),
   ];
 
   constructor(

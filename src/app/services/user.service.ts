@@ -1,11 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import GetRequestModel from '@app/models/get-request.model';
+import PostRequestModel from '@app/models/post-request.model';
+import UserType from '@app/models/user-type.model';
+import User from '@app/models/user.model';
+import { environment } from '@src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import GetRequestModel from '../models/get-request.model';
-import PostRequestModel from '../models/post-request.model';
-import User from '../models/user.model';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -21,14 +22,14 @@ export class UserService {
   }
 
   public login(body: FormBuilder): Observable<any> {
-    const url = `${environment.baseUrl}/login`;
+    const url = `${environment.baseUrl}/user/login`;
     const model = new PostRequestModel({ url, body });
 
     return new Observable((observer) => {
       return this.http.post(model).subscribe(
         (response: any) => {
-          this.currentUserSubject.next(new User(body));
-          this.setAuthInStorage(response.accessToken);
+          this.currentUserSubject.next(new User(response.user));
+          this.setAuthInStorage(response.token);
 
           observer.next();
         },
@@ -44,10 +45,21 @@ export class UserService {
   }
 
   public register(body: User): Observable<any> {
-    const url = `${environment.baseUrl}/register`;
+    const url = `${environment.baseUrl}/user`;
     const model = new PostRequestModel({ url, body });
 
-    return this.http.post(model);
+    return new Observable((observer) => {
+      return this.http.post(model).subscribe(
+        (response: any) => {
+          this.currentUserSubject.next(new User(response.user));
+          this.setAuthInStorage(response.token);
+
+          observer.next();
+        },
+        (error) => observer.error(error),
+        () => observer.complete(),
+      );
+    });
   }
 
   public updateProfile(body: User): Observable<User> {
@@ -58,7 +70,7 @@ export class UserService {
   }
 
   public getUser(): void {
-    const url = `${environment.baseUrl}/profile`;
+    const url = `${environment.baseUrl}/user/profile`;
     const model = new GetRequestModel({ url });
 
     this.http.get(model).subscribe((user) => {
@@ -88,11 +100,19 @@ export class UserService {
     });
   }
 
-  public getUserTypes(): Observable<any> {
-    const url = `${environment.baseUrl}/userTypes`;
+  public getUserTypes(): Observable<UserType[]> {
+    const url = `${environment.baseUrl}/user/roles`;
     const model = new GetRequestModel({ url });
 
-    return this.http.get(model);
+    return new Observable((observer) => {
+      this.http.get(model).subscribe((roles) => {
+        const userTypes = roles.map((x: any) => new UserType(x));
+
+        observer.next(userTypes);
+      },
+      (error) => observer.error(error),
+      () => observer.complete());
+    });
   }
 
   private setAuthInStorage(accessToken: string): void {

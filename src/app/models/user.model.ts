@@ -8,10 +8,9 @@ export default class User {
   public lastName: string;
   public nickname: string;
   public password: string;
-  public userTypeId: number;
-  public playerPositionId: number;
-  public playerPosition: PlayerPosition;
-  public userType: UserType;
+  public roles: UserType[];
+  public positions: PlayerPosition[];
+  public isTeamCaptain: boolean;
 
   constructor(init: any = {}) {
     this.id = init.id;
@@ -19,10 +18,9 @@ export default class User {
     this.firstName = init.firstName;
     this.lastName = init.lastName;
     this.nickname = init.nickname;
-    this.password = 'random password';
-    this.userTypeId = init.userType?.id;
-    this.playerPositionId = init.playerPosition?.id;
-    this.playerPosition = new PlayerPosition(init.playerPosition);
-    this.userType = new UserType(init.userType);
+    this.password = init.password;
+    this.isTeamCaptain = init.isTeamCaptain;
+    this.roles = init.roles ? init.roles.map((x: any) => new UserType(x)) : [];
+    this.positions = init.positions ? init.positions.map((x: any) => new PlayerPosition(x)) : [];
   }
 }

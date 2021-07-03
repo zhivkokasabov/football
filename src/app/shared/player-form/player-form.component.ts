@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import PlayerPosition from '@app/models/player-position.model';
 import User from '@app/models/user.model';
 import { PlayerPositionService } from '@app/services/player-position.service';
@@ -30,7 +30,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
       lastName: [''],
       nickname: [''],
       password: ['', Validators.required],
-      playerPosition: [''],
+      playerPositions: [],
     });
     this.formSubmitAttempt = false;
   }
@@ -43,7 +43,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
         lastName: [this.profile.lastName],
         nickname: [this.profile.nickname],
         password: [this.profile.password, Validators.required],
-        playerPosition: [this.profile.playerPosition],
+        playerPositions: this.profile.positions,
       });
       this.formSubmitAttempt = false;
     }
@@ -61,8 +61,15 @@ export class PlayerFormComponent implements OnInit, OnChanges {
   }
 
   public onSubmit(): void {
+    const user = this.form.value;
+
     if (this.form.valid) {
-      this.onFormSubmit.emit(new User(this.form.value));
+      this.onFormSubmit.emit(
+        new User({
+          ...user,
+          positions: user.playerPositions,
+        })
+      );
     }
 
     this.formSubmitAttempt = true;
@@ -70,9 +77,5 @@ export class PlayerFormComponent implements OnInit, OnChanges {
 
   public onCancel(): void {
     this.onCancelEdit.emit();
-  }
-
-  public compareWithPlayerPosition(p1: any, p2: PlayerPosition): boolean {
-    return p1.id === p2.id;
   }
 }

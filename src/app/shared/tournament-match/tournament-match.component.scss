@@ -1,0 +1,23 @@
+.tournament-match {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .mat-icon-button,
+  .mat-icon {
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+
+  &__result {
+    text-align: center;
+
+    &--indent {
+      margin: 0 1rem;
+    }
+  }
+}

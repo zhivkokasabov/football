@@ -1,0 +1,20 @@
+<mat-card class="tournament-match">
+  <mat-card-title>
+    <div class="tournament-match__result">
+      {{ match.homeTeam.name }} <span class="tournament-match__result--indent">? - ?</span> {{ match.awayTeam.name }}
+    </div>
+  </mat-card-title>
+  <mat-card-content class="tournament-match__content">
+    <div class="tournament-match__progress">
+      NS
+    </div>
+    <div class="tournament-match__start-time">
+      {{ match.startTime | date: 'EEEE, MMMM d, y, h:mm' }}
+    </div>
+    <div class="tournament-match__watch">
+      <button mat-icon-button>
+        <mat-icon>grade</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

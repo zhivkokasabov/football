@@ -22,7 +22,7 @@ export class TournamentTableComponent implements OnInit, OnDestroy {
     this.tournamentService.tournament.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
-      if (tournament.id) {
+      if (tournament.tournamentId) {
         this.tournament = tournament;
       }
     });

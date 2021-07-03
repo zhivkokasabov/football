@@ -1,0 +1,27 @@
+.player {
+  width: 10rem;
+  height: 100%;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  &__card {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  &__image {
+    height: 10rem;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -1rem;
+    overflow: hidden;
+  }
+
+  &__positions-list {
+    padding: 1rem 0 0 0;
+    margin: 0;
+    list-style-type: none;
+  }
+}

@@ -18,17 +18,15 @@ export class AuthInterceptor implements HttpInterceptor {
   public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('auth');
 
-    if (token) {
-        const cloned = request.clone({
-            headers: request.headers.set(
-              'Authorization',
-              `Bearer ${token}`,
-            ),
-          });
+    const cloned = request.clone({
+        headers: request.headers
+        .set('Authorization', `Bearer ${token}`)
+        .set('Access-Control-Allow-Origin', 'https://localhost:44382')
+        .set('Access-Control-Allow-Headers', '*')
+        .set('Access-Control-Allow-Methods', '*')
+        .set('Accept', '*/*'),
+      });
 
-        return next.handle(cloned);
-    } else {
-        return next.handle(request);
-    }
+    return next.handle(cloned);
   }
 }

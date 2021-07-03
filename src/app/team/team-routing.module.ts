@@ -6,6 +6,7 @@ import { ViewTeamComponent } from '@team/components/view-team/view-team.componen
 import { TeamResolver } from '@team/resolvers/team.resolver';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { GeneralComponent } from './components/general/general.component';
+import { TeamMatchesComponent } from './components/team-matches/team-matches.component';
 import { TeamComponent } from './team.component';
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'general', component: GeneralComponent },
       { path: 'edit', component: EditTeamComponent },
+      { path: 'matches', component: TeamMatchesComponent },
     ],
     component: ViewTeamComponent,
     path: ':id',

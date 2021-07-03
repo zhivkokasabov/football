@@ -13,6 +13,7 @@ import { SharedModule } from '@shared/shared.module';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { GeneralComponent } from './components/general/general.component';
 import { TeamFormComponent } from './components/team-form/team-form.component';
+import { TeamMatchesComponent } from './components/team-matches/team-matches.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { TeamComponent } from './team.component';
@@ -24,6 +25,7 @@ import { TeamComponent } from './team.component';
     ViewTeamComponent,
     GeneralComponent,
     EditTeamComponent,
+    TeamMatchesComponent,
   ],
   imports: [
     CommonModule,

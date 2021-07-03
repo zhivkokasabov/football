@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -15,10 +16,12 @@ import { ColorLegendComponent } from './color-legend/color-legend.component';
 import { NoContentComponent } from './no-content/no-content.component';
 import { OrganisatorFormComponent } from './organisator-form/organisator-form.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { PlayerCardComponent } from './player-card/player-card.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
+import { SubNavBaseComponent } from './sub-nav-base/sub-nav-base.component';
 import { TeamCardComponent } from './team-card/team-card.component';
 import { TournamentCardComponent } from './tournament-card/tournament-card.component';
-import { SubNavBaseComponent } from './sub-nav-base/sub-nav-base.component';
+import { TournamentMatchComponent } from './tournament-match/tournament-match.component';
 
 @NgModule({
   declarations: [
@@ -31,22 +34,27 @@ import { SubNavBaseComponent } from './sub-nav-base/sub-nav-base.component';
     AddItemComponent,
     TeamCardComponent,
     SubNavBaseComponent,
+    PlayerCardComponent,
+    TournamentMatchComponent,
   ],
   exports: [
     OrganisatorFormComponent,
     PlayerFormComponent,
+    PlayerCardComponent,
     PageHeaderComponent,
     TournamentCardComponent,
     ColorLegendComponent,
     NoContentComponent,
     AddItemComponent,
     TeamCardComponent,
+    TournamentMatchComponent,
   ],
   imports: [
     CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
     MatListModule,
     MatSelectModule,
     ReactiveFormsModule,

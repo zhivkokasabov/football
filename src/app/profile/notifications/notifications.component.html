@@ -1,1 +1,23 @@
-<p>notifications works!</p>
+<div *ngFor="let notification of notifications" class="notification">
+  <mat-card class="notification-card mat-elevation-z">
+    <mat-card-content class="notification-card__content">
+      <div class="notification-card__body">
+        <span class="notification-card--bold">{{ notification.requesterName }}&nbsp;</span>
+        <span>{{ notification.message }}&nbsp;</span>
+        <a
+          [routerLink]="notification.url"
+          class="notification-card--bold notification-card__link"
+          title="visit team page"
+        >{{ notification.entityName }}</a>
+      </div>
+      <div *ngIf="notification.showActions" class="notification-card__actions">
+        <button mat-icon-button title="accept">
+          <mat-icon class="notification-card__actions--accept">check_circle</mat-icon>
+        </button>
+        <button mat-icon-button title="reject">
+          <mat-icon class="notification-card__actions--reject">thumb_down_alt</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

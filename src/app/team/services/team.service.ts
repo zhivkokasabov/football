@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
+import { environment } from '@src/environments/environment';
 import Team from '@teams/models/team.model';
+import TournamentMatch from '@tournament/models/tournament-match.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeamService {
-  private teamSubject: BehaviorSubject<Team>;
   public team: Observable<Team>;
+  private teamSubject: BehaviorSubject<Team>;
 
   constructor(
     private http: HttpService,
@@ -45,6 +46,25 @@ export class TeamService {
 
         this.teamSubject.next(team);
         observer.next(team);
+        observer.complete();
+      }, (error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
+
+  public getMatches(teamId: number): Observable<TournamentMatch[]> {
+    return new Observable<TournamentMatch[]>((observer) => {
+      const url = `${environment.baseUrl}/teams/${teamId}/matches`;
+      const model = new GetRequestModel({ url });
+
+      return this.http.get(model).subscribe((result: any) => {
+        const matches = result.map((group: any) => {
+          return group.map((x: any) => new TournamentMatch(x));
+        });
+
+        observer.next(matches);
         observer.complete();
       }, (error) => {
         observer.error(error);

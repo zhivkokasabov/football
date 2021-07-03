@@ -42,6 +42,24 @@ server.get('/user-teams/:id', auth, (req, res, next) => {
   res.json(teams);
 });
 
+server.get('/user-notifications/:id', auth, (req, res, next) => {
+  const { db } = req.app;
+  const userId = getUser(req).id;
+
+  const notifications = db.get('notifications')
+    .value()
+    .filter(x => x.approverId == userId)
+    .map(x => {
+      return {
+        ...x,
+        requester: db.get('users').value().find(u => u.id == x.requesterId),
+        approver: db.get('users').value().find(u => u.id == x.approver)
+      }
+    });
+
+  res.json(notifications);
+});
+
 server.post('/teams', auth, (req, res, next) => {
   const { db } = req.app;
   const userId = getUser(req).id;

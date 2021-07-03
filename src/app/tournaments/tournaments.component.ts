@@ -15,7 +15,7 @@ import { TournamentsService } from './services/tournaments.service';
 export class TournamentsComponent implements OnInit {
   public tournaments: Tournament[] = [];
   public userTypeOrganization = UserTypes.ORGANIZATION;
-  public userTypeId: number;
+  public userType: string;
   private userId: number;
   private unsubscribe = new Subject<void>();
 
@@ -29,7 +29,8 @@ export class TournamentsComponent implements OnInit {
       takeUntil(this.unsubscribe),
     ).subscribe((user: User) => {
       this.userId = user.id;
-      this.userTypeId = user.userTypeId;
+
+      this.userType = user.roles[0] ? user.roles[0].name : '';
 
       this.tournamentsService.getUserTournaments(user.id).subscribe((tournaments: Tournament[]) => {
         this.tournaments = tournaments;

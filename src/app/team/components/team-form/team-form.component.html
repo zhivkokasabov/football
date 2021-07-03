@@ -14,31 +14,6 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="form-field">
-    <label for="invitePlayers">Invite players</label>
-    <mat-form-field>
-      <mat-chip-list #chipList aria-label="Fruit selection">
-        <mat-chip
-          *ngFor="let addedMember of addedMembers"
-          (removed)="removeMember(addedMember)"
-        >
-          {{displayFn(addedMember)}}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <input type="text"
-          aria-label="team members"
-          matInput
-          [formControl]="playersFormControl"
-          [matChipInputFor]="chipList"
-          [matAutocomplete]="auto">
-      </mat-chip-list>
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let player of players" [value]="player" (click)="optionClicked($event, player)">
-          {{displayFn(player)}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </div>
   <div class="form__submit-container">
     <button mat-raised-button color="default" (click)="onCancelClick()" type="button">Cancel</button>
     <button mat-raised-button color="primary">Save</button>

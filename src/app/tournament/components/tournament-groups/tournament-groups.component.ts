@@ -27,10 +27,10 @@ export class TournamentGroupsComponent implements OnInit, OnDestroy {
     ).subscribe((tournament: Tournament) => {
       this.tournament = tournament;
 
-      this.tournamentService.getTournamentMatches(tournament.id).pipe(
+      this.tournamentService.getTournamentMatches(tournament.tournamentId).pipe(
         takeUntil(this.unsubscribe),
-      ).subscribe((tournamentMatches: TournamentMatch[]) => {
-        this.groupedTournamentMatches = groupBy(tournamentMatches, 'date');
+      ).subscribe((tournamentMatches: TournamentMatch[][]) => {
+        this.groupedTournamentMatches = tournamentMatches;
       });
     });
   }

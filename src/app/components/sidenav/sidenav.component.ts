@@ -1,9 +1,11 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import NavItemModel from '../../models/nav-item.model';
-import User from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+import NavItemModel from '@app/models/nav-item.model';
+import User from '@app/models/user.model';
+import { RequestsInProgressService } from '@app/services/requests-in-progress.service';
+import { UserService } from '@app/services/user.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidenav',
@@ -17,9 +19,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
     new NavItemModel({ displayName: 'home', routerLink: '/', isPublic: true }),
     new NavItemModel({ displayName: 'profile', routerLink: '' }),
     new NavItemModel({ displayName: 'my tournamets', routerLink: '/tournaments' }),
-    new NavItemModel({ displayName: 'my teams', routerLink: '/teams' }),
+    new NavItemModel({ displayName: 'team', routerLink: '/teams' }),
   ];
   public hideToolbar: boolean;
+  public showProgressBar: boolean;
 
   private mobileQueryListener: () => void;
 
@@ -28,6 +31,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
     private media: MediaMatcher,
     private userService: UserService,
     private router: Router,
+    private requestsInProgressService: RequestsInProgressService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -51,6 +55,12 @@ export class SidenavComponent implements OnDestroy, OnInit {
         }
       }
     });
+
+    this.requestsInProgressService.ongoingRequestsSubject
+      .pipe(debounceTime(500))
+      .subscribe((value: boolean) => {
+        this.showProgressBar = value;
+      });
   }
 
   public ngOnDestroy(): void {

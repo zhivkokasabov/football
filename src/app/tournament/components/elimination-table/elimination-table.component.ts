@@ -26,7 +26,7 @@ export class EliminationTableComponent implements OnInit, OnDestroy {
     this.tournamentService.tournament.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
-      if (tournament.id) {
+      if (tournament.tournamentId) {
         this.getTournamentMatches(tournament);
       }
     });
@@ -38,39 +38,16 @@ export class EliminationTableComponent implements OnInit, OnDestroy {
   }
 
   private getTournamentMatches(tournament: Tournament): void {
-    this.tournamentService.getTournamentMatches(tournament.id)
-      .subscribe((tournamentMatches: TournamentMatch[]) => {
-        const rounds = tournamentMatches.map((tm) => tm.round);
-        const roundSet = new Set(rounds);
+    this.tournamentService.getTournamentMatches(tournament.tournamentId)
+      .subscribe((tournamentMatches: TournamentMatch[][]) => {
+        this.rounds = tournamentMatches;
 
-        this.setTournamentWinner(tournamentMatches);
-
-        this.rounds = Array.from(roundSet).map((round) => {
-          const roundMatches = tournamentMatches.filter((tm) => tm.round === round );
-          const numberOfMatchesThisRound = roundMatches.length;
-          let coef = numberOfMatchesThisRound * 2;
-
-          return roundMatches.map((tm) => {
-              if (round > 1) {
-                const { sequenceId } = tm;
-                const firstMatch = tournamentMatches[sequenceId - coef];
-                const secondMatch = tournamentMatches[sequenceId - coef + 1];
-
-                tm.homeTeam.name = firstMatch.winner ? firstMatch.winner.name : `Winner match ${sequenceId - coef}`;
-                tm.awayTeam.name = secondMatch.winner ? secondMatch.winner.name : `Winner match ${sequenceId - coef + 1}`;
-
-                coef--;
-              }
-
-              return tm;
-            });
-        });
+        const lastRound = tournamentMatches[tournamentMatches.length - 1];
+        this.setTournamentWinner(lastRound[0]);
       });
   }
 
-  private setTournamentWinner(tournamentMatches: TournamentMatch[]): void {
-    const finalMatchWinnner = tournamentMatches.slice(-1).pop()?.winner;
-
-    this.tournamentWinner = finalMatchWinnner ? finalMatchWinnner.name : `Winner match ${tournamentMatches.length}`;
+  private setTournamentWinner(tournamentMatch: TournamentMatch): void {
+    this.tournamentWinner = `Winner match ${tournamentMatch.sequenceId}`;
   }
 }

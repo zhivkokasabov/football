@@ -1,9 +1,9 @@
 export default class TournamentAccess {
   public id: number;
-  public access: string;
+  public name: string;
 
   constructor(init: any = {}) {
     this.id = init.id;
-    this.access = init.access;
+    this.name = init.name;
   }
 }
