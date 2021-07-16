@@ -43,7 +43,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
         lastName: [this.profile.lastName],
         nickname: [this.profile.nickname],
         password: [this.profile.password, Validators.required],
-        playerPositions: this.profile.positions,
+        playerPositions: [this.profile.positions],
       });
       this.formSubmitAttempt = false;
     }
@@ -52,6 +52,12 @@ export class PlayerFormComponent implements OnInit, OnChanges {
   public ngOnInit(): void {
     this.playerPositionService.getPlayerPositions().subscribe((playerPositions) => {
       this.playerPositions = playerPositions;
+
+      const positions = this.form.get('playerPositions');
+
+      if (positions) {
+        positions.setValue(positions.value);
+      }
     });
   }
 
@@ -68,7 +74,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
         new User({
           ...user,
           positions: user.playerPositions,
-        })
+        }),
       );
     }
 

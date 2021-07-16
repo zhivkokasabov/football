@@ -23,9 +23,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((response: HttpErrorResponse) => {
         if (response.status === 400) {
-          response.error.errors.forEach((error: any) => {
-            this.snackbarService.error(error.error);
-          });
+          this.handleValidationErrors(response.error.errors);
         } else if (response.status === 500) {
           this.snackbarService.error('Oops, something went wrong!');
         } else if (response.status === 401) {
@@ -35,5 +33,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return throwError(response);
       }),
     );
+  }
+
+  private handleValidationErrors(errors: any): void {
+    if (Object.prototype.toString.call(errors) === '[object Object]') {
+      Object.keys(errors).forEach((key: any) => {
+        this.snackbarService.error(errors[key]);
+      });
+    } else {
+      errors.forEach((error: any) => {
+        this.snackbarService.error(error.error);
+      });
+    }
   }
 }

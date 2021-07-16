@@ -1,4 +1,5 @@
 export default class TournamentMatch {
+  public tournamentMatchId: number;
   public tournamentId: number;
   public homeTeamSequenceId: number;
   public awayTeamSequenceId: number;
@@ -12,18 +13,25 @@ export default class TournamentMatch {
   public awayTeam: any;
   public sequenceId: number;
   public winner: any;
+  public result: string;
+  public isEliminationMatch: boolean;
 
   constructor(init: any = {}) {
     Object.assign(this, init);
 
-    this.date = new Date(init.date).toLocaleDateString('en-gb', {  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
     if (init.tournamentMatchTeams.length) {
-      const homeTeam = init.tournamentMatchTeams.find((x: any) => x.isHomeTeam);
-      const awayTeam = init.tournamentMatchTeams.find((x: any) => !x.isHomeTeam);
+      const homeTeam = init.tournamentMatchTeams.find((x: any) => x.isHomeTeam)?.team;
+      const awayTeam = init.tournamentMatchTeams.find((x: any) => !x.isHomeTeam)?.team;
 
       this.homeTeam = homeTeam || { name: `Team ${init.homeTeamSequenceId}` };
       this.awayTeam = awayTeam || { name: `Team ${init.awayTeamSequenceId}` };
+      this.homeTeamId = this.homeTeam.id;
+      this.awayTeamId = this.awayTeam.id;
+    } else {
+      this.homeTeam = { name: `Team ${init.homeTeamSequenceId}` };
+      this.awayTeam = { name: `Team ${init.awayTeamSequenceId}` };
+      this.homeTeamId = 0;
+      this.awayTeamId = 0;
     }
   }
 }

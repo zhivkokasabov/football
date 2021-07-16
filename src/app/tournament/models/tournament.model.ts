@@ -24,30 +24,14 @@ export default class Tournament extends Base {
   public tournamentTypeId: number;
   public tournamentAccessId: number;
   public enrolledTeams: number;
+  public canEdit: boolean;
+  public canEditMatches: boolean;
+  public eliminationPhaseStarted: boolean;
 
   constructor(init: any = {}) {
-    super();
+    super(init);
 
-    this.avenue = init.avenue;
-    this.description = init.description;
-    this.endDate = init.endDate;
-    this.halfTimeLength = init.halfTimeLength;
-    this.tournamentId = init.tournamentId;
-    this.firstMatchStartsAt = init.firstMatchStartsAt;
-    this.matchLength = init.matchLength;
-    this.name = init.name;
-    this.playingFields = init.playingFields;
-    this.rules = init.rules;
-    this.startDate = init.startDate;
-    this.teamsCount = init.teamsCount;
-    this.userId = init.userId;
-    this.groupSize = init.groupSize;
-    this.playingDaysId = init.playingDaysId;
-    this.teamsAdvancingAfterGroups = init.teamsAdvancingAfterGroups;
     this.type = new TournamentType(init.type);
     this.access = new TournamentAccess(init.access);
-    this.tournamentTypeId = init.tournamentTypeId;
-    this.tournamentAccessId = init.tournamentAccessId;
-    this.enrolledTeams = init.enrolledTeams || 0;
   }
 }

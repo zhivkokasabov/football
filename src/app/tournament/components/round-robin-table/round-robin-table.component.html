@@ -28,12 +28,6 @@
       <td mat-cell *matCellDef="let element"> {{element.goalDifference}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="disclaimer">
-      <td mat-footer-cell *matFooterCellDef colspan="5">
-        <app-color-legend *ngIf="colorLegend" [colorLegend]="colorLegend"></app-color-legend>
-      </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row
@@ -41,6 +35,5 @@
       [attr.data-advancing]="ii < advancingTeams ? '' : null"
       [attr.data-relegating]="teams.length <= ii + advancingTeams ? '' : null"
     ></tr>
-    <tr mat-footer-row *matFooterRowDef="['disclaimer']"></tr>
   </table>
 </div>

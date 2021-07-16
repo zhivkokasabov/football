@@ -1,3 +1,10 @@
+<div *ngIf="tournament && tournament.eliminationPhaseStarted" class="elimination-phase">
+  <app-sub-header text="elimination phase"></app-sub-header>
+  <app-elimination-table></app-elimination-table>
+  <mat-divider></mat-divider>
+</div>
+
+<app-sub-header text="group stage"></app-sub-header>
 <div *ngFor="let group of groups" class="group-table">
   <table mat-table [dataSource]="group.rows" class="mat-elevation-z3">
     <ng-container matColumnDef="rowNumber">
@@ -26,6 +33,31 @@
     <ng-container matColumnDef="goalDifference">
       <th mat-header-cell *matHeaderCellDef> GD </th>
       <td mat-cell *matCellDef="let element"> {{element.goalDifference}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wins">
+      <th mat-header-cell *matHeaderCellDef> W </th>
+      <td mat-cell *matCellDef="let element"> {{element.wins}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="draws">
+      <th mat-header-cell *matHeaderCellDef> D </th>
+      <td mat-cell *matCellDef="let element"> {{element.draws}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loses">
+      <th mat-header-cell *matHeaderCellDef> L </th>
+      <td mat-cell *matCellDef="let element"> {{element.loses}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goals for">
+      <th mat-header-cell *matHeaderCellDef> F </th>
+      <td mat-cell *matCellDef="let element"> {{element.goals}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goals against">
+      <th mat-header-cell *matHeaderCellDef> A </th>
+      <td mat-cell *matCellDef="let element"> {{element.conceivedGoals}} </td>
     </ng-container>
 
     <ng-container matColumnDef="groupName">

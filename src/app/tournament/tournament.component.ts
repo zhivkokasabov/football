@@ -19,6 +19,7 @@ export class TournamentComponent extends Base implements IConfirmBeforeLeave {
   public tournamentForm: TournamentFormComponent;
   public tournament = new Tournament();
   private currentUser: User;
+  private formSaved: boolean;
 
   constructor(
     private router: Router,
@@ -41,9 +42,9 @@ export class TournamentComponent extends Base implements IConfirmBeforeLeave {
 
   public onSubmit(tournament: Tournament): void {
     this.tournamentService.newTournament(tournament).subscribe((res) => {
+      this.formSaved = true;
       this.snackbarService.success(`Tournament ${res.name} created successfully!`);
-
-      this.router.navigate([`tournaments/${res.id}`]);
+      this.router.navigate([`/tournament/${res.tournamentId}`]);
     });
   }
 
@@ -52,6 +53,10 @@ export class TournamentComponent extends Base implements IConfirmBeforeLeave {
   }
 
   public hasUnsavedData(): boolean {
+    if (this.formSaved) {
+      return false;
+    }
+
     const { form } = this.tournamentForm;
 
     return form.touched;

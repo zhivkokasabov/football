@@ -54,8 +54,8 @@ export class TeamService {
     });
   }
 
-  public getMatches(teamId: number): Observable<TournamentMatch[]> {
-    return new Observable<TournamentMatch[]>((observer) => {
+  public getMatches(teamId: number): Observable<TournamentMatch[][]> {
+    return new Observable<TournamentMatch[][]>((observer) => {
       const url = `${environment.baseUrl}/teams/${teamId}/matches`;
       const model = new GetRequestModel({ url });
 

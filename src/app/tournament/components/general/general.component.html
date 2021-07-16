@@ -2,7 +2,7 @@
   <div class="general__header d-flex jc-between">
     <app-page-header [title]="tournament.name"></app-page-header>
     <button
-      *ngIf="canEdit"
+      *ngIf="tournament.canEdit"
       [routerLink]="['/tournament', tournament.tournamentId, 'edit']"
       mat-raised-button
       color="accent"

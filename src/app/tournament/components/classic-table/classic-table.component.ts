@@ -19,9 +19,15 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
     'rowNumber',
     'name',
     'played',
+    'wins',
+    'draws',
+    'loses',
+    'goals for',
+    'goals against',
     'goalDifference',
     'points',
   ];
+  public tournament: Tournament;
   public colorLegend: ColorLegend;
   public groups: any[] = [];
   private emptyTeamName = 'Team';
@@ -36,6 +42,7 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
       if (tournament.tournamentId) {
+        this.tournament = tournament;
         this.setColorLegend(tournament.tournamentTypeId);
         this.getTournamentParticipants(tournament);
       }
@@ -66,10 +73,8 @@ export class ClassicTableComponent implements OnInit, OnDestroy {
                 const { team } = participant;
 
                 return {
-                  goalDifference: 0,
+                  ...participant,
                   name: team ? team.name : `${this.emptyTeamName} ${participant.sequenceId}`,
-                  played: 0,
-                  points: 0,
                   rowNumber: index + 1,
                 };
               }),

@@ -140,9 +140,9 @@ export class TournamentService {
     });
   }
 
-  public joinTournament(tournamentId: number, teamId: number): Observable<void> {
+  public joinTournament(tournamentId: number): Observable<void> {
     const url = `${environment.baseUrl}/tournament/${tournamentId}/join-tournament`;
-    const model = new PutRequestModel({ url, body: { teamId } });
+    const model = new PutRequestModel({ url });
 
     return this.http.put(model);
   }
@@ -152,5 +152,26 @@ export class TournamentService {
     const model = new GetRequestModel({ url });
 
     return this.http.get(model);
+  }
+
+  public canProceedToEliminations(tournamentId: number): Observable<boolean> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/can-proceed-to-eliminations`;
+    const model = new GetRequestModel({ url });
+
+    return this.http.get(model);
+  }
+
+  public proceedToEliminations(tournamentId: number): Observable<void> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/proceed-to-eliminations`;
+    const model = new PostRequestModel({ url, body: {} });
+
+    return this.http.post(model);
+  }
+
+  public closeTournament(tournamentId: number): Observable<void> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/close`;
+    const model = new PutRequestModel({ url, body: {} });
+
+    return this.http.put(model);
   }
 }

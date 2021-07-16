@@ -7,7 +7,13 @@
     .cdk-column-points,
     .cdk-column-rowNumber,
     .cdk-column-played,
-    .cdk-column-goalDifference {
+    .cdk-column-goalDifference,
+    .cdk-column-wins,
+    .cdk-column-loses,
+    .cdk-column-draws,
+    .cdk-column-goals-for,
+    .cdk-column-goals-against,
+    .cdk-column-conceivedGoals {
       width: 2rem;
     }
 

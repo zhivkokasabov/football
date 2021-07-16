@@ -29,7 +29,7 @@ export class TeamsComponent extends Base implements OnInit {
     });
 
     this.teamsService.getUserTeam().subscribe((team) => {
-      if (team) {
+      if (team && team.id) {
         this.router.navigate([`team/${team.id}`]);
       }
     });

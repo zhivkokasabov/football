@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.sub-header {
+  position: relative;
+  text-transform: capitalize;
+  margin-bottom: $bot-indent;
+
+  &:before {
+    content: '';
+    width: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: .175rem solid $color-primary;
+  }
+}

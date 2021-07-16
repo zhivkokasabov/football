@@ -185,6 +185,10 @@ export class TournamentFormComponent extends Base implements OnInit {
         this.form.controls.teamsAdvancingAfterGroups.setValidators(null);
       }
 
+      this.form.get('groupSize')?.updateValueAndValidity();
+      this.form.get('teamsAdvancingAfterGroups')?.updateValueAndValidity();
+      this.form.get('teamsCount')?.updateValueAndValidity();
+
       this.form.get('teamsCount')?.reset();
       this.tournamentTypeId = tournamentTypeId;
     });

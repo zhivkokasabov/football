@@ -20,7 +20,6 @@ import { map, take, takeUntil } from 'rxjs/operators';
 })
 export class GeneralComponent extends Base implements OnDestroy, OnInit {
   public tournament = new Tournament();
-  public canEdit: boolean;
   public canJoinTournament: boolean;
   public canRequestAccess: boolean;
   public playingDaysNames = PlayingDaysNamesFromNumber;
@@ -47,8 +46,6 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
       this.tournament = tournament;
 
       this.setActions(tournament);
-
-      this.canEdit = user.id === tournament.userId;
     });
   }
 
@@ -56,7 +53,7 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
     this.teamService.team.pipe(
       take(1),
     ).subscribe((team: Team) => {
-      this.tournamentService.joinTournament(this.tournament.tournamentId, team.id)
+      this.tournamentService.joinTournament(this.tournament.tournamentId)
         .subscribe(() => {
           this.canJoinTournament = false;
           this.canRequestAccess = false;

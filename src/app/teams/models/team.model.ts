@@ -6,8 +6,9 @@ export default class Team {
   public members: User[];
 
   constructor(init: any = {}) {
-    Object.assign(this, init);
+    const team = init || {};
+    Object.assign(this, team);
 
-    this.members = init.members ? init.members.map((member: any) => new User(member)) : [];
+    this.members = team.members ? team.members.map((member: any) => new User(member)) : [];
   }
 }

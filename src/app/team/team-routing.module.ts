@@ -15,6 +15,7 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard],
     component: TeamComponent,
     path: '',
+    pathMatch: 'full',
   },
   {
     canActivate: [CanActivateGuard],

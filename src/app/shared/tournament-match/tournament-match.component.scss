@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .tournament-match {
   &__content {
     display: flex;
@@ -18,6 +20,46 @@
 
     &--indent {
       margin: 0 1rem;
+    }
+  }
+
+  &__footer {
+    padding: 1rem;
+
+    &--divider {
+      margin-bottom: $page-element-bottom-margin;
+
+      mat-divider {
+        margin: 0;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    > button {
+      margin-left: 1rem;
+    }
+  }
+
+  &__enter-results {
+    display: flex;
+
+    > span {
+      display: flex;
+      align-items: center;
+    }
+
+    mat-form-field {
+      width: 5rem;
+
+      input {
+        text-align: center;
+      }
     }
   }
 }

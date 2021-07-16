@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './team-matches.component.html',
 })
 export class TeamMatchesComponent extends Base implements OnInit {
-  public teamMatches: TournamentMatch[] = [];
+  public teamMatches: TournamentMatch[][] = [];
 
   constructor(
     private teamService: TeamService,

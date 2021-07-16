@@ -32,7 +32,6 @@ export class GeneralComponent extends Base implements OnInit {
       map(([user, team]) => ({ user, team })),
     ).subscribe(({ user, team }) => {
       this.team = team;
-      this.team.members[0].positions = [];
       this.canEdit = team.members.find((m) => m.id === user.id)?.isTeamCaptain === true;
     });
   }

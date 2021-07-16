@@ -1,5 +1,11 @@
 @import '../../../styles/variables';
 
+.proceed {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $bot-indent;
+}
+
 .tournament-matches {
   &__grouped,
   &__date {
