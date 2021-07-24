@@ -3,6 +3,7 @@ import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import PutRequestModel from '@app/models/put-request.model';
 import { HttpService } from '@app/services/http.service';
+import Notification from '@notifications/models/notification.model';
 import { environment } from '@src/environments/environment';
 import TournamentAccess from '@tournament/models/tournament-access.model';
 import TournamentMatch from '@tournament/models/tournament-match.model';
@@ -147,6 +148,13 @@ export class TournamentService {
     return this.http.put(model);
   }
 
+  public requestToJoinTournament(notification: Notification, tournamentId: number): Observable<void> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/request-to-join-tournament`;
+    const model = new PostRequestModel({ url, body: notification });
+
+    return this.http.post(model);
+  }
+
   public getUserAllowedToParticipate(tournamentId: number): Observable<boolean> {
     const url = `${environment.baseUrl}/tournament/${tournamentId}/user-is-allowed`;
     const model = new GetRequestModel({ url });
@@ -161,17 +169,38 @@ export class TournamentService {
     return this.http.get(model);
   }
 
-  public proceedToEliminations(tournamentId: number): Observable<void> {
+  public proceedToEliminations(tournamentId: number): Observable<TournamentMatch[][]> {
     const url = `${environment.baseUrl}/tournament/${tournamentId}/proceed-to-eliminations`;
     const model = new PostRequestModel({ url, body: {} });
 
-    return this.http.post(model);
+    return new Observable<TournamentMatch[][]>((observer) => {
+      return this.http.post(model).subscribe((result) => {
+        const matches = result.map((group: any) => {
+          return group.map((match: any) => {
+            return new TournamentMatch(match);
+          });
+        });
+
+        observer.next(matches);
+      },
+      (error) => observer.error(error),
+      () => observer.complete());
+    });
   }
 
-  public closeTournament(tournamentId: number): Observable<void> {
+  public closeTournament(tournamentId: number): Observable<Tournament> {
     const url = `${environment.baseUrl}/tournament/${tournamentId}/close`;
     const model = new PutRequestModel({ url, body: {} });
 
-    return this.http.put(model);
+    return new Observable<Tournament>((observer) => {
+      return this.http.put(model).subscribe((result) => {
+        const tournament = new Tournament(result);
+
+        this.tournamentSubject.next(tournament);
+        observer.next(tournament);
+      },
+      (error) => observer.error(error),
+      () => observer.complete());
+    });
   }
 }

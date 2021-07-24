@@ -41,7 +41,7 @@ import { SharedModule } from './shared/shared.module';
     LoginComponent,
     RegisterComponent,
     ConfirmDialogComponent,
-    HomeComponent,
+    HomeComponent
   ],
   entryComponents: [ SidenavComponent ],
   imports: [

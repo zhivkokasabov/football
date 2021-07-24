@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import GetRequestModel from '@app/models/get-request.model';
+import PagedResult from '@app/models/paged-result.model';
 import { HttpService } from '@app/services/http.service';
 import Tournament from '@app/tournament/models/tournament.model';
 import { environment } from '@src/environments/environment';
@@ -20,15 +21,18 @@ export class TournamentsService {
     return this.http.get(model);
   }
 
-  public getAllTournaments(pageSize: number, page: number): Observable<any> {
+  public getAllTournaments(page: number, pageSize: number): Observable<PagedResult<Tournament>> {
     const url = `${environment.baseUrl}/tournament`;
     const model = new GetRequestModel({ url, httpOptions: { params: { pageSize, page } } });
 
     return new Observable((observer) => {
       return this.http.get(model).subscribe((response) => {
-        const tournaments = response.map((x: any) => new Tournament(x));
+        const pagedResult = new PagedResult<Tournament>({
+          items: response.items.map((x: any) => new Tournament(x)),
+          meta: response.meta,
+        });
 
-        observer.next(tournaments);
+        observer.next(pagedResult);
       },
       (error) => observer.error(error),
       () => observer.complete());

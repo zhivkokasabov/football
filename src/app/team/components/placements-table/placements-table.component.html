@@ -1,0 +1,24 @@
+<div class="placements-table">
+  <table *ngIf="placements.length; else noParticipations" mat-table [dataSource]="placements" class="mat-elevation-z3">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Start Date </th>
+      <td mat-cell *matCellDef="let element"> {{ element.startDate | date: 'MMMM d, y' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Tournament Name </th>
+      <td mat-cell *matCellDef="let element"> {{ element.tournamentName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="place">
+      <th mat-header-cell *matHeaderCellDef> Placement </th>
+      <td mat-cell *matCellDef="let element" appColorPlacements> {{element.placement }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <ng-template #noParticipations>
+    <app-no-content message="team is yet to participate in a tournament"></app-no-content>
+  </ng-template>
+</div>

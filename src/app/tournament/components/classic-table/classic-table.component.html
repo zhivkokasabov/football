@@ -17,7 +17,12 @@
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element">
+        <div [routerLink]="['/team', element.teamId, 'general']">
+          {{element.name}}
+          <mat-icon>link</mat-icon>
+        </div>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="points">

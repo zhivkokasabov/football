@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ColorLegendComponent } from './color-legend/color-legend.component';
+import { ColorPlacementsDirective } from './directives/color-placements/color-placements.directive';
 import { NoContentComponent } from './no-content/no-content.component';
 import { OrganisatorFormComponent } from './organisator-form/organisator-form.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
@@ -39,6 +40,7 @@ import { TournamentMatchComponent } from './tournament-match/tournament-match.co
     PlayerCardComponent,
     TournamentMatchComponent,
     SubHeaderComponent,
+    ColorPlacementsDirective,
   ],
   exports: [
     OrganisatorFormComponent,
@@ -52,6 +54,7 @@ import { TournamentMatchComponent } from './tournament-match/tournament-match.co
     TeamCardComponent,
     TournamentMatchComponent,
     SubHeaderComponent,
+    ColorPlacementsDirective,
   ],
   imports: [
     CommonModule,

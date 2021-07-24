@@ -48,31 +48,32 @@ $team-border: .125rem solid $color-primary;
       height: 3rem;
       display: flex;
       align-items: flex-end;
+      justify-content: space-between;
       flex-grow: 1;
+      width: 100%;
+      border-bottom: $team-border;
+      box-sizing: border-box;
 
       span {
-        width: 100%;
-        max-width: 15rem;
-        height: 1.5rem;
-        line-height: 1.5rem;
-        padding-right: .5rem;
-        border-bottom: $team-border;
-        color: $color-black;
         font-weight: 500;
-        box-sizing: border-box;
+        color: $color-black;
+        line-height: 1.5rem;
+        height: 1.5rem;
+        padding-right: .5rem;
+      }
+
+      span:first-of-type {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor: pointer;
       }
     }
 
     div:first-of-type {
       align-items: flex-start;
-
-      span {
-        border-top: $team-border;
-        border-bottom: 0;
-      }
+      border-top: $team-border;
+      border-bottom: 0;
     }
 
     &:after {

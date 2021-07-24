@@ -3,6 +3,7 @@ import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
 import { environment } from '@src/environments/environment';
+import TournamentPlacement from '@team/models/tournament-placement.model';
 import Team from '@teams/models/team.model';
 import TournamentMatch from '@tournament/models/tournament-match.model';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -65,6 +66,23 @@ export class TeamService {
         });
 
         observer.next(matches);
+        observer.complete();
+      }, (error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
+
+  public getTeamPlacements(teamId: number): Observable<TournamentPlacement[]> {
+    return new Observable<TournamentPlacement[]>((observer) => {
+      const url = `${environment.baseUrl}/teams/${teamId}/placements`;
+      const model = new GetRequestModel({ url });
+
+      return this.http.get(model).subscribe((result) => {
+        const placements = result.map((x: any) => new TournamentPlacement(x));
+
+        observer.next(placements);
         observer.complete();
       }, (error) => {
         observer.error(error);

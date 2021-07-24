@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Base } from '@app/components/base.component';
 import User from '@app/models/user.model';
 import { UserService } from '@app/services/user.service';
+import TournamentPlacement from '@team/models/tournament-placement.model';
 import { TeamService } from '@team/services/team.service';
 import Team from '@teams/models/team.model';
 import { combineLatest, Observable } from 'rxjs';
@@ -15,6 +16,7 @@ import { map, takeUntil } from 'rxjs/operators';
 export class GeneralComponent extends Base implements OnInit {
   public team: Team;
   public canEdit: boolean;
+  public placements: TournamentPlacement[] = [];
 
   constructor(
     private teamService: TeamService,
@@ -33,6 +35,22 @@ export class GeneralComponent extends Base implements OnInit {
     ).subscribe(({ user, team }) => {
       this.team = team;
       this.canEdit = team.members.find((m) => m.id === user.id)?.isTeamCaptain === true;
+
+      this.getTeamPlacements(team.id);
+    });
+  }
+
+  private getTeamPlacements(id: number): void {
+    this.teamService.getTeamPlacements(id).subscribe((placements: TournamentPlacement[]) => {
+      this.placements = [
+        ...placements,
+        new TournamentPlacement({ ...placements[0], placement: '2nd' }),
+        new TournamentPlacement({ ...placements[0], placement: '3rd' }),
+        new TournamentPlacement({ ...placements[0], placement: '4th' }),
+        new TournamentPlacement({ ...placements[0], placement: '3rd-4th' }),
+        new TournamentPlacement({ ...placements[0], placement: '5th-8th' }),
+        new TournamentPlacement({ ...placements[0], placement: '5th-16th' }),
+      ];
     });
   }
 

@@ -56,7 +56,8 @@ export class PlayerFormComponent implements OnInit, OnChanges {
       const positions = this.form.get('playerPositions');
 
       if (positions) {
-        positions.setValue(positions.value);
+        const ids = positions.value.map((x: any) => x.id);
+        positions.setValue(playerPositions.filter((x: any) => ids.includes(x.id)));
       }
     });
   }

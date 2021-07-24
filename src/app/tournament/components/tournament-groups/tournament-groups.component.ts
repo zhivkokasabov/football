@@ -78,19 +78,24 @@ export class TournamentGroupsComponent implements OnInit, OnDestroy {
   }
 
   public proceedToEliminations(): void {
-    this.tournamentService.proceedToEliminations(this.tournament.tournamentId).subscribe(() => {
-    });
-  }
-
-  public setCanCloseTournament(): void {
-    this.canCloseTournament = this.groupedTournamentMatches.every((x: TournamentMatch[]) => {
-      return x.every((y: TournamentMatch) => !!y.result) === true;
-    });
+    this.tournamentService.proceedToEliminations(this.tournament.tournamentId)
+      .subscribe((matches: TournamentMatch[][]) => {
+        this.groupedTournamentMatches = matches;
+        this.canProceedToEliminations = false;
+      });
   }
 
   public closeTournament(): void {
     this.tournamentService.closeTournament(this.tournament.tournamentId).subscribe(() => {
-      
+      this.snackbarService.success('Tournament successfully finished');
     });
+  }
+
+  private setCanCloseTournament(): void {
+    const allMatchesHaveFinished = this.groupedTournamentMatches.every((x: TournamentMatch[]) => {
+      return x.every((y: TournamentMatch) => !!y.result) === true;
+    });
+
+    this.canCloseTournament = !this.tournament.hasFinished && allMatchesHaveFinished;
   }
 }

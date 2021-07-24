@@ -1,6 +1,9 @@
+@import '../../../styles/variables';
+
 .team {
   &__members-list {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: $bot-indent;
   }
 }

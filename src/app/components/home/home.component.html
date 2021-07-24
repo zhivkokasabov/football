@@ -1,4 +1,16 @@
-<app-tournament-card
-  *ngFor="let tournament of tournaments"
-  [tournament]="tournament"
-></app-tournament-card>
+<div class="home">
+  <div class="home__filters">
+
+  </div>
+
+  <div class="home__tournaments-list">
+    <app-tournament-card
+      *ngFor="let tournament of tournaments"
+      [tournament]="tournament"
+    ></app-tournament-card>
+  </div>
+
+  <div *ngIf="showLoadingMore" class="home__load-more">
+    <button mat-raised-button color="accent" (click)="loadMoreTournaments()">Load more</button>
+  </div>
+</div>

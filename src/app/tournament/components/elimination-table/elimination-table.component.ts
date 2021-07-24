@@ -41,7 +41,8 @@ export class EliminationTableComponent implements OnInit, OnDestroy {
     this.tournamentService.getTournamentMatches(tournament.tournamentId)
       .subscribe((tournamentMatches: TournamentMatch[][]) => {
         this.rounds = tournamentMatches
-          .map((x: TournamentMatch[]) => x.filter((t: TournamentMatch) => t.isEliminationMatch));
+          .map((x: TournamentMatch[]) => x.filter((t: TournamentMatch) => t.isEliminationMatch))
+          .filter((x: TournamentMatch[]) => x.length !== 0);
 
         const lastRound = tournamentMatches[tournamentMatches.length - 1];
         this.setTournamentWinner(lastRound[0]);

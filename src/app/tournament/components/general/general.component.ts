@@ -3,6 +3,8 @@ import { Base } from '@app/components/base.component';
 import User from '@app/models/user.model';
 import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
+import Notification from '@notifications/models/notification.model';
+import { environment } from '@src/environments/environment';
 import { TeamService } from '@team/services/team.service';
 import Team from '@teams/models/team.model';
 import { PlayingDaysNamesFromNumber } from '@tournament/enums/playing-days.enum';
@@ -49,17 +51,26 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
     });
   }
 
-  public joinTournament(): void {
-    this.teamService.team.pipe(
-      take(1),
-    ).subscribe((team: Team) => {
-      this.tournamentService.joinTournament(this.tournament.tournamentId)
-        .subscribe(() => {
-          this.canJoinTournament = false;
-          this.canRequestAccess = false;
-          this.snackbarService.success('Successfully joined tournament');
-        });
+  public requestToJoinTournament(): void {
+    const notification = new Notification({
+      redirectUrl: `${environment.baseUrl}/teams/:teamId:/general`,
     });
+
+    this.tournamentService.requestToJoinTournament(notification, this.tournament.tournamentId)
+      .subscribe(() => {
+        this.canJoinTournament = false;
+        this.canRequestAccess = false;
+        this.snackbarService.success('Request send successfully');
+      });
+  }
+
+  public joinTournament(): void {
+    this.tournamentService.joinTournament(this.tournament.tournamentId)
+      .subscribe(() => {
+        this.canJoinTournament = false;
+        this.canRequestAccess = false;
+        this.snackbarService.success('Successfully joined tournament');
+      });
   }
 
   private getTournament(): Observable<Tournament> {

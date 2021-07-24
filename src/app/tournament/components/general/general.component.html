@@ -8,7 +8,7 @@
       color="accent"
     >Edit</button>
     <button *ngIf="canJoinTournament" (click)="joinTournament()" mat-raised-button>join tournament</button>
-    <button *ngIf="canRequestAccess" mat-raised-button>request to join</button>
+    <button *ngIf="canRequestAccess" (click)="requestToJoinTournament()" mat-raised-button>request to join</button>
   </div>
   <div class="general__content">
     <div class="general__section">

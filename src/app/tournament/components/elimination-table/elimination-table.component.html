@@ -3,11 +3,13 @@
     <div *ngFor="let match of round" class="elimination-table__match-group">
       <span class="elimination-table__match--number">{{ match.sequenceId }}</span>
       <div class="elimination-table__match">
-        <div>
+        <div [routerLink]="['/team', match.homeTeam.id, 'general']">
           <span>{{ match.homeTeam.name }}</span>
+          <span>{{ match.score.homeTeamScore }}</span>
         </div>
-        <div>
-          <span>{{ match.awayTeam.name }}</span>
+        <div [routerLink]="['/team', match.awayTeam.id, 'general']">
+          <span >{{ match.awayTeam.name }}</span>
+          <span>{{ match.score.awayTeamScore }}</span>
         </div>
       </div>
     </div>

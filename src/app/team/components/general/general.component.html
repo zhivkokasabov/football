@@ -12,4 +12,11 @@
   <div *ngIf="team" class="team__members-list">
     <app-player-card *ngFor="let member of team.members" [player]="member"></app-player-card>
   </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="team__history">
+    <app-sub-header text="history of participation"></app-sub-header>
+    <app-placements-table [placements]="placements"></app-placements-table>
+  </div>
 </div>

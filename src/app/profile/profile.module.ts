@@ -5,7 +5,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { SharedModule } from '../shared/shared.module';
+import { NotificationsModule } from '@notifications/notifications.module';
+import { SharedModule } from '@shared/shared.module';
 import { MessagesComponent } from './messages/messages.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileRoutingModule } from './profile-routing.module';
@@ -24,6 +25,7 @@ import { ViewEditProfileComponent } from './view-edit-profile/view-edit-profile.
     MatTabsModule,
     MatIconModule,
     MatCardModule,
+    NotificationsModule,
   ],
 })
 export class ProfileModule { }

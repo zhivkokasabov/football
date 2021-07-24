@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
+import PutRequestModel from '@app/models/put-request.model';
 import UserType from '@app/models/user-type.model';
 import User from '@app/models/user.model';
 import { environment } from '@src/environments/environment';
@@ -63,10 +64,20 @@ export class UserService {
   }
 
   public updateProfile(body: User): Observable<User> {
-    const url = `${environment.baseUrl}/profile`;
-    const model = new PostRequestModel({ url, body });
+    const url = `${environment.baseUrl}/user/profile`;
+    const model = new PutRequestModel({ url, body });
 
-    return this.http.put(model);
+    return new Observable((observer) => {
+      return this.http.put(model).subscribe(
+        (response) => {
+          this.currentUserSubject.next(new User(response));
+
+          observer.next();
+        },
+        (error) => observer.error(error),
+        () => observer.complete(),
+      );
+    });
   }
 
   public getUser(): void {

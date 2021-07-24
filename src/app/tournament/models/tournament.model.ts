@@ -27,6 +27,7 @@ export default class Tournament extends Base {
   public canEdit: boolean;
   public canEditMatches: boolean;
   public eliminationPhaseStarted: boolean;
+  public hasFinished: boolean;
 
   constructor(init: any = {}) {
     super(init);

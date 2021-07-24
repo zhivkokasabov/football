@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserTypes } from '@app/enums/user-types.enum';
 import { IConfirmBeforeLeave } from '@app/interfaces/confirm-before-leave.interface';
 import User from '@app/models/user.model';
+import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class ViewEditProfileComponent implements OnInit, IConfirmBeforeLeave {
 
   constructor(
     private userService: UserService,
+    private snackbarService: SnackbarService,
   ) { }
 
   public ngOnInit(): void {
@@ -49,7 +51,11 @@ export class ViewEditProfileComponent implements OnInit, IConfirmBeforeLeave {
   }
 
   public updateProfile(user: User): void {
-    debugger;
+    this.userService.updateProfile(user).subscribe(() => {
+      this.isEditing = false;
+
+      this.snackbarService.success('Profile updated successfully');
+    });
   }
 
   public hasUnsavedData(): boolean {

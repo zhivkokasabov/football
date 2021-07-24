@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
-import Notification from '@profile/models/notification.model';
+import Notification from '@notifications/models/notification.model';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -14,9 +14,9 @@ export class NotificationsService {
     private http: HttpService,
   ) { }
 
-  public getNotifications(userId: number): Observable<Notification[]> {
+  public getNotifications(): Observable<Notification[]> {
     return new Observable<Notification[]>((observer) => {
-      const url = `${environment.baseUrl}/user-notifications/${userId}`;
+      const url = `${environment.baseUrl}/notifications/user-notifications`;
       const model = new GetRequestModel({ url });
 
       return this.http.get(model).subscribe((result) => {

@@ -6,6 +6,17 @@
 
 .group-table {
   margin-bottom: $bot-indent;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    mat-icon {
+      color: $color-accent;
+    }
+  }
 }
 
 ::ng-deep {
