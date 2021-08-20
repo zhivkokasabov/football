@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConfirmDialogService } from './confirm-modal.service';
+import { ConfirmDialogService } from './confirm-dialog.service';
 
 describe('ConfirmModalService', () => {
   let service: ConfirmDialogService;
