@@ -2,11 +2,21 @@
   <mat-form-field>
     <input [readonly]="isReadOnly" matInput type="text" placeholder="First Name" formControlName="firstName">
   </mat-form-field>
+  <app-drag-and-drop></app-drag-and-drop>
   <mat-form-field>
     <input [readonly]="isReadOnly" matInput type="text" placeholder="Last Name" formControlName="lastName">
   </mat-form-field>
   <mat-form-field>
     <input [readonly]="isReadOnly" matInput type="text" placeholder="Nickname" formControlName="nickname">
+    <mat-error *ngIf="isFieldInvalid('nickname', 'minlength')">
+      {{ validationMessages.minLengthError("Nickname", 4) }}
+    </mat-error>
+    <mat-error *ngIf="isFieldInvalid('nickname', 'maxlength')">
+      {{ validationMessages.maxLengthError("Nickname", 64) }}
+    </mat-error>
+    <mat-error *ngIf="isFieldInvalid('nickname', 'required')">
+      {{ validationMessages.requiredError("Nickname") }}
+    </mat-error>
   </mat-form-field>
   <mat-form-field *ngIf="playerPositions.length" [class.register--readOnly]="isReadOnly">
     <mat-label>Position</mat-label>
@@ -30,7 +40,7 @@
     </mat-error>
   </mat-form-field>
   <div *ngIf="!hideRegisterButton;else updateProfile" class="register__submit-container">
-    <button mat-raised-button color="primary">Register</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Register</button>
   </div>
   <ng-template #updateProfile>
     <div *ngIf="!isReadOnly" class="register__submit-container">

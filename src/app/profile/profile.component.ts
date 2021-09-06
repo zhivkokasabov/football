@@ -11,7 +11,6 @@ import { SubNavBaseComponent } from '@shared/sub-nav-base/sub-nav-base.component
 export class ProfileComponent extends SubNavBaseComponent {
   public navItems: NavItem[] = [
     new NavItem({ routerLink: 'user-settings', icon: 'perm_identity' }),
-    new NavItem({ routerLink: 'notifications', icon: 'feedback' }),
     new NavItem({ routerLink: 'messages', icon: 'message' }),
   ];
 

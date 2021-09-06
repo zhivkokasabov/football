@@ -1,0 +1,11 @@
+<div class="content-indent">
+  <app-no-content *ngIf="notifications.length == 0; else list" message="No new notifications"></app-no-content>
+  <ng-template #list>
+    <app-notifications-list
+      [notificationsGroups]="notifications"
+      (acceptRequest)="acceptRequest($event)"
+      (rejectRequest)="rejectRequest($event)"
+      (dismissRequest)="dismissNotification($event)"
+    ></app-notifications-list>
+  </ng-template>
+</div>

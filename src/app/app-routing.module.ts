@@ -6,7 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CanActivateGuard } from './services/can-activate.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   {
     canActivate: [CanActivateGuard],
     loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
@@ -31,6 +31,11 @@ const routes: Routes = [
     canActivate: [CanActivateGuard],
     loadChildren: () => import('./team/team.module').then((m) => m.TeamModule),
     path: 'team',
+  },
+  {
+    canActivate: [CanActivateGuard],
+    loadChildren: () => import('./notifications/notifications.module').then((m) => m.NotificationsModule),
+    path: 'notifications',
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

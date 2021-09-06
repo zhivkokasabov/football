@@ -1,12 +1,12 @@
 <mat-card class="tournament-match">
   <mat-card-title>
     <div class="tournament-match__result">
-      {{ match.homeTeam.name }}
-      <span class="tournament-match__result--indent">
+      <span class="tournament-match__team-name tournament-match--align-right">{{ match.homeTeam.name }}</span>
+      <span class="tournament-match__result--indent tournament-match__score">
         <span *ngIf="match.result; else noResult">{{ match.result }}</span>
         <ng-template #noResult><span>? - ?</span></ng-template>
       </span>
-      {{ match.awayTeam.name }}
+      <span class="tournament-match__team-name">{{ match.awayTeam.name }}</span>
     </div>
   </mat-card-title>
   <mat-card-content class="tournament-match__content">

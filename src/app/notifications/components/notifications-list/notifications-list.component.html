@@ -1,1 +1,34 @@
-<p>notifications-list works!</p>
+<app-page-header title="notifications"></app-page-header>
+
+<div *ngFor="let group of notificationsGroups" class="notifications-group">
+  <div class="notifications-group__title">
+    {{ group.groupName }}
+  </div>
+  <div *ngFor="let notification of group.list">
+    <div *ngIf="notification.notificationTypeId == notificationTypes.ALERT; else standard">
+      <div class="notification">
+        <div class="notification__title" [innerHTML]="notification.message"></div>
+        <div class="notification__actions">
+          <button (click)="dismissRequest.emit(notification)" color="primary" mat-mini-fab aria-label="Dismiss notification">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <ng-template #standard>
+      <div class="notification">
+        <div class="notification__title" [innerHTML]="notification.message"></div>
+        <div class="notification__actions">
+          <button (click)="acceptRequest.emit(notification)" color="accent" mat-mini-fab aria-label="Accept invitation">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button (click)="rejectRequest.emit(notification)" color="primary" mat-mini-fab aria-label="Decline invitation">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <mat-divider></mat-divider>
+</div>

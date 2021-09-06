@@ -1,7 +1,12 @@
 <div class="team-matches">
-  <div *ngFor="let group of teamMatches">
-    <div *ngFor="let match of group" class="team-matches__match">
-      <app-tournament-match [match]="match"></app-tournament-match>
+  <div *ngIf="teamMatches.length; else noMatches">
+    <div *ngFor="let group of teamMatches">
+      <div *ngFor="let match of group" class="team-matches__match">
+        <app-tournament-match [match]="match"></app-tournament-match>
+      </div>
     </div>
   </div>
+  <ng-template #noMatches>
+    <app-no-content message="Team is yet to participate in a tournament"></app-no-content>
+  </ng-template>
 </div>

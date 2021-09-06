@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Base } from '@app/components/base.component';
 import User from '@app/models/user.model';
+import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
 import TournamentPlacement from '@team/models/tournament-placement.model';
 import { TeamService } from '@team/services/team.service';
@@ -21,6 +22,7 @@ export class GeneralComponent extends Base implements OnInit {
   constructor(
     private teamService: TeamService,
     private userService: UserService,
+    private snackbarService: SnackbarService,
   ) {
     super();
   }
@@ -40,17 +42,26 @@ export class GeneralComponent extends Base implements OnInit {
     });
   }
 
+  public copyKeyToClipboard(): void {
+    navigator.clipboard.writeText(this.team.entryKey).then(() => {
+      this.snackbarService.success('Copying to clipboard was successful!');
+    }, (err) => {
+      this.snackbarService.error('Could not copy text');
+    });
+  }
+
   private getTeamPlacements(id: number): void {
     this.teamService.getTeamPlacements(id).subscribe((placements: TournamentPlacement[]) => {
-      this.placements = [
-        ...placements,
-        new TournamentPlacement({ ...placements[0], placement: '2nd' }),
-        new TournamentPlacement({ ...placements[0], placement: '3rd' }),
-        new TournamentPlacement({ ...placements[0], placement: '4th' }),
-        new TournamentPlacement({ ...placements[0], placement: '3rd-4th' }),
-        new TournamentPlacement({ ...placements[0], placement: '5th-8th' }),
-        new TournamentPlacement({ ...placements[0], placement: '5th-16th' }),
-      ];
+      this.placements = placements;
+      // [
+      //   ...placements,
+      //   new TournamentPlacement({ ...placements[0], placement: '2nd' }),
+      //   new TournamentPlacement({ ...placements[0], placement: '3rd' }),
+      //   new TournamentPlacement({ ...placements[0], placement: '4th' }),
+      //   new TournamentPlacement({ ...placements[0], placement: '3rd-4th' }),
+      //   new TournamentPlacement({ ...placements[0], placement: '5th-8th' }),
+      //   new TournamentPlacement({ ...placements[0], placement: '5th-16th' }),
+      // ];
     });
   }
 

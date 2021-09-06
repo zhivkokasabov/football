@@ -26,7 +26,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tournament-form',
-  styleUrls: ['../../../styles/_form.scss'],
+  styleUrls: ['../../../styles/_form.scss', './tournament-form.component.scss'],
   templateUrl: './tournament-form.component.html',
 })
 export class TournamentFormComponent extends Base implements OnInit {
@@ -87,6 +87,8 @@ export class TournamentFormComponent extends Base implements OnInit {
   public onSubmit(): void {
     const tournament = this.form.value;
 
+    tournament.startDate.add(12, 'hours');
+
     this.onFormSubmit.emit(new Tournament(tournament));
 
     this.formSubmitAttempt = true;
@@ -145,6 +147,7 @@ export class TournamentFormComponent extends Base implements OnInit {
       firstMatchStartsAt: [this.tournament.firstMatchStartsAt, Validators.required],
       groupSize: [this.tournament.groupSize, [Validators.required, Validators.min(2)]],
       halfTimeLength: [this.tournament.halfTimeLength],
+      lastMatchStartsAt: [this.tournament.lastMatchStartsAt, Validators.required],
       matchLength: [this.tournament.matchLength, Validators.required],
       name: [this.tournament.name, [Validators.required, Validators.maxLength(24), Validators.minLength(4)]],
       playingDaysId: [this.tournament.playingDaysId || this.playingDays.workDays],

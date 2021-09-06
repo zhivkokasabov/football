@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanActivateGuard } from '../services/can-activate.service';
 import { CanDeactivateGuard } from '../services/can-deactivate.service';
 import { MessagesComponent } from './messages/messages.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileComponent } from './profile.component';
 import { ViewEditProfileComponent } from './view-edit-profile/view-edit-profile.component';
 
@@ -11,7 +10,6 @@ const routes: Routes = [
   {
     children: [
       { canDeactivate: [CanDeactivateGuard], path: 'user-settings', component: ViewEditProfileComponent },
-      { path: 'notifications', component: NotificationsComponent },
       { path: 'messages', component: MessagesComponent },
     ],
     component: ProfileComponent,

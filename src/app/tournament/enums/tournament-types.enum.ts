@@ -6,6 +6,7 @@ export class TournamentTypesEnum {
 }
 
 export const TournamentTypesFromNumber = [
+  '',
   'elimination',
   'classic',
   'round-robin',

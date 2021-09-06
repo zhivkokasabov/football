@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Base } from '@app/components/base.component';
+import { teamRoutes } from '@app/constants/routes.const';
 import User from '@app/models/user.model';
 import { SnackbarService } from '@app/services/snackbar.service';
 import { UserService } from '@app/services/user.service';
-import Notification from '@notifications/models/notification.model';
+import ANotification from '@notifications/models/a-notification.model';
 import { environment } from '@src/environments/environment';
 import { TeamService } from '@team/services/team.service';
 import Team from '@teams/models/team.model';
@@ -23,6 +24,8 @@ import { map, take, takeUntil } from 'rxjs/operators';
 export class GeneralComponent extends Base implements OnDestroy, OnInit {
   public tournament = new Tournament();
   public canJoinTournament: boolean;
+  public canStartTournament: boolean;
+  public canLeaveTournament: boolean;
   public canRequestAccess: boolean;
   public playingDaysNames = PlayingDaysNamesFromNumber;
   public tournamentTypesEnum = TournamentTypesEnum;
@@ -52,8 +55,8 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
   }
 
   public requestToJoinTournament(): void {
-    const notification = new Notification({
-      redirectUrl: `${environment.baseUrl}/teams/:teamId:/general`,
+    const notification = new ANotification({
+      redirectUrl: `${environment.appUrl}${teamRoutes.general}`,
     });
 
     this.tournamentService.requestToJoinTournament(notification, this.tournament.tournamentId)
@@ -73,6 +76,22 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
       });
   }
 
+  public startTournament(): void {
+    this.tournamentService.startTournament(this.tournament.tournamentId)
+      .subscribe(() => {
+        this.canStartTournament = false;
+        this.snackbarService.success('Successfully started tournament');
+      });
+  }
+
+  public leaveTournament(): void {
+    this.tournamentService.leaveTournament(this.tournament.tournamentId)
+      .subscribe(() => {
+        this.canLeaveTournament = false;
+        this.snackbarService.success('Successfully left tournament');
+      });
+  }
+
   private getTournament(): Observable<Tournament> {
     return this.tournamentService.tournament;
   }
@@ -83,7 +102,8 @@ export class GeneralComponent extends Base implements OnDestroy, OnInit {
       .subscribe((userIsAllowed: boolean) => {
         this.canJoinTournament = userIsAllowed
           && tournament.tournamentAccessId === TournamentAccesses.PUBLIC;
-
+        this.canStartTournament = tournament.canStartTournament;
+        this.canLeaveTournament = tournament.canLeaveTournament;
         this.canRequestAccess = userIsAllowed
           && tournament.tournamentAccessId === TournamentAccesses.PROTECTED;
       });

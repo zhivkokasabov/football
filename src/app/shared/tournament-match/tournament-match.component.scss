@@ -8,6 +8,10 @@
     margin-bottom: 0;
   }
 
+  &--align-right {
+    text-align: right;
+  }
+
   .mat-icon-button,
   .mat-icon {
     width: 1rem;
@@ -16,11 +20,20 @@
   }
 
   &__result {
-    text-align: center;
+    width: 100%;
+    display: flex;
 
     &--indent {
       margin: 0 1rem;
     }
+  }
+
+  &__team-name {
+    width: calc(50% - 2.5rem);
+  }
+
+  &__score {
+    width: 3rem;
   }
 
   &__footer {

@@ -9,6 +9,7 @@ export default class Tournament extends Base {
   public halfTimeLength: number;
   public tournamentId: number;
   public firstMatchStartsAt: string;
+  public lastMatchStartsAt: string;
   public matchLength: number;
   public name: string;
   public playingFields: number;
@@ -28,6 +29,8 @@ export default class Tournament extends Base {
   public canEditMatches: boolean;
   public eliminationPhaseStarted: boolean;
   public hasFinished: boolean;
+  public canStartTournament: boolean;
+  public canLeaveTournament: boolean;
 
   constructor(init: any = {}) {
     super(init);

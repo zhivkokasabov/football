@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import PlayerPosition from '@app/models/player-position.model';
 import User from '@app/models/user.model';
 import { PlayerPositionService } from '@app/services/player-position.service';
+import { ValidationMessages } from '@app/utils/validation-messages.utils';
 
 @Component({
   selector: 'app-player-form',
@@ -18,6 +19,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
 
   public form: FormGroup;
   public playerPositions: PlayerPosition[] = [];
+  public validationMessages = new ValidationMessages();
   private formSubmitAttempt: boolean;
 
   constructor(
@@ -41,7 +43,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
         email: [this.profile.email, Validators.required],
         firstName: [this.profile.firstName],
         lastName: [this.profile.lastName],
-        nickname: [this.profile.nickname],
+        nickname: [this.profile.nickname, [Validators.required, Validators.minLength(4), Validators.maxLength(64)]],
         password: [this.profile.password, Validators.required],
         playerPositions: [this.profile.positions],
       });
@@ -55,16 +57,24 @@ export class PlayerFormComponent implements OnInit, OnChanges {
 
       const positions = this.form.get('playerPositions');
 
-      if (positions) {
+      if (positions && positions.value) {
         const ids = positions.value.map((x: any) => x.id);
         positions.setValue(playerPositions.filter((x: any) => ids.includes(x.id)));
       }
     });
   }
 
-  public isFieldInvalid(field: string): boolean | undefined {
-    return (!this.form.get(field)?.valid && this.form.get(field)?.touched) ||
-    (this.form.get(field)?.untouched && this.formSubmitAttempt);
+  public isFieldInvalid(field: string, validation?: string): any {
+    const formField = this.form.get(field);
+
+    if ((!formField?.valid && formField?.touched) ||
+    (formField?.untouched && this.formSubmitAttempt)) {
+      if (validation) {
+        return formField.errors ? formField.errors[validation] : null;
+      }
+
+      return formField.errors;
+    }
   }
 
   public onSubmit(): void {

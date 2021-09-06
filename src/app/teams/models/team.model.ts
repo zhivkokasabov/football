@@ -4,11 +4,11 @@ export default class Team {
   public id: number;
   public name: string;
   public members: User[];
+  public entryKey: string;
 
   constructor(init: any = {}) {
-    const team = init || {};
-    Object.assign(this, team);
+    Object.assign(this, init);
 
-    this.members = team.members ? team.members.map((member: any) => new User(member)) : [];
+    this.members = init.members ? init.members.map((member: any) => new User(member)) : [];
   }
 }

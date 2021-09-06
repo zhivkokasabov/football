@@ -5,16 +5,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NotificationsModule } from '@notifications/notifications.module';
 import { SharedModule } from '@shared/shared.module';
 import { MessagesComponent } from './messages/messages.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { ViewEditProfileComponent } from './view-edit-profile/view-edit-profile.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ViewEditProfileComponent, NotificationsComponent, MessagesComponent],
+  declarations: [ProfileComponent, ViewEditProfileComponent, MessagesComponent],
   entryComponents: [],
   imports: [
     CommonModule,
@@ -25,7 +23,6 @@ import { ViewEditProfileComponent } from './view-edit-profile/view-edit-profile.
     MatTabsModule,
     MatIconModule,
     MatCardModule,
-    NotificationsModule,
   ],
 })
 export class ProfileModule { }

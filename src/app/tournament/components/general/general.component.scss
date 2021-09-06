@@ -3,6 +3,10 @@
 .general {
   &__header {
     margin-bottom: $bot-indent;
+
+    button {
+      margin-left: $action-buttons-gap;
+    }
   }
 
   &__section {

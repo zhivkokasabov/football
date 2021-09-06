@@ -6,4 +6,8 @@
     flex-wrap: wrap;
     margin-bottom: $bot-indent;
   }
+
+  &__edit-button {
+    margin-left: $action-buttons-gap;
+  }
 }

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import GetRequestModel from '@app/models/get-request.model';
 import PutRequestModel from '@app/models/put-request.model';
 import { HttpService } from '@app/services/http.service';
+import ANotification from '@notifications/models/a-notification.model';
 import NotificationType from '@notifications/models/notification-type.model';
+import NotificationsCount from '@notifications/models/notifications-count.model';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -30,16 +32,39 @@ export class NotificationsService {
     });
   }
 
-  public acceptInvitation(notificationId: number): Observable<void> {
-    const url = `${environment.baseUrl}/notifications/${notificationId}`;
-    const model = new PutRequestModel({ url, body: {} });
+  public getUserNotifications(): Observable<ANotification[]> {
+    const url = `${environment.baseUrl}/notifications`;
+    const model = new GetRequestModel({ url });
 
-    return this.http.put(model);
+    return new Observable((observer) => {
+      return this.http.get(model).subscribe((result: any) => {
+        const notifications = result.map((x: any) => new ANotification(x));
+
+        observer.next(notifications);
+      },
+      (error: any) => observer.error(error),
+      () => observer.complete());
+    });
   }
 
-  public rejectInvitation(notificationId: number): Observable<void> {
-    const url = `${environment.baseUrl}/notifications/${notificationId}`;
-    const model = new PutRequestModel({ url, body: {} });
+  public getNotificationsCount(): Observable<NotificationsCount> {
+    const url = `${environment.baseUrl}/notifications/count`;
+    const model = new GetRequestModel({ url });
+
+    return new Observable((observer) => {
+      return this.http.get(model).subscribe((result: any) => {
+        const notificationsCount = new NotificationsCount(result);
+
+        observer.next(notificationsCount);
+      },
+      (error: any) => observer.error(error),
+      () => observer.complete());
+    });
+  }
+
+  public resolveRequest(notification: ANotification): Observable<void> {
+    const url = `${environment.baseUrl}/notifications`;
+    const model = new PutRequestModel({ url, body: notification });
 
     return this.http.put(model);
   }

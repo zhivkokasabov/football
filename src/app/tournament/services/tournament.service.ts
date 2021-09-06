@@ -3,7 +3,7 @@ import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import PutRequestModel from '@app/models/put-request.model';
 import { HttpService } from '@app/services/http.service';
-import Notification from '@notifications/models/notification.model';
+import ANotification from '@notifications/models/a-notification.model';
 import { environment } from '@src/environments/environment';
 import TournamentAccess from '@tournament/models/tournament-access.model';
 import TournamentMatch from '@tournament/models/tournament-match.model';
@@ -148,7 +148,7 @@ export class TournamentService {
     return this.http.put(model);
   }
 
-  public requestToJoinTournament(notification: Notification, tournamentId: number): Observable<void> {
+  public requestToJoinTournament(notification: ANotification, tournamentId: number): Observable<void> {
     const url = `${environment.baseUrl}/tournament/${tournamentId}/request-to-join-tournament`;
     const model = new PostRequestModel({ url, body: notification });
 
@@ -198,6 +198,32 @@ export class TournamentService {
 
         this.tournamentSubject.next(tournament);
         observer.next(tournament);
+      },
+      (error) => observer.error(error),
+      () => observer.complete());
+    });
+  }
+
+  public startTournament(tournamentId: number): Observable<void> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/start`;
+    const model = new PutRequestModel({ url, body: {} });
+
+    return new Observable<void>((observer) => {
+      return this.http.put(model).subscribe((result) => {
+        observer.next();
+      },
+      (error) => observer.error(error),
+      () => observer.complete());
+    });
+  }
+
+  public leaveTournament(tournamentId: number): Observable<void> {
+    const url = `${environment.baseUrl}/tournament/${tournamentId}/leave`;
+    const model = new PutRequestModel({ url, body: {} });
+
+    return new Observable<void>((observer) => {
+      return this.http.put(model).subscribe((result) => {
+        observer.next();
       },
       (error) => observer.error(error),
       () => observer.complete());

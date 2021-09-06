@@ -1,24 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NotificationTypes } from '@notifications/enums/notification-types.enum';
+import ANotification from '@notifications/models/a-notification.model';
 import NotificationType from '@notifications/models/notification-type.model';
-import Notification from '@notifications/models/notification.model';
-import { NotificationsService } from '@notifications/services/notifications.service';
+import NotificationsGroup from '@notifications/models/notifications-group.model';
 
 @Component({
   selector: 'app-notifications-list',
   styleUrls: ['./notifications-list.component.scss'],
   templateUrl: './notifications-list.component.html',
 })
-export class NotificationsListComponent implements OnInit {
-  @Input() public notifications: Notification[] = [];
-  private notificationTypes: NotificationType[] = [];
+export class NotificationsListComponent {
+  public notificationTypes = NotificationTypes;
 
-  constructor(
-    private notificationsService: NotificationsService,
-  ) { }
+  @Input() public notificationsGroups: NotificationsGroup[] = [];
+  @Output() public rejectRequest: EventEmitter<ANotification> = new EventEmitter();
+  @Output() public acceptRequest: EventEmitter<ANotification> = new EventEmitter();
+  @Output() public dismissRequest: EventEmitter<ANotification> = new EventEmitter();
 
-  public ngOnInit(): void {
-    this.notificationsService.getNotificationTypes().subscribe((types: NotificationType[]) => {
-      this.notificationTypes = types;
-    });
+  constructor() {
   }
 }

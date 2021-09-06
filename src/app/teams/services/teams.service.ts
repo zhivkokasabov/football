@@ -20,7 +20,7 @@ export class TeamsService {
 
     return new Observable<Team>((observer) => {
       return this.http.get(model).subscribe((response: any) => {
-        const team = new Team(response);
+        const team = response ? new Team(response) : undefined;
 
         observer.next(team);
         observer.complete();

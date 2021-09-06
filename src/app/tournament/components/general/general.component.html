@@ -1,14 +1,31 @@
 <div class="general">
   <div class="general__header d-flex jc-between">
     <app-page-header [title]="tournament.name"></app-page-header>
-    <button
-      *ngIf="tournament.canEdit"
-      [routerLink]="['/tournament', tournament.tournamentId, 'edit']"
-      mat-raised-button
-      color="accent"
-    >Edit</button>
-    <button *ngIf="canJoinTournament" (click)="joinTournament()" mat-raised-button>join tournament</button>
-    <button *ngIf="canRequestAccess" (click)="requestToJoinTournament()" mat-raised-button>request to join</button>
+    <div>
+      <button
+        *ngIf="canLeaveTournament"
+        (click)="leaveTournament()"
+        mat-raised-button
+        color="warn"
+        aria-label="leave tournament"
+        >leave Tournament</button>
+      <button
+        *ngIf="canStartTournament"
+        (click)="startTournament()"
+        mat-raised-button
+        color="warn"
+        aria-label="start tournament"
+        >Start Tournament</button>
+      <button
+        *ngIf="tournament.canEdit"
+        [routerLink]="['/tournament', tournament.tournamentId, 'edit']"
+        mat-raised-button
+        color="accent"
+        aria-label="edit tournament"
+      >Edit</button>
+      <button *ngIf="canJoinTournament" (click)="joinTournament()" mat-raised-button aria-label="join tournament">join tournament</button>
+      <button *ngIf="canRequestAccess" (click)="requestToJoinTournament()" mat-raised-button aria-label="request to join tournament">request to join</button>
+    </div>
   </div>
   <div class="general__content">
     <div class="general__section">
@@ -22,6 +39,14 @@
         <p>{{ tournament.avenue }}</p>
       </div>
       <div>
+        <p>start date:</p>
+        <p>{{ tournament.startDate | date: 'MMMM d, y' }}</p>
+      </div>
+      <div>
+        <p>playing days:</p>
+        <p>{{ playingDaysNames[tournament.playingDaysId] }}</p>
+      </div>
+      <div>
         <p>description:</p>
         <p>{{ tournament.description }}</p>
       </div>
@@ -29,22 +54,15 @@
         <p>rules:</p>
         <p>{{ tournament.rules }}</p>
       </div>
+
       <mat-divider></mat-divider>
 
       <p>Additional Information</p>
       <div>
-        <p>playing days:</p>
-        <p>{{ playingDaysNames[tournament.playingDaysId] }}</p>
-      </div>
-      <div>
-        <p>start date:</p>
-        <p>{{ tournament.startDate | date: 'MMMM d, y' }}</p>
-      </div>
-      <div>
         <p>first match starts at:</p>
         <p>{{ tournament.firstMatchStartsAt }}</p>
       </div>
-      <div *ngIf="tournament.type.id == tournamentTypesEnum.classic">
+      <div *ngIf="tournament.tournamentTypeId == tournamentTypesEnum.classic">
         <p>groups size:</p>
         <p>{{ tournament.groupSize }}</p>
       </div>
@@ -64,7 +82,7 @@
         <p>number of participating teams:</p>
         <p>{{ tournament.teamsCount }}</p>
       </div>
-      <div *ngIf="tournament.type.id == tournamentTypesEnum.classic">
+      <div *ngIf="tournament.tournamentTypeId == tournamentTypesEnum.classic">
         <p>number of teams advancing from a single group:</p>
         <p>{{ tournament.teamsAdvancingAfterGroups }}</p>
       </div>

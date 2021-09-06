@@ -1,22 +1,12 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .elimination-phase {
   margin-bottom: $bot-indent;
 }
 
-.group-table {
-  margin-bottom: $bot-indent;
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-
-    mat-icon {
-      color: $color-accent;
-    }
-  }
+:host {
+  @include group-table-team-link;
 }
 
 ::ng-deep {

@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-round-robin-table',
-  styleUrls: ['../../styles/table.scss'],
+  styleUrls: ['../../styles/table.scss', './round-robin-table.scss'],
   templateUrl: './round-robin-table.component.html',
 })
 export class RoundRobinTableComponent implements OnInit, OnDestroy {
@@ -16,6 +16,11 @@ export class RoundRobinTableComponent implements OnInit, OnDestroy {
     'rowNumber',
     'name',
     'played',
+    'wins',
+    'draws',
+    'loses',
+    'goals for',
+    'goals against',
     'goalDifference',
     'points',
   ];
@@ -58,10 +63,8 @@ export class RoundRobinTableComponent implements OnInit, OnDestroy {
           const { team } = participant;
 
           return {
-            goalDifference: 0,
+            ...participant,
             name: team ? team.name : `${this.emptyTeamName} ${participant.sequenceId}`,
-            played: 0,
-            points: 0,
             rowNumber: index + 1,
           };
         });

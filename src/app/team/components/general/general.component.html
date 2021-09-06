@@ -1,12 +1,15 @@
 <div class="team">
   <div class="team__header d-flex jc-between">
     <app-page-header [title]="team.name"></app-page-header>
-    <button
-      *ngIf="canEdit"
-      [routerLink]="['/team', team.id, 'edit']"
-      mat-raised-button
-      color="accent"
-    >Edit</button>
+    <div *ngIf="canEdit">
+      <button (click)="copyKeyToClipboard()" mat-raised-button color="accent">Copy entry key to clipboard</button>
+      <button
+        class="team__edit-button"
+        [routerLink]="['/team', team.id, 'edit']"
+        mat-raised-button
+        color="accent"
+      >Edit</button>
+    </div>
   </div>
 
   <div *ngIf="team" class="team__members-list">

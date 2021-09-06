@@ -7,6 +7,7 @@
           {{ access.name }}
       </mat-radio-button>
     </mat-radio-group>
+    <mat-icon class="tournament-form--align-right" matTooltip="How available the tournament is for enrollment. Public: everyone can join the tournament; Request Access: everyone can request to join the tournament; Private: teams can join only if they receive invitation">help</mat-icon>
   </div>
   <div class="form-field">
     <label for="tournamentName">Tournament type</label>
@@ -16,7 +17,7 @@
           {{type.name}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="isFieldInvalid('typeId', 'required')">
+      <mat-error *ngIf="isFieldInvalid('tournamentTypeId', 'required')">
         {{ validationMessages.requiredError("tournament type") }}
       </mat-error>
     </mat-form-field>
@@ -119,7 +120,7 @@
       <mat-form-field>
         <input
           matInput
-          [ngxTimepicker]="toggleTimepicker"
+          [ngxTimepicker]="startsAt"
           formControlName="firstMatchStartsAt"
           [disableClick]="true"
           readonly
@@ -128,10 +129,33 @@
           max="23:00"
         >
         <mat-icon matSuffix>schedule</mat-icon>
-        <ngx-material-timepicker-toggle [for]="toggleTimepicker"></ngx-material-timepicker-toggle>
-        <ngx-material-timepicker [timepickerClass]="'time-picker'" #toggleTimepicker></ngx-material-timepicker>
+        <ngx-material-timepicker-toggle [for]="startsAt"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker [timepickerClass]="'time-picker'" #startsAt></ngx-material-timepicker>
         <mat-error *ngIf="isFieldInvalid('firstMatchStartsAt')">
           {{ validationMessages.requiredError("first match starts at") }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-field">
+    <label for="latestMatchStart">last match starts at</label>
+    <div class="form-field">
+      <mat-form-field>
+        <input
+          matInput
+          [ngxTimepicker]="endsAt"
+          formControlName="lastMatchStartsAt"
+          [disableClick]="true"
+          readonly
+          [format]="24"
+          min="07:00"
+          max="23:00"
+        >
+        <mat-icon matSuffix>schedule</mat-icon>
+        <ngx-material-timepicker-toggle [for]="endsAt"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker [timepickerClass]="'time-picker'" #endsAt></ngx-material-timepicker>
+        <mat-error *ngIf="isFieldInvalid('lastMatchStartsAt')">
+          {{ validationMessages.requiredError("last match starts at") }}
         </mat-error>
       </mat-form-field>
     </div>
