@@ -1,3 +1,4 @@
+import { environment } from '@src/environments/environment';
 import PlayerPosition from './player-position.model';
 import UserType from './user-type.model';
 
@@ -11,6 +12,7 @@ export default class User {
   public roles: UserType[];
   public positions: PlayerPosition[];
   public isTeamCaptain: boolean;
+  public picture: string;
 
   constructor(init: any = {}) {
     this.id = init.id;
@@ -18,6 +20,7 @@ export default class User {
     this.firstName = init.firstName;
     this.lastName = init.lastName;
     this.nickname = init.nickname;
+    this.picture = init.picture ? init.picture : environment.defaultPlayerImagePath;
     this.password = init.password;
     this.isTeamCaptain = init.isTeamCaptain;
     this.roles = init.roles ? init.roles.map((x: any) => new UserType(x)) : [];

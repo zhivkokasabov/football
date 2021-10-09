@@ -20,6 +20,7 @@ import { TeamMatchesComponent } from './components/team-matches/team-matches.com
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { TeamComponent } from './team.component';
+import { EditLayerDirective } from './directives/edit-layer.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TeamComponent } from './team.component';
     EditTeamComponent,
     TeamMatchesComponent,
     PlacementsTableComponent,
+    EditLayerDirective,
   ],
   imports: [
     CommonModule,

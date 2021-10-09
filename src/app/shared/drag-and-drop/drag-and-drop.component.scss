@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.dropzone {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: .125rem dashed $color-grey;
+  box-sizing: border-box;
+  background: #fff;
+  transition: background .25s;
+
+  &__file-over {
+    background: lighten($color-grey, 90%);
+    border: .125rem solid $color-grey;
+  }
+
+  &__button {
+    display: none;
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+    color: $color-grey;
+  }
+
+  &__text {
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+
+  &__label {
+    padding: 0 1rem;
+    border-radius: .25rem;
+    line-height: 2.25rem;
+    min-width: 4rem;
+    text-align: center;
+    background: $color-accent;
+    color: $color-white;
+    vertical-align: baseline;
+    cursor: pointer;
+  }
+}
+
+.file {
+  padding: .5rem;
+  border-bottom: .125rem solid $color-grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > span {
+    max-width: 15rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  div > span {
+    font-weight: bold;
+  }
+}

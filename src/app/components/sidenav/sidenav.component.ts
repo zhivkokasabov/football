@@ -102,6 +102,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
 
     this.userSubject = new Subject();
 
+    if (!this.currentUser.id) {
+      return;
+    }
+
     this.notificationsService.getNotificationsCount().subscribe((count: NotificationsCount) => {
       this.notificationsCount = count;
     });
@@ -109,9 +113,11 @@ export class SidenavComponent implements OnDestroy, OnInit {
     interval(30 * 1000).pipe(
       takeUntil(this.userSubject),
     ).subscribe(() => {
-      this.notificationsService.getNotificationsCount().subscribe((count: NotificationsCount) => {
-        this.notificationsCount = count;
-      });
+      if (this.currentUser.id) {
+        this.notificationsService.getNotificationsCount().subscribe((count: NotificationsCount) => {
+          this.notificationsCount = count;
+        });
+      }
     });
   }
 }

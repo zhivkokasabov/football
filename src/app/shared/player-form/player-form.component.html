@@ -1,8 +1,15 @@
 <form [formGroup]="form" class="register">
+  <div *ngIf="isReadOnly; else uploadImage" class="register__image register--border">
+    <img *ngIf="form.controls.picture" [src]="form.controls.picture.value" />
+  </div>
+  <ng-template #uploadImage>
+    <div class="register__image">
+      <app-drag-and-drop (fileDrop)="onFileDrop($event)"></app-drag-and-drop>
+    </div>
+  </ng-template>
   <mat-form-field>
     <input [readonly]="isReadOnly" matInput type="text" placeholder="First Name" formControlName="firstName">
   </mat-form-field>
-  <app-drag-and-drop></app-drag-and-drop>
   <mat-form-field>
     <input [readonly]="isReadOnly" matInput type="text" placeholder="Last Name" formControlName="lastName">
   </mat-form-field>

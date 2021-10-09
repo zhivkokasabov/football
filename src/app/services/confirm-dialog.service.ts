@@ -14,7 +14,7 @@ export class ConfirmDialogService {
 
   public openDialog(): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '100%',
+      width: '25rem',
     });
 
     return dialogRef.afterClosed();

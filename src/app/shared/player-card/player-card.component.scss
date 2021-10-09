@@ -1,3 +1,5 @@
+@import 'variables';
+
 .player {
   width: 10rem;
   height: 100%;
@@ -9,14 +11,24 @@
     box-sizing: border-box;
   }
 
+  &__image-container {
+    overflow: hidden;
+    margin: 0 -1rem;
+  }
+
   &__image {
     height: 10rem;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
-    margin: 0 -1rem;
-    overflow: hidden;
+    margin: 0;
+    border-top: .125rem solid $color-primary;
+    border-bottom: .125rem solid $color-primary;
+
+    img {
+      margin: 0;
+    }
   }
 
   &__positions-list {

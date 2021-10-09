@@ -29,8 +29,8 @@ export class UserService {
     return new Observable((observer) => {
       return this.http.post(model).subscribe(
         (response: any) => {
-          this.currentUserSubject.next(new User(response.user));
           this.setAuthInStorage(response.token);
+          this.currentUserSubject.next(new User(response.user));
 
           observer.next();
         },

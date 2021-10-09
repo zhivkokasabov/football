@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  appUrl: 'https://localhost:4200',
+  appUrl: 'https://getative.azurewebsites.net',
   baseUrl: 'https://localhost:44382/api',
   defaultPlayerImagePath: '/assets/player.jpg',
   production: false,

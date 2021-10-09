@@ -34,6 +34,7 @@ export class TournamentGroupsComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe),
     ).subscribe((tournament: Tournament) => {
       this.tournament = tournament;
+
       if (tournament.canEdit && tournament.tournamentTypeId === TournamentTypesEnum.classic) {
         this.tournamentService.canProceedToEliminations(tournament.tournamentId)
           .subscribe((response) => {
@@ -96,6 +97,6 @@ export class TournamentGroupsComponent implements OnInit, OnDestroy {
       return x.every((y: TournamentMatch) => !!y.result) === true;
     });
 
-    this.canCloseTournament = !this.tournament.hasFinished && allMatchesHaveFinished;
+    this.canCloseTournament = this.tournament.canEdit && !this.tournament.hasFinished && allMatchesHaveFinished;
   }
 }

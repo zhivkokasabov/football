@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import DeleteRequestModel from '@app/models/delete-request.model';
 import GetRequestModel from '@app/models/get-request.model';
 import PostRequestModel from '@app/models/post-request.model';
 import { HttpService } from '@app/services/http.service';
@@ -89,5 +90,12 @@ export class TeamService {
         observer.complete();
       });
     });
+  }
+
+  public removeMember(teamId: number, memberId: number): Observable<void> {
+    const url = `${environment.baseUrl}/teams/${teamId}/members/${memberId}`;
+    const model = new DeleteRequestModel({ url });
+
+    return this.http.delete(model);
   }
 }

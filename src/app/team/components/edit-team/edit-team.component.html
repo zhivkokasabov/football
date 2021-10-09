@@ -1,1 +1,11 @@
-<p>edit-team works!</p>
+<div class="team-edit">
+  <div class="team-edit__members-list">
+    <app-player-card
+      appEditLayer
+      (removeClick)="onRemoveClick($event)"
+      *ngFor="let member of members"
+      [player]="member"
+      [memberId]="member.id"
+    ></app-player-card>
+  </div>
+</div>

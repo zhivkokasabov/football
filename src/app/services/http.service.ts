@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import DeleteRequestModel from '@app/models/delete-request.model';
+import GetRequestModel from '@app/models/get-request.model';
+import PostRequestModel from '@app/models/post-request.model';
 import { Observable } from 'rxjs';
-import GetRequestModel from '../models/get-request.model';
-import PostRequestModel from '../models/post-request.model';
 
 const { assert } = console;
 
@@ -33,6 +34,18 @@ export class HttpService {
 
     return new Observable((obs) => {
       this.http.put(model.url, model.body, { headers: this.httpOptions }).subscribe(
+        (res) => obs.next(res),
+        (error) => obs.error(error),
+        () => obs.complete(),
+      );
+    });
+  }
+
+  public delete(model: DeleteRequestModel): Observable<any> {
+    assert(!!model.url);
+
+    return new Observable((obs) => {
+      this.http.delete(model.url, { headers: this.httpOptions }).subscribe(
         (res) => obs.next(res),
         (error) => obs.error(error),
         () => obs.complete(),

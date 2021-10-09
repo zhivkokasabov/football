@@ -32,6 +32,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
       lastName: [''],
       nickname: [''],
       password: ['', Validators.required],
+      picture: [''],
       playerPositions: [],
     });
     this.formSubmitAttempt = false;
@@ -45,6 +46,7 @@ export class PlayerFormComponent implements OnInit, OnChanges {
         lastName: [this.profile.lastName],
         nickname: [this.profile.nickname, [Validators.required, Validators.minLength(4), Validators.maxLength(64)]],
         password: [this.profile.password, Validators.required],
+        picture: [this.profile.picture],
         playerPositions: [this.profile.positions],
       });
       this.formSubmitAttempt = false;
@@ -94,5 +96,13 @@ export class PlayerFormComponent implements OnInit, OnChanges {
 
   public onCancel(): void {
     this.onCancelEdit.emit();
+  }
+
+  public onFileDrop(picture?: string): void {
+    const formPicture = this.form.get('picture') || '';
+
+    if (picture && formPicture) {
+      formPicture.setValue(picture);
+    }
   }
 }
